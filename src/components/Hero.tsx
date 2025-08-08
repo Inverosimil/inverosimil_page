@@ -9,8 +9,7 @@ export default function Hero() {
   const { t, /* locale */ } = useLocale();
 
   return (
-    <section className="relative min-h-[calc(100svh-56px)] flex items-center">
-      <div className="absolute inset-0 -z-10 code-grid" aria-hidden />
+    <section id="inicio" className="relative min-h-[100svh] flex items-center">
       <div className="max-w-5xl mx-auto px-6 sm:px-8 w-full grid md:grid-cols-2 gap-10 items-center py-12 md:py-0">
         <div className="order-2 md:order-1 text-center md:text-left">
           <h1 className="text-3xl sm:text-5xl md:text-6xl leading-tight font-semibold tracking-tight">

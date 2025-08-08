@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "../components/Providers";
-import Header from "../components/Header";
+import ParallaxBackground from "../components/ParallaxBackground";
+import SideIndex from "../components/SideIndex";
+import TopRightControls from "../components/TopRightControls";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -33,9 +35,11 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es" className="scroll-smooth theme-light">
-      <body className={`${inter.variable} antialiased bg-background text-foreground pt-14`}>
+      <body className={`${inter.variable} antialiased bg-background text-foreground`}>
         <Providers>
-          <Header />
+          <ParallaxBackground speed={0.35} />
+          <SideIndex />
+          <TopRightControls />
           {children}
         </Providers>
       </body>
