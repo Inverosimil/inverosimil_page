@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="1600" viewBox="0 0 1200 1600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6d28d9"/>
+      <stop offset="100%" stop-color="#a78bfa"/>
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="24"/>
+      <feOffset dx="0" dy="16" result="offset"/>
+      <feMerge>
+        <feMergeNode in="offset"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <clipPath id="rounded">
+      <rect x="80" y="80" width="1040" height="1440" rx="120" ry="120"/>
+    </clipPath>
+  </defs>
+  <rect x="80" y="80" width="1040" height="1440" rx="120" ry="120" fill="url(#g)" filter="url(#shadow)"/>
+  <g clip-path="url(#rounded)">
+    <circle cx="600" cy="560" r="240" fill="rgba(255,255,255,0.9)"/>
+    <rect x="320" y="820" width="560" height="520" rx="200" fill="rgba(255,255,255,0.9)"/>
+    <ellipse cx="600" cy="1210" rx="420" ry="220" fill="rgba(255,255,255,0.15)"/>
+  </g>
+</svg> 

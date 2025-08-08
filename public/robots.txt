@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://inverosimil.dev/sitemap.xml 

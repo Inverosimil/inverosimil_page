@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #1a1033; /* morado muy oscuro para texto principal en light */
+  --accent: #6d28d9; /* morado principal */
+  --muted: #f3e8ff; /* lila muy suave para fondos */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-inter);
+}
+
+/* Modo oscuro/claro controlado por clases en <html> */
+.theme-light {
+  --background: #ffffff;
+  --foreground: #1a1033;
+  --accent: #6d28d9;
+  --muted: #f3e8ff;
+}
+.theme-dark {
+  --background: #0b061a;
+  --foreground: #ffffff;
+  --accent: #a78bfa;
+  --muted: #140b2d;
+}
+
+/* Fallback a preferencia del SO si no se aplica clase explícita */
+@media (prefers-color-scheme: dark) {
+  :root:not(.theme-light):not(.theme-dark) {
+    --background: #0b061a; /* casi negro con tinte morado */
+    --foreground: #ffffff; /* texto blanco en dark */
+    --accent: #a78bfa; /* morado claro para acentos en dark */
+    --muted: #140b2d; /* morado profundo para tarjetas */
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  text-rendering: optimizeLegibility;
+}
+
+/******** Utilities ********/
+.code-grid {
+  background-image: radial-gradient(color-mix(in oklab, var(--accent) 20%, transparent) 1px, transparent 1px);
+  background-size: 16px 16px;
+  background-position: 0 0;
+}
+
+.neon { text-shadow: 0 0 8px color-mix(in oklab, var(--accent) 60%, transparent); }
+
+.link { color: var(--accent); }
+.link:hover { text-decoration: underline; }
+
+.card {
+  border: 1px solid color-mix(in oklab, var(--accent) 20%, transparent);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--accent) 8%, transparent), color-mix(in oklab, #000 40%, transparent));
+}
+
+hr { border-color: color-mix(in oklab, var(--accent) 20%, transparent); }
