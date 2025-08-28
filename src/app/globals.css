@@ -58,9 +58,37 @@ body {
   inset: 0;
   z-index: -10;
   pointer-events: none;
+  /* Defaults for hover lens */
+  --mx: -10000px;
+  --my: -10000px;
+  --hover-radius: 400px;
   background-image: radial-gradient(color-mix(in oklab, var(--accent) 20%, transparent) 1px, transparent 1px);
   background-size: 16px 16px;
   background-position: 0 var(--bg-offset, 0px);
+}
+
+/* Overlay of slightly larger dots revealed near the pointer */
+.code-grid::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(color-mix(in oklab, var(--accent) 6%, transparent) 1.4px, transparent 1.6px);
+  background-size: 16px 16px;
+  background-position: 0 var(--bg-offset, 0px);
+  /* Show only inside a soft circular lens around the pointer */
+  mask-image: radial-gradient(
+    circle var(--hover-radius) at var(--mx) var(--my),
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 55%,
+    rgba(255, 255, 255, 0) 80%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle var(--hover-radius) at var(--mx) var(--my),
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 55%,
+    rgba(255, 255, 255, 0) 80%
+  );
 }
 
 .neon { text-shadow: 0 0 8px color-mix(in oklab, var(--accent) 60%, transparent); }

@@ -5,6 +5,8 @@ export default function ParallaxBackground({ speed = 0.35 }: { speed?: number })
   const ref = useRef<HTMLDivElement | null>(null);
   const rafRef = useRef<number | null>(null);
   const lastY = useRef<number>(0);
+  const pointerRafRef = useRef<number | null>(null);
+  const lastPointer = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
     const el = ref.current;
@@ -29,9 +31,41 @@ export default function ParallaxBackground({ speed = 0.35 }: { speed?: number })
     update();
 
     window.addEventListener("scroll", onScroll, { passive: true });
+
+    const applyPointer = () => {
+      if (!el || !lastPointer.current) {
+        pointerRafRef.current = null;
+        return;
+      }
+      const { x, y } = lastPointer.current;
+      // Set CSS variables used by the masked overlay
+      el.style.setProperty("--mx", `${Math.round(x)}px`);
+      el.style.setProperty("--my", `${Math.round(y)}px`);
+      pointerRafRef.current = null;
+    };
+
+    const onPointerMove = (e: PointerEvent | MouseEvent) => {
+      lastPointer.current = { x: (e as PointerEvent).clientX, y: (e as PointerEvent).clientY };
+      if (pointerRafRef.current == null) {
+        pointerRafRef.current = window.requestAnimationFrame(applyPointer);
+      }
+    };
+
+    const onPointerLeave = () => {
+      lastPointer.current = null;
+      el.style.setProperty("--mx", `-10000px`);
+      el.style.setProperty("--my", `-10000px`);
+    };
+
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    window.addEventListener("pointerleave", onPointerLeave, { passive: true });
+
     return () => {
       window.removeEventListener("scroll", onScroll);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      window.removeEventListener("pointermove", onPointerMove as any);
+      window.removeEventListener("pointerleave", onPointerLeave as any);
+      if (pointerRafRef.current) cancelAnimationFrame(pointerRafRef.current);
     };
   }, [speed]);
 
