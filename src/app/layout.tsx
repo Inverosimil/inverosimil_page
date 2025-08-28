@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import Providers from "../components/Providers";
 import ParallaxBackground from "../components/ParallaxBackground";
-import SideIndex from "../components/SideIndex";
-import TopRightControls from "../components/TopRightControls";
 
 const inter = Inter({
   variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const bebas = Bebas_Neue({
+  variable: "--font-display",
+  weight: "400",
   subsets: ["latin"],
   display: "swap",
 });
@@ -35,11 +40,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="es" className="scroll-smooth theme-light">
-      <body className={`${inter.variable} antialiased bg-background text-foreground`}>
+      <body className={`${inter.variable} ${bebas.variable} antialiased bg-background text-foreground`}>
         <Providers>
           <ParallaxBackground speed={0.35} />
-          <SideIndex />
-          <TopRightControls />
           {children}
         </Providers>
       </body>

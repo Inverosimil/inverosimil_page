@@ -13,6 +13,7 @@
   --color-accent: var(--accent);
   --color-muted: var(--muted);
   --font-sans: var(--font-inter);
+  --font-display: var(--font-display);
 }
 
 /* Modo oscuro/claro controlado por clases en <html> */
@@ -73,3 +74,25 @@ body {
 }
 
 hr { border-color: color-mix(in oklab, var(--accent) 20%, transparent); }
+
+/* Tipografía display para títulos al estilo jackbailey.dev */
+.font-display { font-family: var(--font-display), var(--font-inter), ui-sans-serif, system-ui; letter-spacing: 0.5px; }
+
+/* Animación de carga del header inspirada en m7mad.dev */
+.site-header { --progress: 0%; }
+.site-header .header-progress {
+  position: absolute; inset: auto 0 0 0; height: 2px; background: color-mix(in oklab, var(--accent) 80%, transparent);
+  transform-origin: left center; transform: scaleX(0);
+}
+.site-header[data-loaded="true"] .header-progress {
+  animation: header-progress 1.2s cubic-bezier(.22,1,.36,1) forwards;
+}
+@keyframes header-progress { to { transform: scaleX(1); } }
+
+/* Aparición escalonada de elementos del nav */
+.nav-stagger .nav-i { opacity: 0; transform: translateY(-6px); }
+.site-header[data-loaded="true"] .nav-stagger .nav-i {
+  animation: nav-in .5s cubic-bezier(.22,1,.36,1) forwards;
+  animation-delay: calc(120ms + var(--i) * 70ms);
+}
+@keyframes nav-in { to { opacity: 1; transform: translateY(0); } }

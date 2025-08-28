@@ -3,14 +3,15 @@ import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useLocale } from "../context/LocaleContext";
 
-const SECTION_IDS = ["sobre", "proyectos", "experiencia", "contacto"] as const;
-
+const SECTION_IDS = ["inicio", "sobre", "proyectos", "experiencia", "contacto"] as const;
 type SectionId = typeof SECTION_IDS[number];
 
-export default function SideIndex() {
+export default function SectionTabs() {
   const { t } = useLocale();
+
   const labels = useMemo(
     () => ({
+      inicio: t("section.inicio"),
       sobre: t("section.sobre"),
       proyectos: t("section.proyectos"),
       experiencia: t("section.experiencia"),
@@ -19,20 +20,19 @@ export default function SideIndex() {
     [t]
   );
 
-  const [active, setActive] = useState<SectionId>("sobre");
+  const [active, setActive] = useState<SectionId>("inicio");
 
   useEffect(() => {
     let ticking = false;
 
     const getActiveByCenter = (): SectionId => {
       const viewportCenter = window.innerHeight / 2;
-
       const atTop = window.scrollY <= 2;
-      if (atTop) return "sobre";
+      if (atTop) return "inicio";
       const atBottom = window.scrollY + window.innerHeight >= (document.documentElement.scrollHeight - 2);
       if (atBottom) return "contacto";
 
-      let bestId: SectionId = "sobre";
+      let bestId: SectionId = "inicio";
       let bestDist = Number.POSITIVE_INFINITY;
       for (const id of SECTION_IDS) {
         const el = document.getElementById(id);
@@ -61,16 +61,12 @@ export default function SideIndex() {
       }
     };
 
-    const onResize = onScroll;
-
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onResize);
-
+    window.addEventListener("resize", onScroll);
     update();
-
     return () => {
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onResize);
+      window.removeEventListener("resize", onScroll);
     };
   }, []);
 
@@ -83,8 +79,8 @@ export default function SideIndex() {
   };
 
   return (
-    <nav aria-label="Índice de secciones" className="hidden md:block">
-      <ul className="space-y-1 text-sm">
+    <nav aria-label="Navegación de secciones" className="w-full">
+      <ul className="flex flex-wrap items-center gap-2 sm:gap-3">
         {SECTION_IDS.map((id) => {
           const isActive = active === id;
           return (
@@ -92,20 +88,13 @@ export default function SideIndex() {
               <Link
                 href={`#${id}`}
                 onClick={handleClick(id)}
-                aria-current={isActive ? "true" : undefined}
                 className={
-                  "group flex items-center gap-2 py-1.5 transition-colors " +
-                  (isActive ? "text-foreground font-medium" : "text-foreground/60 hover:text-foreground/80")
+                  "px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-[13px] border transition-colors " +
+                  (isActive
+                    ? "border-accent bg-accent text-white"
+                    : "border-accent/30 hover:border-accent/60 hover:text-foreground")
                 }
               >
-                <span
-                  className={
-                    "w-6 text-accent transition-all duration-300 ease-out " +
-                    (isActive ? "opacity-100 translate-x-0" : "opacity-60 -translate-x-1")
-                  }
-                >
-                  —
-                </span>
                 {labels[id]}
               </Link>
             </li>
@@ -115,3 +104,5 @@ export default function SideIndex() {
     </nav>
   );
 }
+
+
