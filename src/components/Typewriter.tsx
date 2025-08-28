@@ -18,11 +18,14 @@ export default function Typewriter({
 }) {
   const [output, setOutput] = useState<string>("");
   const [showCursor, setShowCursor] = useState<boolean>(true);
+  const [isTyping, setIsTyping] = useState<boolean>(true);
   const indexRef = useRef<number>(0);
   const intervalRef = useRef<number | null>(null);
 
   useEffect(() => {
     setOutput("");
+    setIsTyping(true);
+    setShowCursor(true);
     indexRef.current = 0;
     if (intervalRef.current) {
       window.clearInterval(intervalRef.current);
@@ -35,6 +38,8 @@ export default function Typewriter({
         if (i >= text.length) {
           if (intervalRef.current) window.clearInterval(intervalRef.current);
           intervalRef.current = null;
+          setIsTyping(false);
+          setShowCursor(false); // ocultar cursor al terminar
           return;
         }
         setOutput((prev) => prev + text.charAt(i));
@@ -49,15 +54,24 @@ export default function Typewriter({
   }, [restartKey, text, speed, startDelay]);
 
   useEffect(() => {
-    if (!cursor) return;
+    if (!cursor || !isTyping) return;
     const blink = window.setInterval(() => setShowCursor((v) => !v), 500) as unknown as number;
     return () => window.clearInterval(blink);
-  }, [cursor]);
+  }, [cursor, isTyping]);
 
   return (
-    <span className={className} aria-live="polite">
-      {output}
-      {cursor && <span className="inline-block w-2 -mb-[2px]">{showCursor ? "▍" : " "}</span>}
+    <span className="relative inline-block align-baseline">
+      {/* Fantasma invisible para reservar espacio y evitar layout shift */}
+      <span className={`invisible pointer-events-none select-none ${className ?? ""}`} aria-hidden="true">
+        {text}
+      </span>
+      {/* Texto animado encima, ocupando el mismo rectángulo */}
+      <span className={`absolute inset-0 ${className ?? ""}`} aria-live="polite">
+        {output}
+        {cursor && isTyping && (
+          <span className="inline-block w-2 -mb-[2px]">{showCursor ? "▍" : " "}</span>
+        )}
+      </span>
     </span>
   );
-} 
+}

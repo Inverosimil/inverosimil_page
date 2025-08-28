@@ -124,3 +124,27 @@ hr { border-color: color-mix(in oklab, var(--accent) 20%, transparent); }
   animation-delay: calc(120ms + var(--i) * 70ms);
 }
 @keyframes nav-in { to { opacity: 1; transform: translateY(0); } }
+
+/* Transiciones suaves al cambiar tema (colores, bordes, fills) */
+@media (prefers-reduced-motion: no-preference) {
+  .theme-light *, .theme-dark * {
+    transition: color .35s ease, background-color .35s ease, border-color .35s ease, fill .35s ease, stroke .35s ease;
+  }
+}
+
+/* Micro-animación de destello radial en toggle de tema */
+@media (prefers-reduced-motion: no-preference) {
+  html.theme-switching::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(600px circle at var(--switch-x, 50%) var(--switch-y, 50%), color-mix(in oklab, var(--accent) 28%, transparent) 0%, transparent 60%);
+    opacity: 0;
+    animation: theme-flash 550ms cubic-bezier(.22,1,.36,1);
+  }
+  @keyframes theme-flash {
+    0% { opacity: .35; }
+    100% { opacity: 0; }
+  }
+}

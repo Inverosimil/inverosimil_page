@@ -1,6 +1,7 @@
 import Section from "../components/Section";
 import ProjectCard from "../components/ProjectCard";
 import IntroSidebar from "../components/IntroSidebar";
+import InlineControls from "../components/InlineControls";
 
 export default function Home() {
   return (
@@ -79,6 +80,7 @@ export default function Home() {
               <a className="link" href="https://x.com/inverosimil" target="_blank" rel="noreferrer">X/Twitter</a>
               <a className="link" href="https://www.linkedin.com/in/inverosimil" target="_blank" rel="noreferrer">LinkedIn</a>
             </div>
+            <InlineControls />
           </Section>
 
           {/* Footer dentro de la columna derecha */}
