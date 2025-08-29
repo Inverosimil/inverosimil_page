@@ -28,19 +28,18 @@ export default function Header() {
           <Link className="link nav-i" href="#sobre" style={{ ["--i" as any]: 0 }}>{t("nav.sobre")}</Link>
           <Link className="link nav-i" href="#proyectos" style={{ ["--i" as any]: 1 }}>{t("nav.proyectos")}</Link>
           <Link className="link nav-i" href="#experiencia" style={{ ["--i" as any]: 2 }}>{t("nav.experiencia")}</Link>
-          <Link className="link nav-i" href="#contacto" style={{ ["--i" as any]: 3 }}>{t("nav.contacto")}</Link>
-          <span className="mx-1 text-foreground/40 nav-i" style={{ ["--i" as any]: 4 }}>|</span>
+          <span className="mx-1 text-foreground/40 nav-i" style={{ ["--i" as any]: 3 }}>|</span>
           <button
             type="button"
             onClick={toggleTheme}
             className="px-2 py-1 rounded border border-accent/30 hover:border-accent/60 text-[12px] nav-i"
             aria-label="Cambiar tema"
             title="Cambiar tema"
-            style={{ ["--i" as any]: 5 }}
+            style={{ ["--i" as any]: 4 }}
           >
             {theme === "dark" ? "🌙" : "☀️"}
           </button>
-          <div className="flex items-center gap-1 border border-accent/30 rounded overflow-hidden nav-i" style={{ ["--i" as any]: 6 }}>
+          <div className="flex items-center gap-1 border border-accent/30 rounded overflow-hidden nav-i" style={{ ["--i" as any]: 5 }}>
             <button
               type="button"
               onClick={() => setLocale("es")}

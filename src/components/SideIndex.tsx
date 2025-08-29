@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useLocale } from "../context/LocaleContext";
 
-const SECTION_IDS = ["sobre", "proyectos", "experiencia", "contacto"] as const;
+const SECTION_IDS = ["sobre", "proyectos", "experiencia"] as const;
 
 type SectionId = typeof SECTION_IDS[number];
 
@@ -14,7 +14,6 @@ export default function SideIndex() {
       sobre: t("section.sobre"),
       proyectos: t("section.proyectos"),
       experiencia: t("section.experiencia"),
-      contacto: t("section.contacto"),
     }),
     [t]
   );
@@ -30,7 +29,7 @@ export default function SideIndex() {
       const atTop = window.scrollY <= 2;
       if (atTop) return "sobre";
       const atBottom = window.scrollY + window.innerHeight >= (document.documentElement.scrollHeight - 2);
-      if (atBottom) return "contacto";
+      if (atBottom) return "experiencia";
 
       let bestId: SectionId = "sobre";
       let bestDist = Number.POSITIVE_INFINITY;

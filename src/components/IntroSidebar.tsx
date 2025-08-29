@@ -4,6 +4,7 @@ import { useLocale } from "../context/LocaleContext";
 import SideIndex from "./SideIndex";
 import Typewriter from "./Typewriter";
 import InlineControls from "./InlineControls";
+import SocialLinks from "./SocialLinksNew";
 
 export default function IntroSidebar() {
   const { t } = useLocale();
@@ -33,11 +34,12 @@ export default function IntroSidebar() {
         </div>
 
         {/* Bottom: social links */}
-        <div className="mt-auto pt-2 flex gap-4 text-sm">
-          <a className="link" href="https://github.com/inverosimil" target="_blank" rel="noreferrer">GitHub</a>
-          <a className="link" href="https://x.com/inverosimil" target="_blank" rel="noreferrer">X/Twitter</a>
-          <a className="link" href="https://www.linkedin.com/in/inverosimil" target="_blank" rel="noreferrer">LinkedIn</a>
-        </div>
+        <SocialLinks
+          github="https://github.com/inverosimil"
+          linkedin="https://www.linkedin.com/in/inverosimil"
+          email="mailto:hello@inverosimil.dev"
+          className="mt-auto pt-2"
+        />
         <InlineControls />
       </div>
     </aside>

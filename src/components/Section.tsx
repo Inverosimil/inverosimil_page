@@ -3,7 +3,7 @@ import Reveal from "./Reveal";
 
 export default function Section({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
   return (
-    <section id={id} className="w-full px-0 sm:px-0 py-20 sm:py-24 min-h-[100svh] scroll-mt-16">
+    <section id={id} className="w-full px-0 sm:px-0 py-20 sm:py-24 scroll-mt-16">
       <Reveal>
         <h2 className="text-lg sm:text-xl mb-5 tracking-tight text-accent neon">$ {title}</h2>
       </Reveal>

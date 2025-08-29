@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
-  <rect width="128" height="128" fill="#000"/>
-  <g transform="translate(20,90)">
-    <rect x="0" y="-56" width="88" height="56" fill="none"/>
-    <text x="0" y="0" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="64" fill="#22c55e">$</text>
-  </g>
-</svg> 

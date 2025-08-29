@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useLocale } from "../context/LocaleContext";
 
-const SECTION_IDS = ["inicio", "sobre", "proyectos", "experiencia", "contacto"] as const;
+const SECTION_IDS = ["inicio", "sobre", "proyectos", "experiencia"] as const;
 type SectionId = typeof SECTION_IDS[number];
 
 export default function SectionTabs() {
@@ -15,7 +15,6 @@ export default function SectionTabs() {
       sobre: t("section.sobre"),
       proyectos: t("section.proyectos"),
       experiencia: t("section.experiencia"),
-      contacto: t("section.contacto"),
     }),
     [t]
   );
@@ -30,7 +29,7 @@ export default function SectionTabs() {
       const atTop = window.scrollY <= 2;
       if (atTop) return "inicio";
       const atBottom = window.scrollY + window.innerHeight >= (document.documentElement.scrollHeight - 2);
-      if (atBottom) return "contacto";
+      if (atBottom) return "experiencia";
 
       let bestId: SectionId = "inicio";
       let bestDist = Number.POSITIVE_INFINITY;
@@ -104,5 +103,4 @@ export default function SectionTabs() {
     </nav>
   );
 }
-
 

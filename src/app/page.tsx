@@ -1,7 +1,6 @@
 import Section from "../components/Section";
 import ProjectCard from "../components/ProjectCard";
 import IntroSidebar from "../components/IntroSidebar";
-import InlineControls from "../components/InlineControls";
 
 export default function Home() {
   return (
@@ -15,11 +14,22 @@ export default function Home() {
         <main className="min-w-0">
           {/* Sobre */}
           <Section id="sobre" title="sobre-mi">
+            {/* Foto arriba a la derecha con texto envolvente (estética consistente, no circular) */}
+            <img
+              src="/profile_image.png"
+              alt="Foto de perfil de Sebastián Carrasco"
+              className="float-none sm:float-right block w-32 sm:w-44 md:w-52 rounded-md border border-accent/20 shadow-sm ml-0 sm:ml-6 mb-4 sm:mb-0 select-none pointer-events-none bg-muted/30"
+              draggable={false}
+              loading="lazy"
+            />
             <p>
-              Soy ingeniero de software orientado a producto. Trabajo con <b>TypeScript</b>, <b>Next.js</b>, <b>Node</b>, y despliegues en <b>Vercel</b> y <b>Docker</b>.
+              Soy desarrollador web con una sólida base en diseño gráfico, lo que me permite combinar la lógica del código con una visión estética y creativa. Me apasiona la tecnología y disfruto enfrentar desafíos complejos, encontrando soluciones innovadoras que optimicen procesos y generen verdadero valor para las empresas.
             </p>
             <p>
-              Disfruto diseñar arquitecturas simples, crear componentes reutilizables y escribir código legible. Minimalismo no es carencia: es intención.
+              Tengo experiencia en el desarrollo de sistemas de administración, plataformas de análisis de datos y dashboards interactivos, siempre buscando que cada proyecto sea funcional, eficiente y fácil de usar. Mi forma de trabajar se caracteriza por la atención al detalle, la colaboración en equipo y la capacidad de aportar una visión creativa para resolver problemas de manera distinta.
+            </p>
+            <p>
+              Creo firmemente que el desarrollo web es una herramienta poderosa para transformar ideas en soluciones tangibles. Fuera del trabajo, me inspiro en pasiones como el automovilismo, los cubos de Rubik y el deporte, que alimentan mi curiosidad, disciplina y perseverancia.
             </p>
           </Section>
 
@@ -55,33 +65,37 @@ export default function Home() {
             <ul className="space-y-3">
               <li className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="font-semibold">Senior Frontend Engineer — Producto X</p>
-                  <p className="text-foreground/75 text-sm">Liderazgo técnico, diseño de componentes, performance, A/B testing.</p>
+                  <p className="font-semibold">Desarrollador Fullstack — Dinámica Plataforma</p>
+                  <p className="text-foreground/75 text-sm">
+                    Parte del equipo de Data Science, desarrollando tecnologías de análisis de datos y gestión de información. 
+                    Además, desarrollo y levanto productos web especializados para clientes.
+                  </p>
                 </div>
-                <span className="text-foreground/60 text-xs">2022 — ahora</span>
+                <span className="text-foreground/60 text-xs">Mar 2025 — ahora</span>
               </li>
               <li className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="font-semibold">Full‑stack Engineer — Startup Y</p>
-                  <p className="text-foreground/75 text-sm">MVPs, APIs, despliegues en Vercel/Docker, analítica.</p>
+                  <p className="font-semibold">Desarrollador de Software — Licorería Donde Franco</p>
+                  <p className="text-foreground/75 text-sm">
+                    Desarrollo de aplicaciones para la gestión interna, incluyendo sistemas de inventario y puntos de venta.
+                  </p>
                 </div>
-                <span className="text-foreground/60 text-xs">2020 — 2022</span>
+                <span className="text-foreground/60 text-xs">Sep 2023 — Feb 2024</span>
+              </li>
+              <li className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="font-semibold">Practicante T.I. — Viña Undurraga</p>
+                  <p className="text-foreground/75 text-sm">
+                    Diagnóstico y actualización de infraestructura informática; desarrollo de software para mejorar procesos internos; 
+                    administración de bases de datos y soporte técnico.
+                  </p>
+                </div>
+                <span className="text-foreground/60 text-xs">Dic 2021 — Feb 2022</span>
               </li>
             </ul>
           </Section>
 
-          {/* Contacto */}
-          <Section id="contacto" title="contacto">
-            <p>
-              ¿Tienes un proyecto interesante? Escribe a <a className="link" href="mailto:hello@inverosimil.dev">hello@inverosimil.dev</a> o envíame un DM.
-            </p>
-            <div className="mt-4 flex gap-4 text-sm">
-              <a className="link" href="https://github.com/inverosimil" target="_blank" rel="noreferrer">GitHub</a>
-              <a className="link" href="https://x.com/inverosimil" target="_blank" rel="noreferrer">X/Twitter</a>
-              <a className="link" href="https://www.linkedin.com/in/inverosimil" target="_blank" rel="noreferrer">LinkedIn</a>
-            </div>
-            <InlineControls />
-          </Section>
+          
 
           {/* Footer dentro de la columna derecha */}
           <footer className="border-t border-accent/10">
