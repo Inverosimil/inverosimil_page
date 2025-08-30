@@ -37,6 +37,8 @@ export default function IntroSidebar() {
         <SocialLinks
           github="https://github.com/inverosimil"
           linkedin="https://www.linkedin.com/in/inverosimil"
+          instagram="https://instagram.com/_.inverosimil._"
+          whatsapp="https://wa.me/56950146865"
           email="mailto:hello@inverosimil.dev"
           className="mt-auto pt-2"
         />
