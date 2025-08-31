@@ -13,7 +13,7 @@ export default function Home() {
         {/* Contenido derecha */}
         <main className="min-w-0">
           {/* Sobre */}
-          <Section id="sobre" title="sobre-mi">
+          <Section id="sobre" title="Sobre mi">
             {/* Foto arriba a la derecha con texto envolvente (estética consistente, no circular) */}
             <img
               src="/profile_image.png"
@@ -34,7 +34,7 @@ export default function Home() {
           </Section>
 
           {/* Proyectos */}
-          <Section id="proyectos" title="proyectos">
+          <Section id="proyectos" title="Proyectos">
             <div className="grid sm:grid-cols-2 gap-4">
               <ProjectCard
                 title="CLI monitor"
@@ -61,49 +61,119 @@ export default function Home() {
           </Section>
 
           {/* Experiencia */}
-          <Section id="experiencia" title="experiencia">
-            <ul className="space-y-3">
-              <li className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="font-semibold">Desarrollador Fullstack — Dinámica Plataforma</p>
-                  <p className="text-foreground/75 text-sm">
-                    Parte del equipo de Data Science, desarrollando tecnologías de análisis de datos y gestión de información. 
-                    Además, desarrollo y levanto productos web especializados para clientes.
-                  </p>
+          <Section id="experiencia" title="Experiencia">
+            <div className="flex flex-col gap-4 sm:gap-5">
+              {/* Dinámica Plataforma */}
+              <a
+                href="#"
+                target="_blank"
+                rel="noreferrer"
+                className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 hover:border-accent/30 hover:shadow-sm transition-colors p-4 sm:p-5"
+              >
+                <div className="grid grid-cols-[1fr_18ch] gap-6 items-start">
+                  <div className="min-w-0">
+                    <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
+                      Desarrollador Fullstack — Dinámica Plataforma
+                    </p>
+                    <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
+                      Parte del equipo de Data Science, desarrollando tecnologías de análisis de datos y gestión de información. Además, desarrollo y levanto productos web especializados para clientes.
+                    </p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {[
+                        "TypeScript",
+                        "Next.js",
+                        "Tailwind",
+                        "Node.js",
+                        "PostgreSQL",
+                        "Python",
+                        "Pandas",
+                      ].map((t) => (
+                        <span key={t} className="text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <span className="text-foreground/60 text-xs sm:text-sm whitespace-nowrap shrink-0 mt-0.5 justify-self-end tabular-nums">
+                    Mar 2025 — ahora
+                  </span>
                 </div>
-                <span className="text-foreground/60 text-xs">Mar 2025 — ahora</span>
-              </li>
-              <li className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="font-semibold">Desarrollador de Software — Licorería Donde Franco</p>
-                  <p className="text-foreground/75 text-sm">
-                    Desarrollo de aplicaciones para la gestión interna, incluyendo sistemas de inventario y puntos de venta.
-                  </p>
+              </a>
+
+              {/* Licorería Donde Franco */}
+              <a
+                href="#"
+                target="_blank"
+                rel="noreferrer"
+                className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 hover:border-accent/30 hover:shadow-sm transition-colors p-4 sm:p-5"
+              >
+                <div className="grid grid-cols-[1fr_18ch] gap-6 items-start">
+                  <div className="min-w-0">
+                    <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
+                      Desarrollador de Software — Licorería Donde Franco
+                    </p>
+                    <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
+                      Desarrollo de aplicaciones para la gestión interna, incluyendo sistemas de inventario y puntos de venta.
+                    </p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {[
+                        "React",
+                        "Node.js",
+                        "Express",
+                        "SQLite",
+                        "Tailwind",
+                      ].map((t) => (
+                        <span key={t} className="text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <span className="text-foreground/60 text-xs sm:text-sm whitespace-nowrap shrink-0 mt-0.5 justify-self-end tabular-nums">
+                    Sep 2023 — Feb 2024
+                  </span>
                 </div>
-                <span className="text-foreground/60 text-xs">Sep 2023 — Feb 2024</span>
-              </li>
-              <li className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="font-semibold">Practicante T.I. — Viña Undurraga</p>
-                  <p className="text-foreground/75 text-sm">
-                    Diagnóstico y actualización de infraestructura informática; desarrollo de software para mejorar procesos internos; 
-                    administración de bases de datos y soporte técnico.
-                  </p>
+              </a>
+
+              {/* Viña Undurraga */}
+              <a
+                href="https://www.undurraga.cl"
+                target="_blank"
+                rel="noreferrer"
+                className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 hover:border-accent/30 hover:shadow-sm transition-colors p-4 sm:p-5"
+              >
+                <div className="grid grid-cols-[1fr_18ch] gap-6 items-start">
+                  <div className="min-w-0">
+                    <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
+                      Practicante T.I. — Viña Undurraga
+                    </p>
+                    <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
+                      Diagnóstico y actualización de infraestructura informática; desarrollo de software para mejorar procesos internos; administración de bases de datos y soporte técnico.
+                    </p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {[
+                        "Soporte",
+                        "Automatización",
+                        "SQL Server",
+                        "PowerShell",
+                      ].map((t) => (
+                        <span key={t} className="text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <span className="text-foreground/60 text-xs sm:text-sm whitespace-nowrap shrink-0 mt-0.5 justify-self-end tabular-nums">
+                    Dic 2021 — Feb 2022
+                  </span>
                 </div>
-                <span className="text-foreground/60 text-xs">Dic 2021 — Feb 2022</span>
-              </li>
-            </ul>
+              </a>
+            </div>
           </Section>
 
           
 
-          {/* Footer dentro de la columna derecha */}
-          <footer className="border-t border-accent/10">
-            <div className="max-w-5xl px-0 sm:px-0 h-16 text-xs flex items-center justify-between">
-              <span className="text-foreground/60">© {new Date().getFullYear()} inverosímil</span>
-              <span className="text-foreground/60">hecho con next.js</span>
-            </div>
-          </footer>
+          {/* Footer eliminado por solicitud */}
         </main>
       </div>
     </div>

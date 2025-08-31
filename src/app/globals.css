@@ -91,13 +91,14 @@ body {
   );
 }
 
-.neon { text-shadow: 0 0 8px color-mix(in oklab, var(--accent) 60%, transparent); }
+.neon { text-shadow: none; }
 
 .link { color: var(--accent); }
 .link:hover { text-decoration: underline; }
 
-.card {
-  border: 1px solid color-mix(in oklab, var(--accent) 20%, transparent);
+.card { border: 1px solid transparent; background: transparent; }
+.card:hover {
+  border-color: color-mix(in oklab, var(--accent) 30%, transparent);
   background: linear-gradient(180deg, color-mix(in oklab, var(--accent) 8%, transparent), color-mix(in oklab, #000 40%, transparent));
 }
 
