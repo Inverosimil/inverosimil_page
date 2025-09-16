@@ -149,3 +149,10 @@ hr { border-color: color-mix(in oklab, var(--accent) 20%, transparent); }
     100% { opacity: 0; }
   }
 }
+
+/* Fuerza transición de transform para medios de proyecto (evita que la regla global la sobrescriba) */
+.project-media {
+  transition: transform 450ms cubic-bezier(.22,1,.36,1), scale 450ms cubic-bezier(.22,1,.36,1);
+  transform-origin: center;
+  will-change: transform, scale;
+}

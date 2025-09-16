@@ -18,20 +18,20 @@ const bebas = Bebas_Neue({
 });
 
 export const metadata: Metadata = {
-  title: "inverosímil — portfolio",
-  description: "Portfolio minimalista, oscuro y hacker de inverosímil.",
+  title: "Sebastián Carrasco — portfolio",
+  description: "Portfolio de Sebastián Carrasco.",
   metadataBase: new URL("https://inverosimil.dev"),
   icons: [{ rel: "icon", url: "/favicon.svg" }],
   openGraph: {
-    title: "inverosímil — portfolio",
-    description: "Portfolio minimalista, oscuro y hacker de inverosímil.",
+    title: "Sebastián Carrasco — portfolio",
+    description: "Portfolio de Sebastián Carrasco.",
     type: "website",
     url: "/",
   },
   twitter: {
     card: "summary_large_image",
-    title: "inverosímil — portfolio",
-    description: "Portfolio minimalista, oscuro y hacker de inverosímil.",
+    title: "Sebastián Carrasco — portfolio",
+    description: "Portfolio de Sebastián Carrasco.",
   },
 };
 

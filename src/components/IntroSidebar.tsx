@@ -21,7 +21,7 @@ export default function IntroSidebar() {
             <Typewriter text={t("hero.name")} restartKey={t("hero.name")} speed={16} startDelay={120} cursor={false} />
           </h1>
           <p className="mt-3 text-foreground/80 text-base">
-            <Typewriter text={`${t("hero.profession")} — ${t("hero.brand")}`} restartKey={t("hero.profession") + t("hero.brand")} speed={14} startDelay={220} />
+            <Typewriter text={`${t("hero.profession")}`} restartKey={t("hero.profession")} speed={14} startDelay={220} />
           </p>
           <p className="mt-3 max-w-md text-foreground/80 text-sm sm:text-base">
             <Typewriter text={t("hero.description")} restartKey={t("hero.description")} speed={12} startDelay={320} />

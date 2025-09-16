@@ -13,7 +13,7 @@ const LocaleContext = createContext<LocaleContextValue | undefined>(undefined);
 
 const messages: Record<Locale, Record<string, string>> = {
   es: {
-    "nav.brand": "inverosímil",
+    "nav.brand": "Sebastián Carrasco",
     "nav.sobre": "sobre",
     "nav.proyectos": "proyectos",
     "nav.experiencia": "experiencia",
@@ -22,17 +22,16 @@ const messages: Record<Locale, Record<string, string>> = {
     "hero.greeting": "Hola, soy",
     "hero.name": "Sebastián Carrasco",
     "hero.profession": "Ingeniero Civil Informático",
-    "hero.brand": "Inverosímil",
     "hero.description": "Transformo requerimientos complejos en soluciones digitales claras, eficientes y escalables.",
     "cta.cv": "Descargar CV",
-    "section.sobre": "sobre-mi",
-    "section.proyectos": "proyectos",
-    "section.experiencia": "experiencia",
+    "section.sobre": "Sobre mi",
+    "section.proyectos": "Proyectos",
+    "section.experiencia": "Experiencia",
     "section.contacto": "contacto",
     "footer.made": "hecho con next.js",
   },
   en: {
-    "nav.brand": "inverosímil",
+    "nav.brand": "Sebastián Carrasco",
     "nav.sobre": "about",
     "nav.proyectos": "projects",
     "nav.experiencia": "experience",
@@ -41,7 +40,6 @@ const messages: Record<Locale, Record<string, string>> = {
     "hero.greeting": "Hi, I’m",
     "hero.name": "Sebastián Carrasco",
     "hero.profession": "Computer Science Engineer",
-    "hero.brand": "Inverosímil",
     "hero.description": "I transform complex requirements into clear, efficient and scalable digital solutions.",
     "cta.cv": "Download CV",
     "section.sobre": "about-me",

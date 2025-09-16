@@ -56,7 +56,7 @@ export default function Hero() {
               />
             </h1>
             <p className="text-lg sm:text-xl text-foreground/80 mb-6">
-              {t("hero.profession")} — {t("hero.brand")}
+              {t("hero.profession")}
             </p>
             <p className="max-w-xl text-foreground/80 text-sm sm:text-base mb-6">
               {t("hero.description")}

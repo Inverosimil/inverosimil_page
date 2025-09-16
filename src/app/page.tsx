@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Layout de dos columnas al estilo portfolio: intro izquierda (sticky) + contenido derecha (scroll) */}
-      <div className="max-w-6xl mx-auto px-6 sm:px-8 grid md:grid-cols-2 md:grid-cols-[1fr_1.6fr] lg:grid-cols-[1fr_2fr] gap-8 md:gap-12 pt-12 items-start">
+      <div className="max-w-6xl mx-auto px-6 sm:px-8 grid md:grid-cols-2 md:grid-cols-[1fr_1.6fr] lg:grid-cols-[1fr_2fr] gap-8 md:gap-10 pt-6 items-start">
         {/* Intro izquierda */}
         <IntroSidebar />
 
@@ -31,32 +31,171 @@ export default function Home() {
             <p>
               Creo firmemente que el desarrollo web es una herramienta poderosa para transformar ideas en soluciones tangibles. Fuera del trabajo, me inspiro en pasiones como el automovilismo, los cubos de Rubik y el deporte, que alimentan mi curiosidad, disciplina y perseverancia.
             </p>
+            
+            {/* Tecnologías favoritas */}
+            <div className="mt-6">
+              <h3 className="text-lg font-semibold text-foreground mb-3">Tecnologías favoritas</h3>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  "TypeScript",
+                  "Next.js",
+                  "React",
+                  "Node.js",
+                  "Tailwind CSS",
+                  "PostgreSQL",
+                  "Python",
+                  "Git",
+                ].map((tech) => (
+                  <span key={tech} className="text-sm px-3 py-1.5 bg-accent/10 text-accent border border-accent/30 rounded-full font-medium hover:bg-accent/20 hover:border-accent/50 transition-colors cursor-default">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
           </Section>
 
           {/* Proyectos */}
           <Section id="proyectos" title="Proyectos">
-            <div className="grid sm:grid-cols-2 gap-4">
-              <ProjectCard
-                title="CLI monitor"
-                description="CLI interactiva para monitorear servicios y logs con UI tipo TUI."
-                stack={["Node", "TypeScript", "Inquirer", "zx"]}
-              />
-              <ProjectCard
-                title="Hackerfolio"
-                description="Plantilla de portfolio minimalista con tema morado y blanco."
+            <div className="flex flex-col gap-4 sm:gap-5">
+              {/* CLI monitor */}
+              <a
                 href="#"
-                stack={["Next.js", "Tailwind", "Vercel"]}
-              />
-              <ProjectCard
-                title="Renderless UI kit"
-                description="Componentes sin estilos, accesibles y controlables, para construir UIs a medida."
-                stack={["React", "TS", "A11y"]}
-              />
-              <ProjectCard
-                title="Webperf toolkit"
-                description="Herramientas para medir y mejorar Web Vitals en CI/CD."
-                stack={["Lighthouse CI", "Playwright", "Node"]}
-              />
+                target="_blank"
+                rel="noreferrer"
+                className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 hover:shadow-sm transition-colors p-4 sm:p-5"
+              >
+                <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
+                  <div className="min-w-0">
+                    <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
+                      Landing page AsesorDeSalud
+                    </p>
+                    <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
+                      Realicé una landing page para un asesor de salud que apoya a sus clientes con la elección de planes de salud en función de sus necesidades específicas. 
+                    </p>
+                    <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
+                      Tuve que cubrir desde el diseño hasta el desarrollo de la landing page. Incluyendo propuesta y diseño del nuevo logo.
+                    </p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {[
+                        "Web Standard",
+                        "JavaScript",
+                        "HTML",
+                        "CSS",
+                        "Vercel",
+                        "Figma",
+                        "Adobe Photoshop",
+                        "Adobe Illustrator",
+                      ].map((t) => (
+                        <span key={t} className="text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 transition-colors cursor-default">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                                    <div className="project-media w-full bg-muted/30 rounded-md border border-accent/20 overflow-hidden shrink-0 transform-gpu scale-100 group-hover:scale-110">
+                    <img src="/projects/asesordesalud.png" alt="AsesorDeSalud" className="w-full h-auto object-cover" />
+                  </div>
+                </div>
+              </a>
+
+              {/* Hackerfolio */}
+              <a
+                href="#"
+                target="_blank"
+                rel="noreferrer"
+                className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 hover:shadow-sm transition-colors p-4 sm:p-5"
+              >
+                <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
+                  <div className="min-w-0">
+                    <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
+                      Hackerfolio
+                    </p>
+                    <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
+                      Plantilla de portfolio minimalista con tema morado y blanco.
+                    </p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {[
+                        "Next.js",
+                        "Tailwind",
+                        "Vercel",
+                      ].map((t) => (
+                        <span key={t} className="text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 transition-colors cursor-default">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="project-media w-full bg-muted/30 rounded-md border border-accent/20 overflow-hidden shrink-0 transform-gpu scale-100 group-hover:scale-110">
+                    <img src="/projects/hackerfolio.png" alt="Hackerfolio" className="w-full h-auto object-cover" />
+                  </div>
+                </div>
+              </a>
+
+              {/* Renderless UI kit */}
+              <a
+                href="#"
+                target="_blank"
+                rel="noreferrer"
+                className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 hover:shadow-sm transition-colors p-4 sm:p-5"
+              >
+                <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
+                  <div className="min-w-0">
+                    <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
+                      Renderless UI kit
+                    </p>
+                    <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
+                      Componentes sin estilos, accesibles y controlables, para construir UIs a medida.
+                    </p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {[
+                        "React",
+                        "TS",
+                        "A11y",
+                      ].map((t) => (
+                        <span key={t} className="text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 transition-colors cursor-default">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="project-media w-full bg-muted/30 rounded-md border border-accent/20 overflow-hidden shrink-0 transform-gpu scale-100 group-hover:scale-110">
+                    <img src="/projects/renderless-ui.png" alt="Renderless UI Kit" className="w-full h-auto object-cover" />
+                  </div>
+                </div>
+              </a>
+
+              {/* Webperf toolkit */}
+              <a
+                href="#"
+                target="_blank"
+                rel="noreferrer"
+                className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 hover:shadow-sm transition-colors p-4 sm:p-5"
+              >
+                <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
+                  <div className="min-w-0">
+                    <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
+                      Webperf toolkit
+                    </p>
+                    <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
+                      Herramientas para medir y mejorar Web Vitals en CI/CD.
+                    </p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {[
+                        "Lighthouse CI",
+                        "Playwright",
+                        "Node",
+                      ].map((t) => (
+                        <span key={t} className="text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 transition-colors cursor-default">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="project-media w-full bg-muted/30 rounded-md border border-accent/20 overflow-hidden shrink-0 transform-gpu scale-100 group-hover:scale-110">
+                    <img src="/projects/webperf-toolkit.png" alt="Webperf Toolkit" className="w-full h-auto object-cover" />
+                  </div>
+                </div>
+              </a>
             </div>
           </Section>
 
@@ -70,7 +209,7 @@ export default function Home() {
                 rel="noreferrer"
                 className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 hover:border-accent/30 hover:shadow-sm transition-colors p-4 sm:p-5"
               >
-                <div className="grid grid-cols-[1fr_18ch] gap-6 items-start">
+                <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
                   <div className="min-w-0">
                     <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
                       Desarrollador Fullstack — Dinámica Plataforma
@@ -95,7 +234,7 @@ export default function Home() {
                     </div>
                   </div>
                   <span className="text-foreground/60 text-xs sm:text-sm whitespace-nowrap shrink-0 mt-0.5 justify-self-end tabular-nums">
-                    Mar 2025 — ahora
+                    Mar 2025 — Actualmente
                   </span>
                 </div>
               </a>
@@ -107,7 +246,7 @@ export default function Home() {
                 rel="noreferrer"
                 className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 hover:border-accent/30 hover:shadow-sm transition-colors p-4 sm:p-5"
               >
-                <div className="grid grid-cols-[1fr_18ch] gap-6 items-start">
+                <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
                   <div className="min-w-0">
                     <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
                       Desarrollador de Software — Licorería Donde Franco
@@ -142,7 +281,7 @@ export default function Home() {
                 rel="noreferrer"
                 className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 hover:border-accent/30 hover:shadow-sm transition-colors p-4 sm:p-5"
               >
-                <div className="grid grid-cols-[1fr_18ch] gap-6 items-start">
+                <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
                   <div className="min-w-0">
                     <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
                       Practicante T.I. — Viña Undurraga
