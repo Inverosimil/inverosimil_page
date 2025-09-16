@@ -1,5 +1,5 @@
 import Section from "../components/Section";
-import ProjectCard from "../components/ProjectCard";
+// import ProjectCard from "../components/ProjectCard"; // no longer used
 import IntroSidebar from "../components/IntroSidebar";
 
 export default function Home() {
@@ -62,7 +62,7 @@ export default function Home() {
                 href="#"
                 target="_blank"
                 rel="noreferrer"
-                className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 hover:shadow-sm transition-colors p-4 sm:p-5"
+                className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
               >
                 <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
                   <div className="min-w-0">
@@ -103,7 +103,7 @@ export default function Home() {
                 href="#"
                 target="_blank"
                 rel="noreferrer"
-                className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 hover:shadow-sm transition-colors p-4 sm:p-5"
+                className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
               >
                 <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
                   <div className="min-w-0">
@@ -136,7 +136,7 @@ export default function Home() {
                 href="#"
                 target="_blank"
                 rel="noreferrer"
-                className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 hover:shadow-sm transition-colors p-4 sm:p-5"
+                className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
               >
                 <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
                   <div className="min-w-0">
@@ -169,7 +169,7 @@ export default function Home() {
                 href="#"
                 target="_blank"
                 rel="noreferrer"
-                className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 hover:shadow-sm transition-colors p-4 sm:p-5"
+                className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
               >
                 <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
                   <div className="min-w-0">
@@ -207,9 +207,9 @@ export default function Home() {
                 href="#"
                 target="_blank"
                 rel="noreferrer"
-                className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 hover:border-accent/30 hover:shadow-sm transition-colors p-4 sm:p-5"
+                className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
               >
-                <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
+                <div className="grid grid-cols-[1fr_17ch] gap-8 items-start">
                   <div className="min-w-0">
                     <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
                       Desarrollador Fullstack — Dinámica Plataforma
@@ -227,13 +227,13 @@ export default function Home() {
                         "Python",
                         "Pandas",
                       ].map((t) => (
-                        <span key={t} className="text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full">
+                        <span key={t} className="text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 transition-colors cursor-default">
                           {t}
                         </span>
                       ))}
                     </div>
                   </div>
-                  <span className="text-foreground/60 text-xs sm:text-sm whitespace-nowrap shrink-0 mt-0.5 justify-self-end tabular-nums">
+                  <span className="text-foreground/60 text-xs sm:text-sm whitespace-nowrap shrink-0 tabular-nums justify-self-end self-start">
                     Mar 2025 — Actualmente
                   </span>
                 </div>
@@ -244,9 +244,9 @@ export default function Home() {
                 href="#"
                 target="_blank"
                 rel="noreferrer"
-                className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 hover:border-accent/30 hover:shadow-sm transition-colors p-4 sm:p-5"
+                className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
               >
-                <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
+                <div className="grid grid-cols-[1fr_17ch] gap-8 items-start">
                   <div className="min-w-0">
                     <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
                       Desarrollador de Software — Licorería Donde Franco
@@ -262,13 +262,13 @@ export default function Home() {
                         "SQLite",
                         "Tailwind",
                       ].map((t) => (
-                        <span key={t} className="text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full">
+                        <span key={t} className="text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 transition-colors cursor-default">
                           {t}
                         </span>
                       ))}
                     </div>
                   </div>
-                  <span className="text-foreground/60 text-xs sm:text-sm whitespace-nowrap shrink-0 mt-0.5 justify-self-end tabular-nums">
+                  <span className="text-foreground/60 text-xs sm:text-sm whitespace-nowrap shrink-0 tabular-nums justify-self-end self-start">
                     Sep 2023 — Feb 2024
                   </span>
                 </div>
@@ -279,9 +279,9 @@ export default function Home() {
                 href="https://www.undurraga.cl"
                 target="_blank"
                 rel="noreferrer"
-                className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 hover:border-accent/30 hover:shadow-sm transition-colors p-4 sm:p-5"
+                className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
               >
-                <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
+                <div className="grid grid-cols-[1fr_17ch] gap-8 items-start">
                   <div className="min-w-0">
                     <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
                       Practicante T.I. — Viña Undurraga
@@ -296,13 +296,13 @@ export default function Home() {
                         "SQL Server",
                         "PowerShell",
                       ].map((t) => (
-                        <span key={t} className="text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full">
+                        <span key={t} className="text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 transition-colors cursor-default">
                           {t}
                         </span>
                       ))}
                     </div>
                   </div>
-                  <span className="text-foreground/60 text-xs sm:text-sm whitespace-nowrap shrink-0 mt-0.5 justify-self-end tabular-nums">
+                  <span className="text-foreground/60 text-xs sm:text-sm whitespace-nowrap shrink-0 tabular-nums justify-self-end self-start">
                     Dic 2021 — Feb 2022
                   </span>
                 </div>

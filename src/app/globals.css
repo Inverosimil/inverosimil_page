@@ -156,3 +156,36 @@ hr { border-color: color-mix(in oklab, var(--accent) 20%, transparent); }
   transform-origin: center;
   will-change: transform, scale;
 }
+
+/* Desactiva transiciones para elementos marcados explícitamente */
+.no-transition, .no-transition * { transition: none !important; }
+
+/* SideIndex: animación elegante para dash y etiqueta */
+.sideindex-link { isolation: isolate; --dash-shift: 0.6rem; }
+.sideindex-dash {
+  display: inline-block;
+  transform-origin: left center;
+  opacity: .7;
+  translate: 0 0; /* enable transform composite */
+  transition:
+    transform 420ms cubic-bezier(.22,1,.36,1),
+    opacity 320ms ease,
+    color 320ms ease;
+}
+.sideindex-label {
+  display: inline-block;
+  transform-origin: left center;
+  transition:
+    transform 420ms cubic-bezier(.22,1,.36,1),
+    letter-spacing 420ms cubic-bezier(.22,1,.36,1),
+    color 320ms ease;
+}
+.sideindex-link[data-active="true"] .sideindex-dash { opacity: 1; transform: scaleX(1.8); }
+.sideindex-link[data-active="false"] .sideindex-dash { opacity: .65; transform: scaleX(1); }
+.sideindex-link[data-active="true"] .sideindex-label { transform: translateX(var(--dash-shift)) scale(1.06); letter-spacing: .2px; }
+.sideindex-link[data-active="false"] .sideindex-label { transform: translateX(0) scale(1); letter-spacing: 0; }
+
+@media (hover: hover) {
+  .sideindex-link[data-active="false"]:hover .sideindex-dash { opacity: .85; transform: scaleX(1.2); }
+  .sideindex-link[data-active="false"]:hover .sideindex-label { transform: translateX(calc(var(--dash-shift) * .6)) scale(1.02); letter-spacing: .1px; }
+}

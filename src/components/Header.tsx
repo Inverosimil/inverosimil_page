@@ -9,6 +9,9 @@ export default function Header() {
   const { locale, setLocale, t } = useLocale();
   const [loaded, setLoaded] = useState(false);
 
+  // Helper to set CSS custom property --i without using 'any'
+  const cssI = (i: number): React.CSSProperties => ({ ["--i" as string]: i });
+
   useEffect(() => {
     const id = window.requestAnimationFrame(() => setLoaded(true));
     return () => cancelAnimationFrame(id);
@@ -25,21 +28,21 @@ export default function Header() {
           {t("nav.brand")}
         </Link>
         <div className="nav-stagger flex items-center gap-4 text-xs">
-          <Link className="link nav-i" href="#sobre" style={{ ["--i" as any]: 0 }}>{t("nav.sobre")}</Link>
-          <Link className="link nav-i" href="#proyectos" style={{ ["--i" as any]: 1 }}>{t("nav.proyectos")}</Link>
-          <Link className="link nav-i" href="#experiencia" style={{ ["--i" as any]: 2 }}>{t("nav.experiencia")}</Link>
-          <span className="mx-1 text-foreground/40 nav-i" style={{ ["--i" as any]: 3 }}>|</span>
+          <Link className="link nav-i" href="#sobre" style={cssI(0)}>{t("nav.sobre")}</Link>
+          <Link className="link nav-i" href="#proyectos" style={cssI(1)}>{t("nav.proyectos")}</Link>
+          <Link className="link nav-i" href="#experiencia" style={cssI(2)}>{t("nav.experiencia")}</Link>
+          <span className="mx-1 text-foreground/40 nav-i" style={cssI(3)}>|</span>
           <button
             type="button"
             onClick={toggleTheme}
             className="px-2 py-1 rounded border border-accent/30 hover:border-accent/60 text-[12px] nav-i"
             aria-label="Cambiar tema"
             title="Cambiar tema"
-            style={{ ["--i" as any]: 4 }}
+            style={cssI(4)}
           >
             {theme === "dark" ? "🌙" : "☀️"}
           </button>
-          <div className="flex items-center gap-1 border border-accent/30 rounded overflow-hidden nav-i" style={{ ["--i" as any]: 5 }}>
+          <div className="flex items-center gap-1 border border-accent/30 rounded overflow-hidden nav-i" style={cssI(5)}>
             <button
               type="button"
               onClick={() => setLocale("es")}

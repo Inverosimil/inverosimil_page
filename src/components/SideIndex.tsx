@@ -92,20 +92,14 @@ export default function SideIndex() {
                 href={`#${id}`}
                 onClick={handleClick(id)}
                 aria-current={isActive ? "true" : undefined}
+                data-active={isActive ? "true" : "false"}
                 className={
-                  "group flex items-center gap-2 py-1.5 transition-colors " +
+                  "sideindex-link group flex items-center gap-2 py-1.5 transition-colors " +
                   (isActive ? "text-foreground font-medium" : "text-foreground/60 hover:text-foreground/80")
                 }
               >
-                <span
-                  className={
-                    "w-6 text-accent transition-all duration-300 ease-out " +
-                    (isActive ? "opacity-100 translate-x-0" : "opacity-60 -translate-x-1")
-                  }
-                >
-                  —
-                </span>
-                {labels[id]}
+                <span aria-hidden className={"sideindex-dash text-accent"}>—</span>
+                <span className={"sideindex-label"}>{labels[id]}</span>
               </Link>
             </li>
           );

@@ -57,14 +57,14 @@ export default function ParallaxBackground({ speed = 0.35 }: { speed?: number })
       el.style.setProperty("--my", `-10000px`);
     };
 
-    window.addEventListener("pointermove", onPointerMove, { passive: true });
-    window.addEventListener("pointerleave", onPointerLeave, { passive: true });
+    window.addEventListener("pointermove", onPointerMove as (e: Event) => void, { passive: true });
+    window.addEventListener("pointerleave", onPointerLeave as (e: Event) => void, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", onScroll);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      window.removeEventListener("pointermove", onPointerMove as any);
-      window.removeEventListener("pointerleave", onPointerLeave as any);
+      window.removeEventListener("pointermove", onPointerMove as (e: Event) => void);
+      window.removeEventListener("pointerleave", onPointerLeave as (e: Event) => void);
       if (pointerRafRef.current) cancelAnimationFrame(pointerRafRef.current);
     };
   }, [speed]);
