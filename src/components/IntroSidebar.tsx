@@ -45,7 +45,7 @@ export default function IntroSidebar() {
               download="Sebastián_Carrasco_CV.pdf"
               className="inline-flex items-center gap-2 mt-4 text-sm text-accent hover:text-accent/80 transition-colors font-medium group"
             >
-              <span className="cursor-pointer">Descargar CV</span>
+              <span className="cursor-pointer">{t("cta.cv")}</span>
               <img src="/icons/download.svg" alt="" className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity brightness-0 contrast-200 dark:brightness-200 dark:contrast-0" />
             </a>
           </Reveal>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import Providers from "../components/Providers";
+import { Locale } from "../context/LocaleContext";
 import ParallaxBackground from "../components/ParallaxBackground";
 
 const inter = Inter({

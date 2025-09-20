@@ -1,9 +1,12 @@
+"use client";
 import Section from "../components/Section";
 import Reveal from "../components/Reveal";
 // import ProjectCard from "../components/ProjectCard"; // no longer used
 import IntroSidebar from "../components/IntroSidebar";
+import { useLocale } from "../context/LocaleContext";
 
 export default function Home() {
+  const { t } = useLocale();
   return (
     <div className="min-h-screen">
       {/* Layout de dos columnas al estilo portfolio: intro izquierda (sticky) + contenido derecha (scroll) */}
@@ -14,40 +17,32 @@ export default function Home() {
         {/* Contenido derecha */}
         <main className="min-w-0">
           {/* Sobre */}
-          <Section id="sobre" title="Sobre mi">
+          <Section id="sobre" title={t("section.sobre")}>
             {/* Foto arriba a la derecha con texto envolvente (estética consistente, no circular) */}
             <img
               src="/profile_image.png"
-              alt="Foto de perfil de Sebastián Carrasco"
+              alt={t("alt.profile")}
               className="float-none sm:float-right block w-32 sm:w-44 md:w-52 rounded-md border border-accent/20 shadow-sm ml-0 sm:ml-6 mb-4 sm:mb-0 select-none pointer-events-none bg-muted/30"
               draggable={false}
               loading="lazy"
             />
             <Reveal>
-              <p>
-                Soy <span className="soft-underline cursor-default">Ingeniero Civil Informático</span> con experiencia en desarrollo web, software y diseño gráfico. Me apasiona crear soluciones innovadoras que optimicen procesos y <span className="soft-underline cursor-default">generen verdadero valor</span> para las empresas.
-              </p>
+              <p dangerouslySetInnerHTML={{ __html: t("about.p1_html") || t("about.p1") }} />
             </Reveal>
             <Reveal delay={80}>
-              <p>
-                He trabajado en proyectos tan diversos como sistemas de administración, dashboards interactivos, análisis de datos, juegos y configuración de redes y hardware. Siempre con un mismo objetivo: <span className="soft-underline cursor-default">que cada proyecto sea funcional, eficiente y centrado en el usuario</span>.
-              </p>
+              <p dangerouslySetInnerHTML={{ __html: t("about.p2_html") || t("about.p2") }} />
             </Reveal>
             <Reveal delay={160}>
-              <p>
-                Mi forma de trabajar combina atención al detalle, <span className="soft-underline cursor-default">comprensión profunda</span> del problema y una <span className="soft-underline cursor-default">orientación clara</span> al cliente, lo que me permite <span className="soft-underline cursor-default">proponer soluciones</span> prácticas y creativas.
-              </p>
+              <p dangerouslySetInnerHTML={{ __html: t("about.p3_html") || t("about.p3") }} />
             </Reveal>
             <Reveal delay={200}>
-              <p>
-                Creo firmemente que la tecnología es una herramienta poderosa para <span className="soft-underline cursor-default">transformar ideas en realidades</span>. Fuera del trabajo, encuentro inspiración en el automovilismo, los cubos de Rubik y el deporte, pasiones que alimentan mi curiosidad, disciplina y perseverancia.
-              </p>
+              <p dangerouslySetInnerHTML={{ __html: t("about.p4_html") || t("about.p4") }} />
             </Reveal>
             
             {/* Tecnologías favoritas */}
             <Reveal delay={240}>
               <div className="mt-6">
-                <h3 className="text-lg font-semibold text-foreground mb-3">Tecnologías favoritas</h3>
+                <h3 className="text-lg font-semibold text-foreground mb-3">{t("about.tech_title")}</h3>
                 <div className="flex flex-wrap gap-2">
                   {[
                     "Cursor",
@@ -72,7 +67,7 @@ export default function Home() {
           </Section>
 
           {/* Proyectos */}
-          <Section id="proyectos" title="Proyectos">
+          <Section id="proyectos" title={t("section.proyectos")}>
             <div className="flex flex-col gap-4 sm:gap-5">
               {/* AsesorDeSalud */}
               <Reveal>
@@ -85,15 +80,11 @@ export default function Home() {
                   <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
                     <div className="min-w-0">
                       <p className="font-semibold text-foreground group-hover:text-accent transition-colors flex items-center gap-2">
-                        Página presentación asesordesalud.cl
+                        {t("projects.asesor.title")}
                         <img src="/icons/redirect.svg" alt="" className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity brightness-0 contrast-200 dark:brightness-200 dark:contrast-0" />
                       </p>
-                      <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
-                        Desarrollé una <span className="soft-underline cursor-default">página de presentación</span> para un asesor de salud que orienta a sus clientes con la elección de planes de salud en función de sus requerimientos específicos.
-                      </p>
-                      <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
-                        En este proyecto cubrí desde el <span className="soft-underline cursor-default">desarrollo</span>, <span className="soft-underline cursor-default">levantamiento</span> y <span className="soft-underline cursor-default">configuración de dominios</span> hasta el <span className="soft-underline cursor-default">rediseño de su logo</span>.
-                      </p>
+                      <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]" dangerouslySetInnerHTML={{ __html: t("projects.asesor.p1_html") || t("projects.asesor.p1") }} />
+                      <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]" dangerouslySetInnerHTML={{ __html: t("projects.asesor.p2_html") || t("projects.asesor.p2") }} />
                       <div className="mt-3 flex flex-wrap gap-2">
                         {[
                           "Web Standard",
@@ -112,7 +103,7 @@ export default function Home() {
                       </div>
                     </div>
                     <div className="project-media w-full bg-muted/30 rounded-md border border-accent/20 overflow-hidden shrink-0 transform-gpu scale-100 group-hover:scale-110">
-                      <img src="/projects/asesordesalud.png" alt="AsesorDeSalud" className="w-full h-auto object-cover" />
+                      <img src="/projects/asesordesalud.png" alt={t("alt.asesor")} className="w-full h-auto object-cover" />
                     </div>
                   </div>
                 </a>
@@ -129,12 +120,10 @@ export default function Home() {
                   <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
                     <div className="min-w-0">
                       <p className="font-semibold text-foreground group-hover:text-accent transition-colors flex items-center gap-2">
-                        TerraINVicta, un juego de mecanografía
+                        {t("projects.terrainvicta.title")}
                         <img src="/icons/redirect.svg" alt="" className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity brightness-0 contrast-200 dark:brightness-200 dark:contrast-0" />
                       </p>
-                      <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
-                        <span className="soft-underline cursor-default">Para titularme</span> como Ingeniero Civil Informático mi proyecto final fue un <span className="soft-underline cursor-default">juego de mecanografía</span>, resultando con <span className="soft-underline cursor-default">nota máxima</span> para mi titulación.
-                      </p>
+                      <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]" dangerouslySetInnerHTML={{ __html: t("projects.terrainvicta.p1_html") || t("projects.terrainvicta.p1") }} />
                       <div className="mt-3 flex flex-wrap gap-2">
                         {[
                           "Web Standard",
@@ -151,7 +140,7 @@ export default function Home() {
                       </div>
                     </div>
                       <div className="project-media w-full bg-muted/30 rounded-md border border-accent/20 overflow-hidden shrink-0 transform-gpu scale-100 group-hover:scale-110">
-                        <img src="/projects/terrainvicta.png" alt="TerraINVicta" className="w-full h-auto object-cover" />
+                        <img src="/projects/terrainvicta.png" alt={t("alt.terrainvicta")} className="w-full h-auto object-cover" />
                       </div>
                   </div>
                 </a>
@@ -161,7 +150,7 @@ export default function Home() {
           </Section>
 
           {/* Experiencia */}
-          <Section id="experiencia" title="Experiencia">
+          <Section id="experiencia" title={t("section.experiencia")}>
             <div className="flex flex-col gap-4 sm:gap-5">
               {/* Dinámica Plataforma */}
               <Reveal>
@@ -174,12 +163,10 @@ export default function Home() {
                   <div className="grid grid-cols-[1fr_17ch] gap-8 items-start">
                     <div className="min-w-0">
                       <p className="font-semibold text-foreground group-hover:text-accent transition-colors flex items-center gap-2">
-                        Desarrollador Fullstack - Dinámica Plataforma
+                        {t("experience.dinamica.title")}
                         <img src="/icons/redirect.svg" alt="" className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity brightness-0 contrast-200 dark:brightness-200 dark:contrast-0" />
                       </p>
-                      <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
-                        Como parte del equipo de <span className="soft-underline cursor-default">Data Science</span> mi labor es desarrollar plataformas de <span className="soft-underline cursor-default">análisis de datos y gestión de la información</span> tanto a nivel interno de la empresa como productos para nuestros clientes.
-                      </p>
+                      <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]" dangerouslySetInnerHTML={{ __html: t("experience.dinamica.p1_html") || t("experience.dinamica.p1") }} />
                       <div className="mt-3 flex flex-wrap gap-2">
                         {[
                           "Next.js",
@@ -201,9 +188,7 @@ export default function Home() {
                         ))}
                       </div>
                     </div>
-                    <span className="text-foreground/60 text-xs sm:text-sm whitespace-nowrap shrink-0 tabular-nums justify-self-end self-start">
-                      Mar 2025 — Actualmente
-                    </span>
+                    <span className="text-foreground/60 text-xs sm:text-sm whitespace-nowrap shrink-0 tabular-nums justify-self-end self-start">{t("experience.dinamica.date")}</span>
                   </div>
                 </a>
               </Reveal>
@@ -213,12 +198,8 @@ export default function Home() {
                 <div className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5">
                 <div className="grid grid-cols-[1fr_17ch] gap-8 items-start">
                   <div className="min-w-0">
-                    <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
-                      Desarrollador de Software y T.I. - Dist y Com Luis Jara
-                    </p>
-                    <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
-                      Como <span className="soft-underline cursor-default">único y primer informático</span> de la empresa mis labores fueron desarrollar aplicaciones para la gestión interna y levantamiento de <span className="soft-underline cursor-default">infraestructura informática</span> para la empresa. Siendo <span className="soft-underline cursor-default">un reto absoluto</span> como primer trabajo post universidad.
-                    </p>
+                    <p className="font-semibold text-foreground group-hover:text-accent transition-colors">{t("experience.ljar.title")}</p>
+                    <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]" dangerouslySetInnerHTML={{ __html: t("experience.ljar.p1_html") || t("experience.ljar.p1") }} />
                     <div className="mt-3 flex flex-wrap gap-2">
                       {[
                         "MySQL",
@@ -240,9 +221,7 @@ export default function Home() {
                       ))}
                     </div>
                   </div>
-                  <span className="text-foreground/60 text-xs sm:text-sm whitespace-nowrap shrink-0 tabular-nums justify-self-end self-start">
-                    Sep 2023 — Feb 2024
-                  </span>
+                  <span className="text-foreground/60 text-xs sm:text-sm whitespace-nowrap shrink-0 tabular-nums justify-self-end self-start">{t("experience.ljar.date")}</span>
                 </div>
                 </div>
               </Reveal>
@@ -258,12 +237,10 @@ export default function Home() {
                 <div className="grid grid-cols-[1fr_17ch] gap-8 items-start">
                   <div className="min-w-0">
                     <p className="font-semibold text-foreground group-hover:text-accent transition-colors flex items-center gap-2">
-                      Practicante como T.I. - Viña Undurraga
+                      {t("experience.undurraga.title")}
                       <img src="/icons/redirect.svg" alt="" className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity brightness-0 contrast-200 dark:brightness-200 dark:contrast-0" />
                     </p>
-                    <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
-                      Como <span className="soft-underline cursor-default">practicante</span> en el departamento de T.I. mis labores fueron desde creación de software para <span className="soft-underline cursor-default">mejora de procesos internos</span>, diagnóstico y actualización de <span className="soft-underline cursor-default">infraestructura informática</span>, administración de <span className="soft-underline cursor-default">bases de datos</span> y <span className="soft-underline cursor-default">soporte técnico</span>.
-                    </p>
+                    <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]" dangerouslySetInnerHTML={{ __html: t("experience.undurraga.p1_html") || t("experience.undurraga.p1") }} />
                     <div className="mt-3 flex flex-wrap gap-2">
                       {[
                         "CMD",
@@ -277,9 +254,7 @@ export default function Home() {
                       ))}
                     </div>
                   </div>
-                  <span className="text-foreground/60 text-xs sm:text-sm whitespace-nowrap shrink-0 tabular-nums justify-self-end self-start">
-                    Dic 2021 — Feb 2022
-                  </span>
+                  <span className="text-foreground/60 text-xs sm:text-sm whitespace-nowrap shrink-0 tabular-nums justify-self-end self-start">{t("experience.undurraga.date")}</span>
                 </div>
                 </a>
               </Reveal>
