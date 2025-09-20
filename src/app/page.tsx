@@ -259,7 +259,7 @@ export default function Home() {
                   <div className="min-w-0">
                     <p className="font-semibold text-foreground group-hover:text-accent transition-colors flex items-center gap-2">
                       Practicante como T.I. - Viña Undurraga
-                      <img src="/icons/redirect.svg" alt="" className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity" />
+                      <img src="/icons/redirect.svg" alt="" className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity brightness-0 contrast-200 dark:brightness-200 dark:contrast-0" />
                     </p>
                     <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
                       Como <span className="soft-underline cursor-default">practicante</span> en el departamento de T.I. mis labores fueron desde creación de software para <span className="soft-underline cursor-default">mejora de procesos internos</span>, diagnóstico y actualización de <span className="soft-underline cursor-default">infraestructura informática</span>, administración de <span className="soft-underline cursor-default">bases de datos</span> y <span className="soft-underline cursor-default">soporte técnico</span>.
