@@ -25,22 +25,27 @@ export default function Home() {
             />
             <Reveal>
               <p>
-                Soy desarrollador web con una sólida base en diseño gráfico, lo que me permite combinar la lógica del código con una visión estética y creativa. Me apasiona la tecnología y disfruto enfrentar desafíos complejos, encontrando soluciones innovadoras que optimicen procesos y generen verdadero valor para las empresas.
+                Soy <span className="underline decoration-accent/40 decoration-2 underline-offset-4 hover:decoration-accent hover:decoration-4 transition-all duration-300 cursor-default">Ingeniero Civil Informático</span> con experiencia en desarrollo web, software y diseño gráfico. Me apasiona crear <span className="underline decoration-accent/40 decoration-2 underline-offset-4 hover:decoration-accent hover:decoration-4 transition-all duration-300 cursor-default">soluciones innovadoras</span> que optimicen procesos y generen verdadero valor para las empresas.
               </p>
             </Reveal>
             <Reveal delay={80}>
               <p>
-                Tengo experiencia en el desarrollo de sistemas de administración, plataformas de análisis de datos y dashboards interactivos, siempre buscando que cada proyecto sea funcional, eficiente y fácil de usar. Mi forma de trabajar se caracteriza por la atención al detalle, la colaboración en equipo y la capacidad de aportar una visión creativa para resolver problemas de manera distinta.
+                He trabajado en proyectos tan diversos como sistemas de administración, dashboards interactivos, análisis de datos, juegos y configuración de redes y hardware. Siempre con un mismo objetivo: que cada proyecto sea <span className="underline decoration-accent/40 decoration-2 underline-offset-4 hover:decoration-accent hover:decoration-4 transition-all duration-300 cursor-default">funcional, eficiente y centrado en el usuario</span>.
               </p>
             </Reveal>
             <Reveal delay={160}>
               <p>
-                Creo firmemente que el desarrollo web es una herramienta poderosa para transformar ideas en soluciones tangibles. Fuera del trabajo, me inspiro en pasiones como el automovilismo, los cubos de Rubik y el deporte, que alimentan mi curiosidad, disciplina y perseverancia.
+                Mi forma de trabajar combina atención al detalle, comprensión profunda del problema y una orientación clara al cliente, lo que me permite proponer <span className="underline decoration-accent/40 decoration-2 underline-offset-4 hover:decoration-accent hover:decoration-4 transition-all duration-300 cursor-default">soluciones prácticas y creativas</span>.
+              </p>
+            </Reveal>
+            <Reveal delay={200}>
+              <p>
+                Creo firmemente que la tecnología es una herramienta poderosa para <span className="underline decoration-accent/40 decoration-2 underline-offset-4 hover:decoration-accent hover:decoration-4 transition-all duration-300 cursor-default">transformar ideas en realidades</span>. Fuera del trabajo, encuentro inspiración en el automovilismo, los cubos de Rubik y el deporte, pasiones que alimentan mi curiosidad, disciplina y perseverancia.
               </p>
             </Reveal>
             
             {/* Tecnologías favoritas */}
-            <Reveal delay={200}>
+            <Reveal delay={240}>
               <div className="mt-6">
                 <h3 className="text-lg font-semibold text-foreground mb-3">Tecnologías favoritas</h3>
                 <div className="flex flex-wrap gap-2">
@@ -66,18 +71,19 @@ export default function Home() {
           {/* Proyectos */}
           <Section id="proyectos" title="Proyectos">
             <div className="flex flex-col gap-4 sm:gap-5">
-              {/* CLI monitor */}
+              {/* AsesorDeSalud */}
               <Reveal>
                 <a
-                  href="#"
+                  href="https://asesordesalud.cl/"
                   target="_blank"
                   rel="noreferrer"
                   className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
                 >
                   <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
                     <div className="min-w-0">
-                      <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
+                      <p className="font-semibold text-foreground group-hover:text-accent transition-colors flex items-center gap-2">
                         Landing page AsesorDeSalud
+                        <img src="/icons/redirect.svg" alt="" className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity" />
                       </p>
                       <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
                         Realicé una landing page para un asesor de salud que apoya a sus clientes con la elección de planes de salud en función de sus necesidades específicas. 
@@ -111,12 +117,7 @@ export default function Home() {
 
               {/* Hackerfolio */}
               <Reveal delay={80}>
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
-                >
+                <div className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5">
                 <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
                   <div className="min-w-0">
                     <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
@@ -141,17 +142,12 @@ export default function Home() {
                     <img src="/projects/hackerfolio.png" alt="Hackerfolio" className="w-full h-auto object-cover" />
                   </div>
                 </div>
-                </a>
+                </div>
               </Reveal>
 
               {/* Renderless UI kit */}
               <Reveal delay={160}>
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
-                >
+                <div className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5">
                 <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
                   <div className="min-w-0">
                     <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
@@ -176,17 +172,12 @@ export default function Home() {
                     <img src="/projects/renderless-ui.png" alt="Renderless UI Kit" className="w-full h-auto object-cover" />
                   </div>
                 </div>
-                </a>
+                </div>
               </Reveal>
 
               {/* Webperf toolkit */}
               <Reveal delay={240}>
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
-                >
+                <div className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5">
                 <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
                   <div className="min-w-0">
                     <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
@@ -211,7 +202,7 @@ export default function Home() {
                     <img src="/projects/webperf-toolkit.png" alt="Webperf Toolkit" className="w-full h-auto object-cover" />
                   </div>
                 </div>
-                </a>
+                </div>
               </Reveal>
             </div>
           </Section>
@@ -222,15 +213,16 @@ export default function Home() {
               {/* Dinámica Plataforma */}
               <Reveal>
                 <a
-                  href="#"
+                  href="https://www.dinamicaplataforma.com/"
                   target="_blank"
                   rel="noreferrer"
                   className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
                 >
                   <div className="grid grid-cols-[1fr_17ch] gap-8 items-start">
                     <div className="min-w-0">
-                      <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
+                      <p className="font-semibold text-foreground group-hover:text-accent transition-colors flex items-center gap-2">
                         Desarrollador Fullstack — Dinámica Plataforma
+                        <img src="/icons/redirect.svg" alt="" className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity" />
                       </p>
                       <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
                         Parte del equipo de Data Science, desarrollando tecnologías de análisis de datos y gestión de información. Además, desarrollo y levanto productos web especializados para clientes.
@@ -260,12 +252,7 @@ export default function Home() {
 
               {/* Licorería Donde Franco */}
               <Reveal delay={80}>
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
-                >
+                <div className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5">
                 <div className="grid grid-cols-[1fr_17ch] gap-8 items-start">
                   <div className="min-w-0">
                     <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
@@ -292,7 +279,7 @@ export default function Home() {
                     Sep 2023 — Feb 2024
                   </span>
                 </div>
-                </a>
+                </div>
               </Reveal>
 
               {/* Viña Undurraga */}
@@ -305,8 +292,9 @@ export default function Home() {
                 >
                 <div className="grid grid-cols-[1fr_17ch] gap-8 items-start">
                   <div className="min-w-0">
-                    <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
+                    <p className="font-semibold text-foreground group-hover:text-accent transition-colors flex items-center gap-2">
                       Practicante T.I. — Viña Undurraga
+                      <img src="/icons/redirect.svg" alt="" className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity" />
                     </p>
                     <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
                       Diagnóstico y actualización de infraestructura informática; desarrollo de software para mejorar procesos internos; administración de bases de datos y soporte técnico.

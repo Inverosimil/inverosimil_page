@@ -39,10 +39,19 @@ export default function IntroSidebar() {
               {t("hero.description")}
             </p>
           </Reveal>
+          <Reveal delay={240}>
+            <a
+              href="/documents/Sebastián_Carrasco_CV.pdf"
+              download="Sebastián_Carrasco_CV.pdf"
+              className="inline-block mt-4 px-4 py-2 text-sm rounded-lg border border-accent bg-accent text-white hover:opacity-90 transition-opacity font-medium"
+            >
+              Descargar CV
+            </a>
+          </Reveal>
         </div>
 
         {/* Middle: index centered vertically */}
-        <Reveal delay={240}>
+        <Reveal delay={280}>
           <div className="hidden md:flex justify-start">
             <SideIndex />
           </div>
@@ -50,7 +59,7 @@ export default function IntroSidebar() {
 
         {/* Bottom: social links and controls */}
         <div>
-          <Reveal delay={280}>
+          <Reveal delay={320}>
             <SocialLinks
               github="https://github.com/inverosimil"
               linkedin="https://www.linkedin.com/in/sebastian-carrasco-álvarez"
@@ -60,7 +69,7 @@ export default function IntroSidebar() {
               className="pt-2"
             />
           </Reveal>
-          <Reveal delay={320}>
+          <Reveal delay={360}>
             <InlineControls />
           </Reveal>
         </div>

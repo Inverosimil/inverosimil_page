@@ -22,7 +22,7 @@ const messages: Record<Locale, Record<string, string>> = {
     "hero.greeting": "Hola, soy",
     "hero.name": "Sebastián Carrasco",
     "hero.profession": "Ingeniero Civil Informático",
-    "hero.description": "Transformo requerimientos complejos en soluciones digitales claras, eficientes y escalables.",
+    "hero.description": "Transformo requerimientos complejos en soluciones tecnológicas claras, eficientes y escalables.",
     "cta.cv": "Descargar CV",
     "section.sobre": "Sobre mi",
     "section.proyectos": "Proyectos",
