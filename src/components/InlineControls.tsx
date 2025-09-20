@@ -8,7 +8,7 @@ export default function InlineControls() {
   const { locale, setLocale } = useLocale();
 
   return (
-    <div className="flex items-center gap-3 text-xs">
+    <div className="flex items-center gap-4 text-xs">
       <button
         type="button"
         onClick={(e) => {
@@ -19,7 +19,7 @@ export default function InlineControls() {
           window.setTimeout(() => root.classList.remove("theme-switching"), 550);
           toggleTheme();
         }}
-        className="inline-flex items-center justify-center w-8 h-8 rounded-lg border border-accent/20 hover:border-accent/40 text-foreground/70 hover:text-accent transition-all duration-200 bg-transparent hover:bg-accent/5"
+        className="inline-flex items-center justify-center w-7 h-7 rounded-full text-foreground/60 hover:text-accent transition-colors duration-200 hover:bg-accent/10"
         aria-label="Cambiar tema"
         title="Cambiar tema"
       >
@@ -29,27 +29,28 @@ export default function InlineControls() {
           className="w-4 h-4 brightness-0 contrast-200 dark:brightness-200 dark:contrast-0"
         />
       </button>
-      <div className="flex items-center gap-1 border border-accent/20 rounded-lg overflow-hidden bg-transparent hover:bg-accent/5 transition-colors">
+      <div className="flex items-center gap-0.5">
         <button
           type="button"
           onClick={() => setLocale("es")}
-          className={`px-3 py-1.5 text-[12px] font-medium transition-colors ${
+          className={`px-2 py-1 text-[11px] font-medium transition-colors rounded-sm ${
             locale === "es" 
-              ? "bg-accent text-white" 
-              : "text-foreground/70 hover:text-accent hover:bg-accent/10"
+              ? "text-accent" 
+              : "text-foreground/50 hover:text-foreground/80"
           }`}
           aria-label="Español"
           title="Español"
         >
           ES
         </button>
+        <span className="text-foreground/30 text-[10px]">|</span>
         <button
           type="button"
           onClick={() => setLocale("en")}
-          className={`px-3 py-1.5 text-[12px] font-medium transition-colors ${
+          className={`px-2 py-1 text-[11px] font-medium transition-colors rounded-sm ${
             locale === "en" 
-              ? "bg-accent text-white" 
-              : "text-foreground/70 hover:text-accent hover:bg-accent/10"
+              ? "text-accent" 
+              : "text-foreground/50 hover:text-foreground/80"
           }`}
           aria-label="English"
           title="English"
