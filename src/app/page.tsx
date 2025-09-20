@@ -46,7 +46,7 @@ export default function Home() {
                   "Python",
                   "Git",
                 ].map((tech) => (
-                  <span key={tech} className="text-sm px-3 py-1.5 bg-accent/10 text-accent border border-accent/30 rounded-full font-medium hover:bg-accent/20 hover:border-accent/50 transition-colors cursor-default">
+                  <span key={tech} className="tag text-sm px-3 py-1.5 bg-accent/10 text-accent border border-accent/30 rounded-full font-medium hover:bg-accent/20 hover:border-accent/50 cursor-default">
                     {tech}
                   </span>
                 ))}
@@ -86,7 +86,7 @@ export default function Home() {
                         "Adobe Photoshop",
                         "Adobe Illustrator",
                       ].map((t) => (
-                        <span key={t} className="text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 transition-colors cursor-default">
+                        <span key={t} className="tag text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 cursor-default">
                           {t}
                         </span>
                       ))}
@@ -119,7 +119,7 @@ export default function Home() {
                         "Tailwind",
                         "Vercel",
                       ].map((t) => (
-                        <span key={t} className="text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 transition-colors cursor-default">
+                        <span key={t} className="tag text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 cursor-default">
                           {t}
                         </span>
                       ))}
@@ -152,7 +152,7 @@ export default function Home() {
                         "TS",
                         "A11y",
                       ].map((t) => (
-                        <span key={t} className="text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 transition-colors cursor-default">
+                        <span key={t} className="tag text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 cursor-default">
                           {t}
                         </span>
                       ))}
@@ -185,7 +185,7 @@ export default function Home() {
                         "Playwright",
                         "Node",
                       ].map((t) => (
-                        <span key={t} className="text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 transition-colors cursor-default">
+                        <span key={t} className="tag text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 cursor-default">
                           {t}
                         </span>
                       ))}
@@ -227,7 +227,7 @@ export default function Home() {
                         "Python",
                         "Pandas",
                       ].map((t) => (
-                        <span key={t} className="text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 transition-colors cursor-default">
+                        <span key={t} className="tag text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 cursor-default">
                           {t}
                         </span>
                       ))}
@@ -262,7 +262,7 @@ export default function Home() {
                         "SQLite",
                         "Tailwind",
                       ].map((t) => (
-                        <span key={t} className="text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 transition-colors cursor-default">
+                        <span key={t} className="tag text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 cursor-default">
                           {t}
                         </span>
                       ))}
@@ -296,7 +296,7 @@ export default function Home() {
                         "SQL Server",
                         "PowerShell",
                       ].map((t) => (
-                        <span key={t} className="text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 transition-colors cursor-default">
+                        <span key={t} className="tag text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 cursor-default">
                           {t}
                         </span>
                       ))}

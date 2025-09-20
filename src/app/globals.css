@@ -44,11 +44,22 @@
 
 html, body { height: 100%; }
 
+/* Eliminar scrollbar */
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
   text-rendering: optimizeLegibility;
+  overflow-x: hidden; /* Evitar scroll horizontal */
 }
 
 /******** Utilities ********/
@@ -188,4 +199,17 @@ hr { border-color: color-mix(in oklab, var(--accent) 20%, transparent); }
 @media (hover: hover) {
   .sideindex-link[data-active="false"]:hover .sideindex-dash { opacity: .85; transform: scaleX(1.2); }
   .sideindex-link[data-active="false"]:hover .sideindex-label { transform: translateX(calc(var(--dash-shift) * .6)) scale(1.02); letter-spacing: .1px; }
+}
+
+/* Efecto de zoom para tags de tecnologías */
+.tag {
+  transition: transform 300ms cubic-bezier(.22,1,.36,1), background-color 200ms ease, border-color 200ms ease;
+  transform-origin: center;
+  will-change: transform;
+}
+
+@media (hover: hover) {
+  .tag:hover {
+    transform: scale(1.05);
+  }
 }

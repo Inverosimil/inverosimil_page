@@ -18,7 +18,7 @@ export default function ProjectCard({ title, description, href, stack }: { title
         {stack && stack.length ? (
           <div className="mt-3 flex flex-wrap gap-2">
             {stack.map((t) => (
-              <span key={t} className="text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full">
+              <span key={t} className="tag text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full">
                 {t}
               </span>
             ))}
