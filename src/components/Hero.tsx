@@ -2,7 +2,6 @@
 import Image from "next/image";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useLocale } from "../context/LocaleContext";
-import Typewriter from "./Typewriter";
 
 export default function Hero() {
   const { t } = useLocale();
@@ -43,17 +42,8 @@ export default function Hero() {
           {/* Columna izquierda: textos */}
           <div ref={leftRef} className="w-full">
             <p className="text-sm sm:text-base text-foreground/60 mb-2">{t("hero.greeting")}</p>
-            <h1 className="relative font-display text-5xl sm:text-7xl md:text-8xl leading-[0.95] font-normal tracking-tight mb-3 text-accent">
-              {/* Placeholder invisible para reservar el alto de dos líneas */}
-              <span aria-hidden className="block whitespace-pre opacity-0 select-none pointer-events-none">
-                {line1 + "\n" + line2}
-              </span>
-              {/* Contenido tipeado superpuesto */}
-              <Typewriter
-                text={fullName}
-                restartKey={fullName}
-                className="absolute inset-0 block whitespace-pre"
-              />
+            <h1 className="font-display text-5xl sm:text-7xl md:text-8xl leading-[0.95] font-normal tracking-tight mb-3 text-accent">
+              {fullName}
             </h1>
             <p className="text-lg sm:text-xl text-foreground/80 mb-6">
               {t("hero.profession")}

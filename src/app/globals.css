@@ -78,6 +78,28 @@ body {
   background-position: 0 var(--bg-offset, 0px);
 }
 
+/* Initial cover that slides downward to reveal the dots */
+.code-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--background);
+  transform: translateY(0%);
+  opacity: 1;
+  will-change: transform, opacity;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.code-grid[data-ready="true"]::before {
+  animation: grid-reveal 800ms cubic-bezier(.22,1,.36,1) forwards;
+}
+
+@keyframes grid-reveal {
+  from { transform: translateY(0%); opacity: 1; }
+  to { transform: translateY(100%); opacity: 0; }
+}
+
 /* Overlay of slightly larger dots revealed near the pointer */
 .code-grid::after {
   content: "";
@@ -87,6 +109,7 @@ body {
   background-image: radial-gradient(color-mix(in oklab, var(--accent) 6%, transparent) 1.4px, transparent 1.6px);
   background-size: 16px 16px;
   background-position: 0 var(--bg-offset, 0px);
+  z-index: 1; /* under the reveal cover */
   /* Show only inside a soft circular lens around the pointer */
   mask-image: radial-gradient(
     circle var(--hover-radius) at var(--mx) var(--my),
@@ -175,13 +198,17 @@ hr { border-color: color-mix(in oklab, var(--accent) 20%, transparent); }
 .sideindex-link { isolation: isolate; --dash-shift: 0.6rem; }
 .sideindex-dash {
   display: inline-block;
+  height: 2px;
+  width: 10px;
+  background-color: var(--accent);
+  border-radius: 2px;
   transform-origin: left center;
   opacity: .7;
   translate: 0 0; /* enable transform composite */
   transition:
-    transform 420ms cubic-bezier(.22,1,.36,1),
+    width 420ms cubic-bezier(.22,1,.36,1),
     opacity 320ms ease,
-    color 320ms ease;
+    background-color 320ms ease;
 }
 .sideindex-label {
   display: inline-block;
@@ -191,8 +218,8 @@ hr { border-color: color-mix(in oklab, var(--accent) 20%, transparent); }
     letter-spacing 420ms cubic-bezier(.22,1,.36,1),
     color 320ms ease;
 }
-.sideindex-link[data-active="true"] .sideindex-dash { opacity: 1; transform: scaleX(1.8); }
-.sideindex-link[data-active="false"] .sideindex-dash { opacity: .65; transform: scaleX(1); }
+.sideindex-link[data-active="true"] .sideindex-dash { opacity: 1; width: 18px; }
+.sideindex-link[data-active="false"] .sideindex-dash { opacity: .65; width: 10px; }
 .sideindex-link[data-active="true"] .sideindex-label { transform: translateX(var(--dash-shift)) scale(1.06); letter-spacing: .2px; }
 .sideindex-link[data-active="false"] .sideindex-label { transform: translateX(0) scale(1); letter-spacing: 0; }
 

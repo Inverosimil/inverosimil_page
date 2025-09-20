@@ -73,12 +73,16 @@ export default function SideIndex() {
     };
   }, []);
 
-  const handleClick = (id: SectionId) => () => {
-    setActive(id);
-    window.setTimeout(() => {
-      const evt = new Event("scroll");
-      window.dispatchEvent(evt);
-    }, 350);
+  const handleClick = (id: SectionId) => (e: React.MouseEvent) => {
+    e.preventDefault(); // Evitar que cambie el hash en la URL
+    
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
   };
 
   return (
@@ -98,7 +102,7 @@ export default function SideIndex() {
                   (isActive ? "text-foreground font-medium" : "text-foreground/60 hover:text-foreground/80")
                 }
               >
-                <span aria-hidden className={"sideindex-dash text-accent"}>—</span>
+                <span aria-hidden className={"sideindex-dash"} />
                 <span className={"sideindex-label"}>{labels[id]}</span>
               </Link>
             </li>

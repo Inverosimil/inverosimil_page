@@ -29,6 +29,8 @@ export default function ParallaxBackground({ speed = 0.35 }: { speed?: number })
 
     // Inicial
     update();
+    // Trigger background reveal animation once mounted
+    el.setAttribute("data-ready", "true");
 
     window.addEventListener("scroll", onScroll, { passive: true });
 

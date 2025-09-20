@@ -1,4 +1,5 @@
 import Section from "../components/Section";
+import Reveal from "../components/Reveal";
 // import ProjectCard from "../components/ProjectCard"; // no longer used
 import IntroSidebar from "../components/IntroSidebar";
 
@@ -22,89 +23,100 @@ export default function Home() {
               draggable={false}
               loading="lazy"
             />
-            <p>
-              Soy desarrollador web con una sólida base en diseño gráfico, lo que me permite combinar la lógica del código con una visión estética y creativa. Me apasiona la tecnología y disfruto enfrentar desafíos complejos, encontrando soluciones innovadoras que optimicen procesos y generen verdadero valor para las empresas.
-            </p>
-            <p>
-              Tengo experiencia en el desarrollo de sistemas de administración, plataformas de análisis de datos y dashboards interactivos, siempre buscando que cada proyecto sea funcional, eficiente y fácil de usar. Mi forma de trabajar se caracteriza por la atención al detalle, la colaboración en equipo y la capacidad de aportar una visión creativa para resolver problemas de manera distinta.
-            </p>
-            <p>
-              Creo firmemente que el desarrollo web es una herramienta poderosa para transformar ideas en soluciones tangibles. Fuera del trabajo, me inspiro en pasiones como el automovilismo, los cubos de Rubik y el deporte, que alimentan mi curiosidad, disciplina y perseverancia.
-            </p>
+            <Reveal>
+              <p>
+                Soy desarrollador web con una sólida base en diseño gráfico, lo que me permite combinar la lógica del código con una visión estética y creativa. Me apasiona la tecnología y disfruto enfrentar desafíos complejos, encontrando soluciones innovadoras que optimicen procesos y generen verdadero valor para las empresas.
+              </p>
+            </Reveal>
+            <Reveal delay={80}>
+              <p>
+                Tengo experiencia en el desarrollo de sistemas de administración, plataformas de análisis de datos y dashboards interactivos, siempre buscando que cada proyecto sea funcional, eficiente y fácil de usar. Mi forma de trabajar se caracteriza por la atención al detalle, la colaboración en equipo y la capacidad de aportar una visión creativa para resolver problemas de manera distinta.
+              </p>
+            </Reveal>
+            <Reveal delay={160}>
+              <p>
+                Creo firmemente que el desarrollo web es una herramienta poderosa para transformar ideas en soluciones tangibles. Fuera del trabajo, me inspiro en pasiones como el automovilismo, los cubos de Rubik y el deporte, que alimentan mi curiosidad, disciplina y perseverancia.
+              </p>
+            </Reveal>
             
             {/* Tecnologías favoritas */}
-            <div className="mt-6">
-              <h3 className="text-lg font-semibold text-foreground mb-3">Tecnologías favoritas</h3>
-              <div className="flex flex-wrap gap-2">
-                {[
-                  "TypeScript",
-                  "Next.js",
-                  "React",
-                  "Node.js",
-                  "Tailwind CSS",
-                  "PostgreSQL",
-                  "Python",
-                  "Git",
-                ].map((tech) => (
-                  <span key={tech} className="tag text-sm px-3 py-1.5 bg-accent/10 text-accent border border-accent/30 rounded-full font-medium hover:bg-accent/20 hover:border-accent/50 cursor-default">
-                    {tech}
-                  </span>
-                ))}
+            <Reveal delay={200}>
+              <div className="mt-6">
+                <h3 className="text-lg font-semibold text-foreground mb-3">Tecnologías favoritas</h3>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    "TypeScript",
+                    "Next.js",
+                    "React",
+                    "Node.js",
+                    "Tailwind CSS",
+                    "PostgreSQL",
+                    "Python",
+                    "Git",
+                  ].map((tech) => (
+                    <span key={tech} className="tag text-sm px-3 py-1.5 bg-accent/10 text-accent border border-accent/30 rounded-full font-medium hover:bg-accent/20 hover:border-accent/50 cursor-default">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
+            </Reveal>
           </Section>
 
           {/* Proyectos */}
           <Section id="proyectos" title="Proyectos">
             <div className="flex flex-col gap-4 sm:gap-5">
               {/* CLI monitor */}
-              <a
-                href="#"
-                target="_blank"
-                rel="noreferrer"
-                className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
-              >
-                <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
-                  <div className="min-w-0">
-                    <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
-                      Landing page AsesorDeSalud
-                    </p>
-                    <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
-                      Realicé una landing page para un asesor de salud que apoya a sus clientes con la elección de planes de salud en función de sus necesidades específicas. 
-                    </p>
-                    <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
-                      Tuve que cubrir desde el diseño hasta el desarrollo de la landing page. Incluyendo propuesta y diseño del nuevo logo.
-                    </p>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {[
-                        "Web Standard",
-                        "JavaScript",
-                        "HTML",
-                        "CSS",
-                        "Vercel",
-                        "Figma",
-                        "Adobe Photoshop",
-                        "Adobe Illustrator",
-                      ].map((t) => (
-                        <span key={t} className="tag text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 cursor-default">
-                          {t}
-                        </span>
-                      ))}
+              <Reveal>
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
+                >
+                  <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
+                    <div className="min-w-0">
+                      <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
+                        Landing page AsesorDeSalud
+                      </p>
+                      <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
+                        Realicé una landing page para un asesor de salud que apoya a sus clientes con la elección de planes de salud en función de sus necesidades específicas. 
+                      </p>
+                      <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
+                        Tuve que cubrir desde el diseño hasta el desarrollo de la landing page. Incluyendo propuesta y diseño del nuevo logo.
+                      </p>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {[
+                          "Web Standard",
+                          "JavaScript",
+                          "HTML",
+                          "CSS",
+                          "Vercel",
+                          "Figma",
+                          "Adobe Photoshop",
+                          "Adobe Illustrator",
+                        ].map((t) => (
+                          <span key={t} className="tag text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 cursor-default">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="project-media w-full bg-muted/30 rounded-md border border-accent/20 overflow-hidden shrink-0 transform-gpu scale-100 group-hover:scale-110">
+                      <img src="/projects/asesordesalud.png" alt="AsesorDeSalud" className="w-full h-auto object-cover" />
                     </div>
                   </div>
-                                    <div className="project-media w-full bg-muted/30 rounded-md border border-accent/20 overflow-hidden shrink-0 transform-gpu scale-100 group-hover:scale-110">
-                    <img src="/projects/asesordesalud.png" alt="AsesorDeSalud" className="w-full h-auto object-cover" />
-                  </div>
-                </div>
-              </a>
+                </a>
+              </Reveal>
 
               {/* Hackerfolio */}
-              <a
-                href="#"
-                target="_blank"
-                rel="noreferrer"
-                className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
-              >
+              <Reveal delay={80}>
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
+                >
                 <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
                   <div className="min-w-0">
                     <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
@@ -129,15 +141,17 @@ export default function Home() {
                     <img src="/projects/hackerfolio.png" alt="Hackerfolio" className="w-full h-auto object-cover" />
                   </div>
                 </div>
-              </a>
+                </a>
+              </Reveal>
 
               {/* Renderless UI kit */}
-              <a
-                href="#"
-                target="_blank"
-                rel="noreferrer"
-                className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
-              >
+              <Reveal delay={160}>
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
+                >
                 <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
                   <div className="min-w-0">
                     <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
@@ -162,15 +176,17 @@ export default function Home() {
                     <img src="/projects/renderless-ui.png" alt="Renderless UI Kit" className="w-full h-auto object-cover" />
                   </div>
                 </div>
-              </a>
+                </a>
+              </Reveal>
 
               {/* Webperf toolkit */}
-              <a
-                href="#"
-                target="_blank"
-                rel="noreferrer"
-                className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
-              >
+              <Reveal delay={240}>
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
+                >
                 <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
                   <div className="min-w-0">
                     <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
@@ -195,7 +211,8 @@ export default function Home() {
                     <img src="/projects/webperf-toolkit.png" alt="Webperf Toolkit" className="w-full h-auto object-cover" />
                   </div>
                 </div>
-              </a>
+                </a>
+              </Reveal>
             </div>
           </Section>
 
@@ -203,49 +220,52 @@ export default function Home() {
           <Section id="experiencia" title="Experiencia">
             <div className="flex flex-col gap-4 sm:gap-5">
               {/* Dinámica Plataforma */}
-              <a
-                href="#"
-                target="_blank"
-                rel="noreferrer"
-                className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
-              >
-                <div className="grid grid-cols-[1fr_17ch] gap-8 items-start">
-                  <div className="min-w-0">
-                    <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
-                      Desarrollador Fullstack — Dinámica Plataforma
-                    </p>
-                    <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
-                      Parte del equipo de Data Science, desarrollando tecnologías de análisis de datos y gestión de información. Además, desarrollo y levanto productos web especializados para clientes.
-                    </p>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {[
-                        "TypeScript",
-                        "Next.js",
-                        "Tailwind",
-                        "Node.js",
-                        "PostgreSQL",
-                        "Python",
-                        "Pandas",
-                      ].map((t) => (
-                        <span key={t} className="tag text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 cursor-default">
-                          {t}
-                        </span>
-                      ))}
+              <Reveal>
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
+                >
+                  <div className="grid grid-cols-[1fr_17ch] gap-8 items-start">
+                    <div className="min-w-0">
+                      <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
+                        Desarrollador Fullstack — Dinámica Plataforma
+                      </p>
+                      <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
+                        Parte del equipo de Data Science, desarrollando tecnologías de análisis de datos y gestión de información. Además, desarrollo y levanto productos web especializados para clientes.
+                      </p>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {[
+                          "TypeScript",
+                          "Next.js",
+                          "Tailwind",
+                          "Node.js",
+                          "PostgreSQL",
+                          "Python",
+                          "Pandas",
+                        ].map((t) => (
+                          <span key={t} className="tag text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 cursor-default">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
                     </div>
+                    <span className="text-foreground/60 text-xs sm:text-sm whitespace-nowrap shrink-0 tabular-nums justify-self-end self-start">
+                      Mar 2025 — Actualmente
+                    </span>
                   </div>
-                  <span className="text-foreground/60 text-xs sm:text-sm whitespace-nowrap shrink-0 tabular-nums justify-self-end self-start">
-                    Mar 2025 — Actualmente
-                  </span>
-                </div>
-              </a>
+                </a>
+              </Reveal>
 
               {/* Licorería Donde Franco */}
-              <a
-                href="#"
-                target="_blank"
-                rel="noreferrer"
-                className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
-              >
+              <Reveal delay={80}>
+                <a
+                  href="#"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
+                >
                 <div className="grid grid-cols-[1fr_17ch] gap-8 items-start">
                   <div className="min-w-0">
                     <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
@@ -272,15 +292,17 @@ export default function Home() {
                     Sep 2023 — Feb 2024
                   </span>
                 </div>
-              </a>
+                </a>
+              </Reveal>
 
               {/* Viña Undurraga */}
-              <a
-                href="https://www.undurraga.cl"
-                target="_blank"
-                rel="noreferrer"
-                className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
-              >
+              <Reveal delay={160}>
+                <a
+                  href="https://www.undurraga.cl"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
+                >
                 <div className="grid grid-cols-[1fr_17ch] gap-8 items-start">
                   <div className="min-w-0">
                     <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
@@ -306,7 +328,8 @@ export default function Home() {
                     Dic 2021 — Feb 2022
                   </span>
                 </div>
-              </a>
+                </a>
+              </Reveal>
             </div>
           </Section>
 
