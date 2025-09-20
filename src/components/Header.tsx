@@ -3,6 +3,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useTheme } from "../context/ThemeContext";
 import { useLocale } from "../context/LocaleContext";
+import InlineControls from "./InlineControls";
 
 export default function Header() {
   const { theme, toggleTheme } = useTheme();
@@ -27,7 +28,7 @@ export default function Header() {
         <Link href="#" className="header-brand font-semibold tracking-tight text-accent font-display text-xl">
           {t("nav.brand")}
         </Link>
-        <div className="nav-stagger flex items-center gap-4 text-xs">
+        <div className="nav-stagger hidden sm:flex items-center gap-4 text-xs">
           <Link className="link nav-i" href="#sobre" style={cssI(0)}>{t("nav.sobre")}</Link>
           <Link className="link nav-i" href="#proyectos" style={cssI(1)}>{t("nav.proyectos")}</Link>
           <Link className="link nav-i" href="#experiencia" style={cssI(2)}>{t("nav.experiencia")}</Link>
@@ -61,7 +62,12 @@ export default function Header() {
             </button>
           </div>
         </div>
+        {/* Mobile controls shown as fixed overlay instead (see below) */}
       </nav>
+      {/* Fixed mobile controls top-right */}
+      <div className="sm:hidden fixed top-3 right-3 z-50">
+        <InlineControls />
+      </div>
     </header>
   );
 } 

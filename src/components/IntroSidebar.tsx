@@ -25,7 +25,7 @@ export default function IntroSidebar() {
             </p>
           </Reveal>
           <Reveal delay={80}>
-            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl leading-[0.9] text-accent whitespace-pre-wrap">
+            <h1 className="font-display text-6xl sm:text-7xl md:text-7xl leading-[0.95] text-accent whitespace-pre-wrap">
               {nameBroken}
             </h1>
           </Reveal>
@@ -43,10 +43,10 @@ export default function IntroSidebar() {
             <a
               href="/documents/Sebastián_Carrasco_CV.pdf"
               download="Sebastián_Carrasco_CV.pdf"
-              className="inline-flex items-center gap-2 mt-4 text-sm text-accent hover:text-accent/80 transition-colors font-medium group"
+              className="inline-flex items-center gap-3 mt-6 text-base text-accent hover:text-accent/80 transition-colors font-medium group"
             >
               <span className="cursor-pointer">{t("cta.cv")}</span>
-              <img src="/icons/download.svg" alt="" className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity brightness-0 contrast-200 dark:brightness-200 dark:contrast-0" />
+              <img src="/icons/download.svg" alt="" className="w-5 h-5 opacity-60 group-hover:opacity-100 transition-opacity brightness-0 contrast-200 dark:brightness-200 dark:contrast-0" />
             </a>
           </Reveal>
         </div>
@@ -67,11 +67,12 @@ export default function IntroSidebar() {
               instagram="https://instagram.com/_.inverosimil._"
               whatsapp="https://wa.me/56950146865?text=Hola%20Sebastián,%20quiero%20hacerte%20una%20consulta."
               email="mailto:contacto@scarrasco.com?subject=Consulta&body=Hola%20Sebastián,%20quiero%20hacerte%20una%20consulta."
-              className="pt-2"
+              className="mt-8 sm:mt-6"
+              size={30}
             />
           </Reveal>
           <Reveal delay={360}>
-            <div className="mt-4">
+            <div className="mt-4 hidden sm:block">
               <InlineControls />
             </div>
           </Reveal>

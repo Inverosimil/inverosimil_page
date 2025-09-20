@@ -10,19 +10,19 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Layout de dos columnas al estilo portfolio: intro izquierda (sticky) + contenido derecha (scroll) */}
-      <div className="max-w-6xl mx-auto px-6 sm:px-8 grid md:grid-cols-2 md:grid-cols-[1fr_1.6fr] lg:grid-cols-[1fr_2fr] gap-8 md:gap-10 pt-6 items-start">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 md:grid-cols-[1fr_1.6fr] lg:grid-cols-[1fr_2fr] gap-6 md:gap-10 pt-4 sm:pt-6 items-start">
         {/* Intro izquierda */}
         <IntroSidebar />
 
         {/* Contenido derecha */}
         <main className="min-w-0">
           {/* Sobre */}
-          <Section id="sobre" title={t("section.sobre")}>
+          <Section id="sobre" title={t("section.sobre")} className="py-8 sm:py-16">
             {/* Foto arriba a la derecha con texto envolvente (estética consistente, no circular) */}
             <img
               src="/profile_image.png"
               alt={t("alt.profile")}
-              className="float-none sm:float-right block w-32 sm:w-44 md:w-52 rounded-md border border-accent/20 shadow-sm ml-0 sm:ml-6 mb-4 sm:mb-0 select-none pointer-events-none bg-muted/30"
+              className="float-right sm:float-right block w-36 sm:w-44 md:w-52 rounded-md border border-accent/20 shadow-sm ml-4 sm:ml-6 mb-2 sm:mb-0 select-none pointer-events-none bg-muted/30"
               draggable={false}
               loading="lazy"
             />
@@ -67,7 +67,7 @@ export default function Home() {
           </Section>
 
           {/* Proyectos */}
-          <Section id="proyectos" title={t("section.proyectos")}>
+          <Section id="proyectos" title={t("section.proyectos")} className="pt-8 sm:pt-12">
             <div className="flex flex-col gap-4 sm:gap-5">
               {/* AsesorDeSalud */}
               <Reveal>
@@ -77,7 +77,7 @@ export default function Home() {
                   rel="noreferrer"
                   className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
                 >
-                  <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
+                  <div className="grid grid-cols-1 sm:grid-cols-[1fr_24ch] gap-4 sm:gap-6 items-center">
                     <div className="min-w-0">
                       <p className="font-semibold text-foreground group-hover:text-accent transition-colors flex items-center gap-2">
                         {t("projects.asesor.title")}
@@ -102,7 +102,7 @@ export default function Home() {
                         ))}
                       </div>
                     </div>
-                    <div className="project-media w-full bg-muted/30 rounded-md border border-accent/20 overflow-hidden shrink-0 transform-gpu scale-100 group-hover:scale-110">
+                  <div className="project-media w-full bg-muted/30 rounded-md border border-accent/20 overflow-hidden shrink-0 transform-gpu scale-100 group-hover:scale-110 sm:mt-0 mt-3">
                       <img src="/projects/asesordesalud.png" alt={t("alt.asesor")} className="w-full h-auto object-cover" />
                     </div>
                   </div>
@@ -117,7 +117,7 @@ export default function Home() {
                   rel="noreferrer"
                   className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
                 >
-                  <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
+                  <div className="grid grid-cols-1 sm:grid-cols-[1fr_24ch] gap-4 sm:gap-6 items-center">
                     <div className="min-w-0">
                       <p className="font-semibold text-foreground group-hover:text-accent transition-colors flex items-center gap-2">
                         {t("projects.terrainvicta.title")}
@@ -139,7 +139,7 @@ export default function Home() {
                         ))}
                       </div>
                     </div>
-                      <div className="project-media w-full bg-muted/30 rounded-md border border-accent/20 overflow-hidden shrink-0 transform-gpu scale-100 group-hover:scale-110">
+                      <div className="project-media w-full bg-muted/30 rounded-md border border-accent/20 overflow-hidden shrink-0 transform-gpu scale-100 group-hover:scale-110 sm:mt-0 mt-3">
                         <img src="/projects/terrainvicta.png" alt={t("alt.terrainvicta")} className="w-full h-auto object-cover" />
                       </div>
                   </div>
@@ -160,7 +160,8 @@ export default function Home() {
                   rel="noreferrer"
                   className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
                 >
-                  <div className="grid grid-cols-[1fr_17ch] gap-8 items-start">
+                  <div className="grid grid-cols-1 sm:grid-cols-[1fr_17ch] gap-4 sm:gap-8 items-start">
+                    <span className="sm:hidden text-foreground/60 text-xs whitespace-nowrap shrink-0 tabular-nums order-first">{t("experience.dinamica.date")}</span>
                     <div className="min-w-0">
                       <p className="font-semibold text-foreground group-hover:text-accent transition-colors flex items-center gap-2">
                         {t("experience.dinamica.title")}
@@ -188,7 +189,7 @@ export default function Home() {
                         ))}
                       </div>
                     </div>
-                    <span className="text-foreground/60 text-xs sm:text-sm whitespace-nowrap shrink-0 tabular-nums justify-self-end self-start">{t("experience.dinamica.date")}</span>
+                    <span className="hidden sm:block text-foreground/60 text-xs sm:text-sm whitespace-nowrap shrink-0 tabular-nums justify-self-end self-start">{t("experience.dinamica.date")}</span>
                   </div>
                 </a>
               </Reveal>
@@ -196,7 +197,8 @@ export default function Home() {
               {/* Dist y Com Luis Jara */}
               <Reveal delay={80}>
                 <div className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5">
-                <div className="grid grid-cols-[1fr_17ch] gap-8 items-start">
+                <div className="grid grid-cols-1 sm:grid-cols-[1fr_17ch] gap-4 sm:gap-8 items-start">
+                  <span className="sm:hidden text-foreground/60 text-xs whitespace-nowrap shrink-0 tabular-nums order-first">{t("experience.ljar.date")}</span>
                   <div className="min-w-0">
                     <p className="font-semibold text-foreground group-hover:text-accent transition-colors">{t("experience.ljar.title")}</p>
                     <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]" dangerouslySetInnerHTML={{ __html: t("experience.ljar.p1_html") || t("experience.ljar.p1") }} />
@@ -221,7 +223,7 @@ export default function Home() {
                       ))}
                     </div>
                   </div>
-                  <span className="text-foreground/60 text-xs sm:text-sm whitespace-nowrap shrink-0 tabular-nums justify-self-end self-start">{t("experience.ljar.date")}</span>
+                  <span className="hidden sm:block text-foreground/60 text-xs sm:text-sm whitespace-nowrap shrink-0 tabular-nums justify-self-end self-start">{t("experience.ljar.date")}</span>
                 </div>
                 </div>
               </Reveal>
@@ -234,7 +236,8 @@ export default function Home() {
                   rel="noreferrer"
                   className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
                 >
-                <div className="grid grid-cols-[1fr_17ch] gap-8 items-start">
+                <div className="grid grid-cols-1 sm:grid-cols-[1fr_17ch] gap-4 sm:gap-8 items-start">
+                  <span className="sm:hidden text-foreground/60 text-xs whitespace-nowrap shrink-0 tabular-nums order-first">{t("experience.undurraga.date")}</span>
                   <div className="min-w-0">
                     <p className="font-semibold text-foreground group-hover:text-accent transition-colors flex items-center gap-2">
                       {t("experience.undurraga.title")}
@@ -254,7 +257,7 @@ export default function Home() {
                       ))}
                     </div>
                   </div>
-                  <span className="text-foreground/60 text-xs sm:text-sm whitespace-nowrap shrink-0 tabular-nums justify-self-end self-start">{t("experience.undurraga.date")}</span>
+                  <span className="hidden sm:block text-foreground/60 text-xs sm:text-sm whitespace-nowrap shrink-0 tabular-nums justify-self-end self-start">{t("experience.undurraga.date")}</span>
                 </div>
                 </a>
               </Reveal>

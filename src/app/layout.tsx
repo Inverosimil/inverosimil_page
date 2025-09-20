@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import Providers from "../components/Providers";
-import { Locale } from "../context/LocaleContext";
 import ParallaxBackground from "../components/ParallaxBackground";
+import TopRightControls from "../components/TopRightControls";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -67,6 +67,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${bebas.variable} antialiased bg-background text-foreground`}>
         <Providers>
           <ParallaxBackground speed={0.35} />
+          <TopRightControls />
           {children}
         </Providers>
       </body>

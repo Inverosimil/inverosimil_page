@@ -8,7 +8,7 @@ export default function InlineControls() {
   const { locale, setLocale } = useLocale();
 
   return (
-    <div className="flex items-center gap-4 text-xs">
+    <div className="flex items-center gap-4 text-xs sm:text-xs">
       <button
         type="button"
         onClick={(e) => {
@@ -19,21 +19,21 @@ export default function InlineControls() {
           window.setTimeout(() => root.classList.remove("theme-switching"), 550);
           toggleTheme();
         }}
-        className="inline-flex items-center justify-center w-7 h-7 rounded-full text-foreground/60 hover:text-accent transition-colors duration-200 hover:bg-accent/10"
+        className="inline-flex items-center justify-center w-9 h-9 sm:w-7 sm:h-7 rounded-full text-foreground/60 hover:text-accent transition-colors duration-200 hover:bg-accent/10"
         aria-label="Cambiar tema"
         title="Cambiar tema"
       >
         <img 
           src={theme === "dark" ? "/icons/darkmode.svg" : "/icons/lightmode.svg"} 
           alt="" 
-          className="w-4 h-4 brightness-0 contrast-200 dark:brightness-200 dark:contrast-0"
+          className="w-5 h-5 sm:w-4 sm:h-4 brightness-0 contrast-200 dark:brightness-200 dark:contrast-0"
         />
       </button>
-      <div className="flex items-center gap-0.5">
+      <div className="flex items-center gap-1 sm:gap-0.5">
         <button
           type="button"
           onClick={() => setLocale("es")}
-          className={`px-2 py-1 text-[11px] font-medium transition-colors rounded-sm ${
+          className={`px-2.5 py-1.5 sm:px-2 sm:py-1 text-[12px] sm:text-[11px] font-medium transition-colors rounded-sm ${
             locale === "es" 
               ? "text-accent" 
               : "text-foreground/50 hover:text-foreground/80"
@@ -47,7 +47,7 @@ export default function InlineControls() {
         <button
           type="button"
           onClick={() => setLocale("en")}
-          className={`px-2 py-1 text-[11px] font-medium transition-colors rounded-sm ${
+          className={`px-2.5 py-1.5 sm:px-2 sm:py-1 text-[12px] sm:text-[11px] font-medium transition-colors rounded-sm ${
             locale === "en" 
               ? "text-accent" 
               : "text-foreground/50 hover:text-foreground/80"

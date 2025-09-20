@@ -47,7 +47,7 @@ export default function SocialLinksNew({ github, linkedin, instagram, whatsapp, 
     );
 
   return (
-    <div className={`flex items-center gap-3 ${className}`}>
+    <div className={`flex items-center gap-3 sm:gap-3 gap-2 ${className}`}>
       {/* GitHub */}
       <Wrap href={github} label="GitHub">
         <MaskIcon src="/icons/github.svg" />
