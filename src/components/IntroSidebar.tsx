@@ -15,8 +15,8 @@ export default function IntroSidebar() {
   const nameBroken = restTokens ? `${firstToken}\n${restTokens}` : rawName;
 
   return (
-    <aside id="inicio" className="md:sticky md:top-16 self-start">
-      <div className="md:h-[calc(100vh-4rem)] flex flex-col justify-between">
+    <aside id="inicio" className="md:sticky md:top-16 md:bottom-16 self-start">
+      <div className="md:h-[calc(100vh-4rem)] flex flex-col justify-between pb-16">
         {/* Top: info */}
         <div>
           <Reveal>
@@ -29,11 +29,11 @@ export default function IntroSidebar() {
               {nameBroken}
             </h1>
           </Reveal>
-          <Reveal delay={140}>
-            <p className="mt-3 text-foreground/80 text-base">
-              {t("hero.profession")}
-            </p>
-          </Reveal>
+            <Reveal delay={140}>
+              <p className="mt-3 text-foreground text-base font-medium">
+                {t("hero.profession")}
+              </p>
+            </Reveal>
           <Reveal delay={200}>
             <p className="mt-3 max-w-md text-foreground/80 text-sm sm:text-base">
               {t("hero.description")}
@@ -43,9 +43,10 @@ export default function IntroSidebar() {
             <a
               href="/documents/Sebastián_Carrasco_CV.pdf"
               download="Sebastián_Carrasco_CV.pdf"
-              className="inline-block mt-4 px-4 py-2 text-sm rounded-lg border border-accent bg-accent text-white hover:opacity-90 transition-opacity font-medium"
+              className="inline-flex items-center gap-2 mt-4 text-sm text-accent hover:text-accent/80 transition-colors font-medium group"
             >
-              Descargar CV
+              <span className="cursor-pointer">Descargar CV</span>
+              <img src="/icons/download.svg" alt="" className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity" />
             </a>
           </Reveal>
         </div>
@@ -70,7 +71,9 @@ export default function IntroSidebar() {
             />
           </Reveal>
           <Reveal delay={360}>
-            <InlineControls />
+            <div className="mt-4">
+              <InlineControls />
+            </div>
           </Reveal>
         </div>
       </div>

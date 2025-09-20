@@ -8,7 +8,7 @@ export default function InlineControls() {
   const { locale, setLocale } = useLocale();
 
   return (
-    <div className="mt-2 flex items-center gap-2 text-xs">
+    <div className="flex items-center gap-3 text-xs">
       <button
         type="button"
         onClick={(e) => {
@@ -19,23 +19,25 @@ export default function InlineControls() {
           window.setTimeout(() => root.classList.remove("theme-switching"), 550);
           toggleTheme();
         }}
-        className="px-2 py-1 rounded border border-accent/30 hover:border-accent/60 text-[12px] bg-background/60 backdrop-blur"
+        className="inline-flex items-center justify-center w-8 h-8 rounded-lg border border-accent/20 hover:border-accent/40 text-foreground/70 hover:text-accent transition-all duration-200 bg-transparent hover:bg-accent/5"
         aria-label="Cambiar tema"
         title="Cambiar tema"
       >
-        <span
-          className={`inline-block transition-transform duration-300 ease-out ${
-            theme === "dark" ? "rotate-0 scale-100" : "rotate-[-20deg] scale-105"
-          }`}
-        >
-          {theme === "dark" ? "🌙" : "☀️"}
-        </span>
+        <img 
+          src={theme === "dark" ? "/icons/darkmode.svg" : "/icons/lightmode.svg"} 
+          alt="" 
+          className="w-4 h-4 brightness-0 contrast-200 dark:brightness-200 dark:contrast-0"
+        />
       </button>
-      <div className="flex items-center gap-1 border border-accent/30 rounded overflow-hidden bg-background/60 backdrop-blur">
+      <div className="flex items-center gap-1 border border-accent/20 rounded-lg overflow-hidden bg-transparent hover:bg-accent/5 transition-colors">
         <button
           type="button"
           onClick={() => setLocale("es")}
-          className={`px-2 py-1 text-[12px] ${locale === "es" ? "bg-accent text-white" : "hover:bg-accent/10"}`}
+          className={`px-3 py-1.5 text-[12px] font-medium transition-colors ${
+            locale === "es" 
+              ? "bg-accent text-white" 
+              : "text-foreground/70 hover:text-accent hover:bg-accent/10"
+          }`}
           aria-label="Español"
           title="Español"
         >
@@ -44,7 +46,11 @@ export default function InlineControls() {
         <button
           type="button"
           onClick={() => setLocale("en")}
-          className={`px-2 py-1 text-[12px] ${locale === "en" ? "bg-accent text-white" : "hover:bg-accent/10"}`}
+          className={`px-3 py-1.5 text-[12px] font-medium transition-colors ${
+            locale === "en" 
+              ? "bg-accent text-white" 
+              : "text-foreground/70 hover:text-accent hover:bg-accent/10"
+          }`}
           aria-label="English"
           title="English"
         >

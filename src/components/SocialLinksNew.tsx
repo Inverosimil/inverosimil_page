@@ -11,9 +11,9 @@ type Props = {
   size?: number;
 };
 
-const iconClass = "w-[1.25rem] h-[1.25rem]";
+const iconClass = "w-[1.5rem] h-[1.5rem]";
 
-export default function SocialLinksNew({ github, linkedin, instagram, whatsapp, email, className = "", size = 20 }: Props) {
+export default function SocialLinksNew({ github, linkedin, instagram, whatsapp, email, className = "", size = 24 }: Props) {
   const common = "inline-flex items-center justify-center text-foreground/70 hover:text-accent transition-colors duration-200";
   const dim = { width: size, height: size };
 

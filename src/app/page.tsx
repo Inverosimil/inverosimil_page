@@ -50,16 +50,19 @@ export default function Home() {
                 <h3 className="text-lg font-semibold text-foreground mb-3">Tecnologías favoritas</h3>
                 <div className="flex flex-wrap gap-2">
                   {[
-                    "TypeScript",
+                    "Cursor",
                     "Next.js",
-                    "React",
-                    "Node.js",
-                    "Tailwind CSS",
-                    "PostgreSQL",
+                    "Astro",
                     "Python",
-                    "Git",
+                    "PostgreSQL",
+                    "Vercel",
+                    "Supabase",
+                    "GitHub",
+                    "Figma",
+                    "Adobe Photoshop",
+                    "Cloudflare",
                   ].map((tech) => (
-                    <span key={tech} className="tag text-sm px-3 py-1.5 bg-accent/10 text-accent border border-accent/30 rounded-full font-medium hover:bg-accent/20 hover:border-accent/50 cursor-default">
+                    <span key={tech} className="tag text-sm px-3 py-1.5 bg-accent/10 text-accent rounded-full font-medium hover:bg-accent/20 cursor-default">
                       {tech}
                     </span>
                   ))}
@@ -82,14 +85,14 @@ export default function Home() {
                   <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
                     <div className="min-w-0">
                       <p className="font-semibold text-foreground group-hover:text-accent transition-colors flex items-center gap-2">
-                        Landing page AsesorDeSalud
+                        Página presentación asesordesalud.cl
                         <img src="/icons/redirect.svg" alt="" className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity" />
                       </p>
                       <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
-                        Realicé una landing page para un asesor de salud que apoya a sus clientes con la elección de planes de salud en función de sus necesidades específicas. 
+                        Desarrollé una <span className="soft-underline cursor-default">página de presentación</span> para un asesor de salud que orienta a sus clientes con la elección de planes de salud en función de sus requerimientos específicos.
                       </p>
                       <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
-                        Tuve que cubrir desde el diseño hasta el desarrollo de la landing page. Incluyendo propuesta y diseño del nuevo logo.
+                        En este proyecto cubrí desde el <span className="soft-underline cursor-default">desarrollo</span>, <span className="soft-underline cursor-default">levantamiento</span> y <span className="soft-underline cursor-default">configuración de dominios</span> hasta el <span className="soft-underline cursor-default">rediseño de su logo</span>.
                       </p>
                       <div className="mt-3 flex flex-wrap gap-2">
                         {[
@@ -102,7 +105,7 @@ export default function Home() {
                           "Adobe Photoshop",
                           "Adobe Illustrator",
                         ].map((t) => (
-                          <span key={t} className="tag text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 cursor-default">
+                          <span key={t} className="tag text-[11px] px-2.5 py-1 bg-accent/10 text-accent rounded-full hover:bg-accent/20 cursor-default">
                             {t}
                           </span>
                         ))}
@@ -115,95 +118,45 @@ export default function Home() {
                 </a>
               </Reveal>
 
-              {/* Hackerfolio */}
+              {/* TerraINVicta */}
               <Reveal delay={80}>
-                <div className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5">
-                <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
-                  <div className="min-w-0">
-                    <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
-                      Hackerfolio
-                    </p>
-                    <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
-                      Plantilla de portfolio minimalista con tema morado y blanco.
-                    </p>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {[
-                        "Next.js",
-                        "Tailwind",
-                        "Vercel",
-                      ].map((t) => (
-                        <span key={t} className="tag text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 cursor-default">
-                          {t}
-                        </span>
-                      ))}
+                <a
+                  href="https://terrainvicta.scarrasco.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5"
+                >
+                  <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
+                    <div className="min-w-0">
+                      <p className="font-semibold text-foreground group-hover:text-accent transition-colors flex items-center gap-2">
+                        TerraINVicta, un juego de mecanografía
+                        <img src="/icons/redirect.svg" alt="" className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity" />
+                      </p>
+                      <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
+                        <span className="soft-underline cursor-default">Para titularme</span> como Ingeniero Civil Informático mi proyecto final fue un <span className="soft-underline cursor-default">juego de mecanografía</span>, resultando con <span className="soft-underline cursor-default">nota máxima</span> para mi titulación.
+                      </p>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {[
+                          "Web Standard",
+                          "HTML",
+                          "CSS",
+                          "JavaScript",
+                          "Vercel",
+                          "Adobe Photoshop",
+                        ].map((t) => (
+                          <span key={t} className="tag text-[11px] px-2.5 py-1 bg-accent/10 text-accent rounded-full hover:bg-accent/20 cursor-default">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
                     </div>
+                      <div className="project-media w-full bg-muted/30 rounded-md border border-accent/20 overflow-hidden shrink-0 transform-gpu scale-100 group-hover:scale-110">
+                        <img src="/projects/terrainvicta.png" alt="TerraINVicta" className="w-full h-auto object-cover" />
+                      </div>
                   </div>
-                  <div className="project-media w-full bg-muted/30 rounded-md border border-accent/20 overflow-hidden shrink-0 transform-gpu scale-100 group-hover:scale-110">
-                    <img src="/projects/hackerfolio.png" alt="Hackerfolio" className="w-full h-auto object-cover" />
-                  </div>
-                </div>
-                </div>
+                </a>
               </Reveal>
 
-              {/* Renderless UI kit */}
-              <Reveal delay={160}>
-                <div className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5">
-                <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
-                  <div className="min-w-0">
-                    <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
-                      Renderless UI kit
-                    </p>
-                    <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
-                      Componentes sin estilos, accesibles y controlables, para construir UIs a medida.
-                    </p>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {[
-                        "React",
-                        "TS",
-                        "A11y",
-                      ].map((t) => (
-                        <span key={t} className="tag text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 cursor-default">
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="project-media w-full bg-muted/30 rounded-md border border-accent/20 overflow-hidden shrink-0 transform-gpu scale-100 group-hover:scale-110">
-                    <img src="/projects/renderless-ui.png" alt="Renderless UI Kit" className="w-full h-auto object-cover" />
-                  </div>
-                </div>
-                </div>
-              </Reveal>
-
-              {/* Webperf toolkit */}
-              <Reveal delay={240}>
-                <div className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5">
-                <div className="grid grid-cols-[1fr_24ch] gap-6 items-center">
-                  <div className="min-w-0">
-                    <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
-                      Webperf toolkit
-                    </p>
-                    <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
-                      Herramientas para medir y mejorar Web Vitals en CI/CD.
-                    </p>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {[
-                        "Lighthouse CI",
-                        "Playwright",
-                        "Node",
-                      ].map((t) => (
-                        <span key={t} className="tag text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 cursor-default">
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="project-media w-full bg-muted/30 rounded-md border border-accent/20 overflow-hidden shrink-0 transform-gpu scale-100 group-hover:scale-110">
-                    <img src="/projects/webperf-toolkit.png" alt="Webperf Toolkit" className="w-full h-auto object-cover" />
-                  </div>
-                </div>
-                </div>
-              </Reveal>
             </div>
           </Section>
 
@@ -221,23 +174,28 @@ export default function Home() {
                   <div className="grid grid-cols-[1fr_17ch] gap-8 items-start">
                     <div className="min-w-0">
                       <p className="font-semibold text-foreground group-hover:text-accent transition-colors flex items-center gap-2">
-                        Desarrollador Fullstack — Dinámica Plataforma
+                        Desarrollador Fullstack - Dinámica Plataforma
                         <img src="/icons/redirect.svg" alt="" className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity" />
                       </p>
                       <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
-                        Parte del equipo de Data Science, desarrollando tecnologías de análisis de datos y gestión de información. Además, desarrollo y levanto productos web especializados para clientes.
+                        Como parte del equipo de <span className="soft-underline cursor-default">Data Science</span> mi labor es desarrollar plataformas de <span className="soft-underline cursor-default">análisis de datos y gestión de la información</span> tanto a nivel interno de la empresa como productos para nuestros clientes.
                       </p>
                       <div className="mt-3 flex flex-wrap gap-2">
                         {[
-                          "TypeScript",
                           "Next.js",
-                          "Tailwind",
-                          "Node.js",
                           "PostgreSQL",
                           "Python",
-                          "Pandas",
+                          "GitHub",
+                          "Astro",
+                          "JavaScript",
+                          "CSS",
+                          "Figma",
+                          "Vercel",
+                          "Firebase",
+                          "Supabase",
+                          "Node.js",
                         ].map((t) => (
-                          <span key={t} className="tag text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 cursor-default">
+                          <span key={t} className="tag text-[11px] px-2.5 py-1 bg-accent/10 text-accent rounded-full hover:bg-accent/20 cursor-default">
                             {t}
                           </span>
                         ))}
@@ -250,26 +208,33 @@ export default function Home() {
                 </a>
               </Reveal>
 
-              {/* Licorería Donde Franco */}
+              {/* Dist y Com Luis Jara */}
               <Reveal delay={80}>
                 <div className="group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5">
                 <div className="grid grid-cols-[1fr_17ch] gap-8 items-start">
                   <div className="min-w-0">
                     <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
-                      Desarrollador de Software y T.I. — Dist y Com Luis Jara
+                      Desarrollador de Software y T.I. - Dist y Com Luis Jara
                     </p>
                     <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
-                      Desarrollo de aplicaciones para la gestión interna, incluyendo sistemas de inventario y puntos de venta.
+                      Como <span className="soft-underline cursor-default">único y primer informático</span> de la empresa mis labores fueron desarrollar aplicaciones para la gestión interna y levantamiento de <span className="soft-underline cursor-default">infraestructura informática</span> para la empresa. Siendo <span className="soft-underline cursor-default">un reto absoluto</span> como primer trabajo post universidad.
                     </p>
                     <div className="mt-3 flex flex-wrap gap-2">
                       {[
-                        "React",
+                        "MySQL",
+                        "Vercel",
                         "Node.js",
-                        "Express",
-                        "SQLite",
-                        "Tailwind",
+                        "Linux",
+                        "GitHub",
+                        "Next.js",
+                        "Web Standard",
+                        "Figma",
+                        "Supabase",
+                        "Python",
+                        "Hardware",
+                        "ERP's",
                       ].map((t) => (
-                        <span key={t} className="tag text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 cursor-default">
+                        <span key={t} className="tag text-[11px] px-2.5 py-1 bg-accent/10 text-accent rounded-full hover:bg-accent/20 cursor-default">
                           {t}
                         </span>
                       ))}
@@ -293,20 +258,20 @@ export default function Home() {
                 <div className="grid grid-cols-[1fr_17ch] gap-8 items-start">
                   <div className="min-w-0">
                     <p className="font-semibold text-foreground group-hover:text-accent transition-colors flex items-center gap-2">
-                      Practicante T.I. — Viña Undurraga
+                      Practicante como T.I. - Viña Undurraga
                       <img src="/icons/redirect.svg" alt="" className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity" />
                     </p>
                     <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
-                      Diagnóstico y actualización de infraestructura informática; desarrollo de software para mejorar procesos internos; administración de bases de datos y soporte técnico.
+                      Como <span className="soft-underline cursor-default">practicante</span> en el departamento de T.I. mis labores fueron desde creación de software para <span className="soft-underline cursor-default">mejora de procesos internos</span>, diagnóstico y actualización de <span className="soft-underline cursor-default">infraestructura informática</span>, administración de <span className="soft-underline cursor-default">bases de datos</span> y <span className="soft-underline cursor-default">soporte técnico</span>.
                     </p>
                     <div className="mt-3 flex flex-wrap gap-2">
                       {[
-                        "Soporte",
-                        "Automatización",
-                        "SQL Server",
-                        "PowerShell",
+                        "CMD",
+                        "Hardware",
+                        "SQL",
+                        "Web Standard",
                       ].map((t) => (
-                        <span key={t} className="tag text-[11px] px-2.5 py-1 bg-accent/10 text-accent border border-accent/30 rounded-full hover:bg-accent/20 hover:border-accent/50 cursor-default">
+                        <span key={t} className="tag text-[11px] px-2.5 py-1 bg-accent/10 text-accent rounded-full hover:bg-accent/20 cursor-default">
                           {t}
                         </span>
                       ))}
