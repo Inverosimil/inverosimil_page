@@ -86,7 +86,7 @@ export default function Home() {
                     <div className="min-w-0">
                       <p className="font-semibold text-foreground group-hover:text-accent transition-colors flex items-center gap-2">
                         Página presentación asesordesalud.cl
-                        <img src="/icons/redirect.svg" alt="" className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity" />
+                        <img src="/icons/redirect.svg" alt="" className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity brightness-0 contrast-200 dark:brightness-200 dark:contrast-0" />
                       </p>
                       <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
                         Desarrollé una <span className="soft-underline cursor-default">página de presentación</span> para un asesor de salud que orienta a sus clientes con la elección de planes de salud en función de sus requerimientos específicos.
@@ -130,7 +130,7 @@ export default function Home() {
                     <div className="min-w-0">
                       <p className="font-semibold text-foreground group-hover:text-accent transition-colors flex items-center gap-2">
                         TerraINVicta, un juego de mecanografía
-                        <img src="/icons/redirect.svg" alt="" className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity" />
+                        <img src="/icons/redirect.svg" alt="" className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity brightness-0 contrast-200 dark:brightness-200 dark:contrast-0" />
                       </p>
                       <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
                         <span className="soft-underline cursor-default">Para titularme</span> como Ingeniero Civil Informático mi proyecto final fue un <span className="soft-underline cursor-default">juego de mecanografía</span>, resultando con <span className="soft-underline cursor-default">nota máxima</span> para mi titulación.
@@ -175,7 +175,7 @@ export default function Home() {
                     <div className="min-w-0">
                       <p className="font-semibold text-foreground group-hover:text-accent transition-colors flex items-center gap-2">
                         Desarrollador Fullstack - Dinámica Plataforma
-                        <img src="/icons/redirect.svg" alt="" className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity" />
+                        <img src="/icons/redirect.svg" alt="" className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity brightness-0 contrast-200 dark:brightness-200 dark:contrast-0" />
                       </p>
                       <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
                         Como parte del equipo de <span className="soft-underline cursor-default">Data Science</span> mi labor es desarrollar plataformas de <span className="soft-underline cursor-default">análisis de datos y gestión de la información</span> tanto a nivel interno de la empresa como productos para nuestros clientes.
