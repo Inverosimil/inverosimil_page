@@ -240,3 +240,29 @@ hr { border-color: color-mix(in oklab, var(--accent) 20%, transparent); }
     transform: scale(1.05);
   }
 }
+
+/* Subrayado suave reutilizable para texto destacado */
+.soft-underline {
+  text-decoration: none;
+  /* Base tenue + overlay acentuado que se anima en hover */
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in oklab, var(--accent) 35%, transparent),
+      color-mix(in oklab, var(--accent) 35%, transparent)
+    ),
+    linear-gradient(var(--accent), var(--accent));
+  background-position: 0 100%, 0 100%;
+  background-repeat: no-repeat, no-repeat;
+  background-size: 100% 2px, 0% 2px; /* base visible, overlay oculto */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone; /* que abarque múltiples líneas */
+  padding-bottom: 2px; /* espacio para la línea */
+  transition: background-size 260ms cubic-bezier(.22,1,.36,1);
+}
+@media (hover: hover) {
+  .soft-underline:hover {
+    background-size: 100% 2px, 100% 2px; /* revela overlay acentuado */
+  }
+}
+

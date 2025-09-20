@@ -33,7 +33,7 @@ const messages: Record<Locale, Record<string, string>> = {
   en: {
     "nav.brand": "Sebastián Carrasco",
     "nav.sobre": "about",
-    "nav.proyectos": "projects",
+    "nav.proyectos": "projects", 
     "nav.experiencia": "experience",
     "nav.contacto": "contact",
     "section.inicio": "home",

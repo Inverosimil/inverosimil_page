@@ -25,22 +25,22 @@ export default function Home() {
             />
             <Reveal>
               <p>
-                Soy <span className="underline decoration-accent/40 decoration-2 underline-offset-4 hover:decoration-accent hover:decoration-4 transition-all duration-300 cursor-default">Ingeniero Civil Informático</span> con experiencia en desarrollo web, software y diseño gráfico. Me apasiona crear <span className="underline decoration-accent/40 decoration-2 underline-offset-4 hover:decoration-accent hover:decoration-4 transition-all duration-300 cursor-default">soluciones innovadoras</span> que optimicen procesos y generen verdadero valor para las empresas.
+                Soy <span className="soft-underline cursor-default">Ingeniero Civil Informático</span> con experiencia en desarrollo web, software y diseño gráfico. Me apasiona crear soluciones innovadoras que optimicen procesos y <span className="soft-underline cursor-default">generen verdadero valor</span> para las empresas.
               </p>
             </Reveal>
             <Reveal delay={80}>
               <p>
-                He trabajado en proyectos tan diversos como sistemas de administración, dashboards interactivos, análisis de datos, juegos y configuración de redes y hardware. Siempre con un mismo objetivo: que cada proyecto sea <span className="underline decoration-accent/40 decoration-2 underline-offset-4 hover:decoration-accent hover:decoration-4 transition-all duration-300 cursor-default">funcional, eficiente y centrado en el usuario</span>.
+                He trabajado en proyectos tan diversos como sistemas de administración, dashboards interactivos, análisis de datos, juegos y configuración de redes y hardware. Siempre con un mismo objetivo: <span className="soft-underline cursor-default">que cada proyecto sea funcional, eficiente y centrado en el usuario</span>.
               </p>
             </Reveal>
             <Reveal delay={160}>
               <p>
-                Mi forma de trabajar combina atención al detalle, comprensión profunda del problema y una orientación clara al cliente, lo que me permite proponer <span className="underline decoration-accent/40 decoration-2 underline-offset-4 hover:decoration-accent hover:decoration-4 transition-all duration-300 cursor-default">soluciones prácticas y creativas</span>.
+                Mi forma de trabajar combina atención al detalle, <span className="soft-underline cursor-default">comprensión profunda</span> del problema y una <span className="soft-underline cursor-default">orientación clara</span> al cliente, lo que me permite <span className="soft-underline cursor-default">proponer soluciones</span> prácticas y creativas.
               </p>
             </Reveal>
             <Reveal delay={200}>
               <p>
-                Creo firmemente que la tecnología es una herramienta poderosa para <span className="underline decoration-accent/40 decoration-2 underline-offset-4 hover:decoration-accent hover:decoration-4 transition-all duration-300 cursor-default">transformar ideas en realidades</span>. Fuera del trabajo, encuentro inspiración en el automovilismo, los cubos de Rubik y el deporte, pasiones que alimentan mi curiosidad, disciplina y perseverancia.
+                Creo firmemente que la tecnología es una herramienta poderosa para <span className="soft-underline cursor-default">transformar ideas en realidades</span>. Fuera del trabajo, encuentro inspiración en el automovilismo, los cubos de Rubik y el deporte, pasiones que alimentan mi curiosidad, disciplina y perseverancia.
               </p>
             </Reveal>
             
