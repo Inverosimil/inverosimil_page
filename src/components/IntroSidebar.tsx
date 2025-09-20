@@ -53,10 +53,10 @@ export default function IntroSidebar() {
           <Reveal delay={280}>
             <SocialLinks
               github="https://github.com/inverosimil"
-              linkedin="https://www.linkedin.com/in/inverosimil"
+              linkedin="https://www.linkedin.com/in/sebastian-carrasco-álvarez"
               instagram="https://instagram.com/_.inverosimil._"
-              whatsapp="https://wa.me/56950146865"
-              email="mailto:hello@inverosimil.dev"
+              whatsapp="https://wa.me/56950146865?text=Hola%20Sebastián,%20quiero%20hacerte%20una%20consulta."
+              email="mailto:contacto@scarrasco.com?subject=Consulta&body=Hola%20Sebastián,%20quiero%20hacerte%20una%20consulta."
               className="pt-2"
             />
           </Reveal>

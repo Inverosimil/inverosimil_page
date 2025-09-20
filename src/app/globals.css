@@ -109,7 +109,7 @@ body {
   background-image: radial-gradient(color-mix(in oklab, var(--accent) 6%, transparent) 1.4px, transparent 1.6px);
   background-size: 16px 16px;
   background-position: 0 var(--bg-offset, 0px);
-  z-index: 1; /* under the reveal cover */
+  z-index: 3; /* above the reveal cover */
   /* Show only inside a soft circular lens around the pointer */
   mask-image: radial-gradient(
     circle var(--hover-radius) at var(--mx) var(--my),

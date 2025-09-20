@@ -269,7 +269,7 @@ export default function Home() {
                 <div className="grid grid-cols-[1fr_17ch] gap-8 items-start">
                   <div className="min-w-0">
                     <p className="font-semibold text-foreground group-hover:text-accent transition-colors">
-                      Desarrollador de Software — Licorería Donde Franco
+                      Desarrollador de Software y T.I. — Dist y Com Luis Jara
                     </p>
                     <p className="mt-1 text-foreground/75 text-sm sm:text-[0.95rem]">
                       Desarrollo de aplicaciones para la gestión interna, incluyendo sistemas de inventario y puntos de venta.
