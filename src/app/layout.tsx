@@ -22,7 +22,9 @@ export const metadata: Metadata = {
   title: "Sebastián Carrasco — portfolio",
   description: "Portfolio de Sebastián Carrasco.",
   metadataBase: new URL("https://scarrasco.com"),
-  icons: [{ rel: "icon", url: "/favicon.svg" }],
+  icons: [
+    { rel: "icon", type: "image/svg+xml", url: "/favicon.svg?v=3" },
+  ],
   alternates: { canonical: "/" },
   applicationName: "Sebastián Carrasco - Ingeniero Civil Informático",
   authors: [{ name: "Sebastián Carrasco", url: "https://scarrasco.com" }],

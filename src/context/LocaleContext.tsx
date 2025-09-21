@@ -63,7 +63,7 @@ const messages: Record<Locale, Record<string, string>> = {
 
     "experience.ljar.title": "Desarrollador de Software y T.I. - Dist y Com Luis Jara",
     "experience.ljar.p1": "Como único y primer informático de la empresa mis labores fueron desarrollar aplicaciones para la gestión interna y levantamiento de infraestructura informática para la empresa. Siendo un reto absoluto como primer trabajo post universidad.",
-    "experience.ljar.date": "Sep 2023 — Feb 2024",
+    "experience.ljar.date": "Sep 2023 — Mar 2025",
 
     "experience.undurraga.title": "Practicante como T.I. - Viña Undurraga",
     "experience.undurraga.p1": "Como practicante en el departamento de T.I. mis labores fueron desde creación de software para mejora de procesos internos, diagnóstico y actualización de infraestructura informática, administración de bases de datos y soporte técnico.",
@@ -130,7 +130,7 @@ const messages: Record<Locale, Record<string, string>> = {
     "experience.ljar.title": "Software and IT Developer - Dist y Com Luis Jara",
     "experience.ljar.p1": "As the company's first and only IT professional, I developed internal management applications and deployed the company's IT infrastructure. A true challenge as my first job after university.",
     "experience.ljar.p1_html": "As the <span class='soft-underline cursor-default'>first and only IT professional</span>, I developed internal management applications and deployed the company's <span class='soft-underline cursor-default'>IT infrastructure</span>. It was <span class='soft-underline cursor-default'>a true challenge</span> as my first job after university.",
-    "experience.ljar.date": "Sep 2023 — Feb 2024",
+    "experience.ljar.date": "Sep 2023 — Mar 2025",
 
     "experience.undurraga.title": "IT Intern - Viña Undurraga",
     "experience.undurraga.p1": "As an intern in the IT department, I built software to improve internal processes, updated IT infrastructure, managed databases, and provided technical support.",
