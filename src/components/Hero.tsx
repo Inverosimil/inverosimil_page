@@ -53,7 +53,7 @@ export default function Hero() {
             </p>
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <a
-                href="/cv.pdf"
+                href="/documents/Sebastián_Carrasco_CV.pdf"
                 download
                 className="px-6 py-3 text-sm rounded-lg border border-accent bg-accent text-white hover:opacity-90 transition-opacity font-medium"
               >

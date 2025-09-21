@@ -48,9 +48,6 @@ html, body { height: 100%; }
 html {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
-  overflow-x: hidden; /* Evitar scroll horizontal en móviles */
-  overscroll-behavior-x: none; /* Evitar paneo lateral/elastic scroll */
-  width: 100%;
 }
 
 html::-webkit-scrollbar {
