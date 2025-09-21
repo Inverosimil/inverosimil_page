@@ -20,7 +20,7 @@ export default function Home() {
           <Section id="sobre" title={t("section.sobre")} className="py-8 sm:py-16">
             {/* Foto arriba a la derecha con texto envolvente (estética consistente, no circular) */}
             <img
-              src="/profile_image.png"
+              src="/profile_image.webp"
               alt={t("alt.profile")}
               className="float-right sm:float-right block w-36 sm:w-44 md:w-52 rounded-md border border-accent/20 shadow-sm ml-4 sm:ml-6 mb-2 sm:mb-0 select-none pointer-events-none bg-muted/30"
               draggable={false}

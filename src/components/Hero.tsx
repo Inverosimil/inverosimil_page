@@ -70,7 +70,7 @@ export default function Hero() {
             >
               <div className="absolute inset-0 rounded-[2rem] overflow-hidden shadow-2xl">
                 <Image
-                  src="/profile_image.png"
+                  src="/profile_image.webp"
                   alt="Foto de perfil"
                   fill
                   sizes="(max-width: 768px) 18rem, 22rem"
