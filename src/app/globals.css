@@ -1,0 +1,290 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #1a1033; /* morado muy oscuro para texto principal en light */
+  --accent: #6d28d9; /* morado principal */
+  --muted: #f3e8ff; /* lila muy suave para fondos */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-display);
+}
+
+/* Modo oscuro/claro controlado por clases en <html> */
+.theme-light {
+  --background: #ffffff;
+  --foreground: #1a1033;
+  --accent: #6d28d9;
+  --muted: #f3e8ff;
+}
+.theme-dark {
+  --background: #0b061a;
+  --foreground: #ffffff;
+  --accent: #a78bfa;
+  --muted: #140b2d;
+}
+
+/* Fallback a preferencia del SO si no se aplica clase explícita */
+@media (prefers-color-scheme: dark) {
+  :root:not(.theme-light):not(.theme-dark) {
+    --background: #0b061a; /* casi negro con tinte morado */
+    --foreground: #ffffff; /* texto blanco en dark */
+    --accent: #a78bfa; /* morado claro para acentos en dark */
+    --muted: #140b2d; /* morado profundo para tarjetas */
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+/* Eliminar scrollbar */
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden; /* Evitar scroll horizontal */
+  width: 100%;
+  max-width: 100vw; /* Limitar ancho máximo al viewport */
+}
+
+/* Prevenir scroll horizontal en todos los elementos */
+*, *::before, *::after {
+  max-width: 100%;
+}
+
+/* Específicamente para móviles */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+  
+  /* Asegurar que ningún elemento cause overflow */
+  * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+/******** Utilities ********/
+/* Overlay global con puntos y parallax controlado por --bg-offset */
+.code-grid {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  /* Defaults for hover lens */
+  --mx: -10000px;
+  --my: -10000px;
+  --hover-radius: 400px;
+  background-image: radial-gradient(color-mix(in oklab, var(--accent) 20%, transparent) 1px, transparent 1px);
+  background-size: 16px 16px;
+  background-position: 0 var(--bg-offset, 0px);
+}
+
+/* Initial cover that slides downward to reveal the dots */
+.code-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--background);
+  transform: translateY(0%);
+  opacity: 1;
+  will-change: transform, opacity;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.code-grid[data-ready="true"]::before {
+  animation: grid-reveal 800ms cubic-bezier(.22,1,.36,1) forwards;
+}
+
+@keyframes grid-reveal {
+  from { transform: translateY(0%); opacity: 1; }
+  to { transform: translateY(100%); opacity: 0; }
+}
+
+/* Overlay of slightly larger dots revealed near the pointer */
+.code-grid::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(color-mix(in oklab, var(--accent) 6%, transparent) 1.4px, transparent 1.6px);
+  background-size: 16px 16px;
+  background-position: 0 var(--bg-offset, 0px);
+  z-index: 3; /* above the reveal cover */
+  /* Show only inside a soft circular lens around the pointer */
+  mask-image: radial-gradient(
+    circle var(--hover-radius) at var(--mx) var(--my),
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 55%,
+    rgba(255, 255, 255, 0) 80%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle var(--hover-radius) at var(--mx) var(--my),
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 55%,
+    rgba(255, 255, 255, 0) 80%
+  );
+}
+
+.neon { text-shadow: none; }
+
+.link { color: var(--accent); }
+.link:hover { text-decoration: underline; }
+
+.card { border: 1px solid transparent; background: transparent; }
+.card:hover {
+  border-color: color-mix(in oklab, var(--accent) 30%, transparent);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--accent) 8%, transparent), color-mix(in oklab, #000 40%, transparent));
+}
+
+hr { border-color: color-mix(in oklab, var(--accent) 20%, transparent); }
+
+/* Tipografía display para títulos al estilo jackbailey.dev */
+.font-display { font-family: var(--font-display), var(--font-inter), ui-sans-serif, system-ui; letter-spacing: 0.5px; }
+
+/* Animación de carga del header inspirada en m7mad.dev */
+.site-header { --progress: 0%; }
+.site-header .header-progress {
+  position: absolute; inset: auto 0 0 0; height: 2px; background: color-mix(in oklab, var(--accent) 80%, transparent);
+  transform-origin: left center; transform: scaleX(0);
+}
+.site-header[data-loaded="true"] .header-progress {
+  animation: header-progress 1.2s cubic-bezier(.22,1,.36,1) forwards;
+}
+@keyframes header-progress { to { transform: scaleX(1); } }
+
+/* Aparición escalonada de elementos del nav */
+.nav-stagger .nav-i { opacity: 0; transform: translateY(-6px); }
+.site-header[data-loaded="true"] .nav-stagger .nav-i {
+  animation: nav-in .5s cubic-bezier(.22,1,.36,1) forwards;
+  animation-delay: calc(120ms + var(--i) * 70ms);
+}
+@keyframes nav-in { to { opacity: 1; transform: translateY(0); } }
+
+/* Transiciones suaves al cambiar tema (colores, bordes, fills) */
+@media (prefers-reduced-motion: no-preference) {
+  .theme-light *, .theme-dark * {
+    transition: color .35s ease, background-color .35s ease, border-color .35s ease, fill .35s ease, stroke .35s ease;
+  }
+}
+
+/* Micro-animación de destello radial en toggle de tema */
+@media (prefers-reduced-motion: no-preference) {
+  html.theme-switching::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(600px circle at var(--switch-x, 50%) var(--switch-y, 50%), color-mix(in oklab, var(--accent) 28%, transparent) 0%, transparent 60%);
+    opacity: 0;
+    animation: theme-flash 550ms cubic-bezier(.22,1,.36,1);
+  }
+  @keyframes theme-flash {
+    0% { opacity: .35; }
+    100% { opacity: 0; }
+  }
+}
+
+/* Fuerza transición de transform para medios de proyecto (evita que la regla global la sobrescriba) */
+.project-media {
+  transition: transform 450ms cubic-bezier(.22,1,.36,1), scale 450ms cubic-bezier(.22,1,.36,1);
+  transform-origin: center;
+  will-change: transform, scale;
+}
+
+/* Desactiva transiciones para elementos marcados explícitamente */
+.no-transition, .no-transition * { transition: none !important; }
+
+/* SideIndex: animación elegante para dash y etiqueta */
+.sideindex-link { isolation: isolate; --dash-shift: 0.6rem; }
+.sideindex-dash {
+  display: inline-block;
+  height: 2px;
+  width: 10px;
+  background-color: var(--accent);
+  border-radius: 2px;
+  transform-origin: left center;
+  opacity: .7;
+  translate: 0 0; /* enable transform composite */
+  transition:
+    width 420ms cubic-bezier(.22,1,.36,1),
+    opacity 320ms ease,
+    background-color 320ms ease;
+}
+.sideindex-label {
+  display: inline-block;
+  transform-origin: left center;
+  transition:
+    transform 420ms cubic-bezier(.22,1,.36,1),
+    letter-spacing 420ms cubic-bezier(.22,1,.36,1),
+    color 320ms ease;
+}
+.sideindex-link[data-active="true"] .sideindex-dash { opacity: 1; width: 18px; }
+.sideindex-link[data-active="false"] .sideindex-dash { opacity: .65; width: 10px; }
+.sideindex-link[data-active="true"] .sideindex-label { transform: translateX(var(--dash-shift)) scale(1.06); letter-spacing: .2px; }
+.sideindex-link[data-active="false"] .sideindex-label { transform: translateX(0) scale(1); letter-spacing: 0; }
+
+@media (hover: hover) {
+  .sideindex-link[data-active="false"]:hover .sideindex-dash { opacity: .85; transform: scaleX(1.2); }
+  .sideindex-link[data-active="false"]:hover .sideindex-label { transform: translateX(calc(var(--dash-shift) * .6)) scale(1.02); letter-spacing: .1px; }
+}
+
+/* Efecto de zoom para tags de tecnologías */
+.tag {
+  transition: transform 300ms cubic-bezier(.22,1,.36,1), background-color 200ms ease, border-color 200ms ease;
+  transform-origin: center;
+  will-change: transform;
+}
+
+@media (hover: hover) {
+  .tag:hover {
+    transform: scale(1.05);
+  }
+}
+
+/* Subrayado suave reutilizable para texto destacado */
+.soft-underline {
+  text-decoration: none;
+  /* Base tenue + overlay acentuado que se anima en hover */
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in oklab, var(--accent) 35%, transparent),
+      color-mix(in oklab, var(--accent) 35%, transparent)
+    ),
+    linear-gradient(var(--accent), var(--accent));
+  background-position: 0 100%, 0 100%;
+  background-repeat: no-repeat, no-repeat;
+  background-size: 100% 2px, 0% 2px; /* base visible, overlay oculto */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone; /* que abarque múltiples líneas */
+  padding-bottom: 2px; /* espacio para la línea */
+  transition: background-size 260ms cubic-bezier(.22,1,.36,1);
+}
+@media (hover: hover) {
+  .soft-underline:hover {
+    background-size: 100% 2px, 100% 2px; /* revela overlay acentuado */
+  }
+}
+
