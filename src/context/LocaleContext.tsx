@@ -1,6 +1,7 @@
 "use client";
 
-import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
+import { flushSync } from "react-dom";
 
 export type Locale = "es" | "en";
 
@@ -11,6 +12,9 @@ type LocaleContextValue = {
 };
 
 const LocaleContext = createContext<LocaleContextValue | undefined>(undefined);
+const localeLayoutDuration = 520;
+const localeSwitchDuration = 650;
+const localeLayoutDeltaThreshold = 2;
 
 const messages: Record<Locale, Record<string, string>> = {
   es: {
@@ -75,19 +79,108 @@ function getInitialLocale(): Locale {
   return lang.startsWith("en") ? "en" : "es";
 }
 
+function captureLocaleLayout() {
+  const elements = Array.from(document.querySelectorAll<HTMLElement>("[data-locale-motion]"));
+  return new Map(elements.map((element) => [element, element.getBoundingClientRect()]));
+}
+
+function animateLocaleLayout(previousRects: Map<HTMLElement, DOMRect>) {
+  const animations: Animation[] = [];
+
+  previousRects.forEach((previousRect, element) => {
+    const currentRect = element.getBoundingClientRect();
+    const deltaX = previousRect.left - currentRect.left;
+    const deltaY = previousRect.top - currentRect.top;
+
+    if (
+      Math.abs(deltaX) < localeLayoutDeltaThreshold &&
+      Math.abs(deltaY) < localeLayoutDeltaThreshold
+    ) {
+      return;
+    }
+
+    animations.push(
+      element.animate(
+        [
+          { transform: `translate(${deltaX}px, ${deltaY}px)` },
+          { transform: "translate(0, 0)" },
+        ],
+        {
+          duration: localeLayoutDuration,
+          easing: "cubic-bezier(.22,1,.36,1)",
+        }
+      )
+    );
+  });
+
+  return animations;
+}
+
 export const LocaleProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [locale, setLocaleState] = useState<Locale>("es");
+  const localeAnimationTimeoutsRef = useRef<number[]>([]);
+  const localeAnimationFramesRef = useRef<number[]>([]);
+  const localeLayoutAnimationsRef = useRef<Animation[]>([]);
+
+  const clearLocaleAnimation = useCallback(() => {
+    localeAnimationTimeoutsRef.current.forEach((timeoutId) => window.clearTimeout(timeoutId));
+    localeAnimationFramesRef.current.forEach((frameId) => window.cancelAnimationFrame(frameId));
+    localeLayoutAnimationsRef.current.forEach((animation) => animation.cancel());
+    localeAnimationTimeoutsRef.current = [];
+    localeAnimationFramesRef.current = [];
+    localeLayoutAnimationsRef.current = [];
+    document.documentElement.classList.remove("locale-switching");
+  }, []);
 
   useEffect(() => {
     setLocaleState(getInitialLocale());
   }, []);
 
   const setLocale = useCallback((nextLocale: Locale) => {
-    setLocaleState(nextLocale);
-    try {
-      window.localStorage.setItem("locale", nextLocale);
-    } catch {}
-  }, []);
+    clearLocaleAnimation();
+
+    if (locale === nextLocale) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setLocaleState(nextLocale);
+      try {
+        window.localStorage.setItem("locale", nextLocale);
+      } catch {}
+
+      return;
+    }
+
+    const root = document.documentElement;
+    root.classList.add("locale-switching");
+
+    const applyLocale = () => {
+      flushSync(() => setLocaleState(nextLocale));
+      document.documentElement.setAttribute("lang", nextLocale);
+      try {
+        window.localStorage.setItem("locale", nextLocale);
+      } catch {}
+    };
+
+    const previousRects = captureLocaleLayout();
+    applyLocale();
+
+    const firstFrame = window.requestAnimationFrame(() => {
+      const secondFrame = window.requestAnimationFrame(() => {
+        localeLayoutAnimationsRef.current = animateLocaleLayout(previousRects);
+        localeAnimationFramesRef.current = localeAnimationFramesRef.current.filter((id) => id !== secondFrame);
+      });
+
+      localeAnimationFramesRef.current.push(secondFrame);
+      localeAnimationFramesRef.current = localeAnimationFramesRef.current.filter((id) => id !== firstFrame);
+    });
+
+    localeAnimationFramesRef.current.push(firstFrame);
+
+    const cleanupTimeout = window.setTimeout(() => {
+      clearLocaleAnimation();
+    }, localeSwitchDuration);
+    localeAnimationTimeoutsRef.current.push(cleanupTimeout);
+  }, [clearLocaleAnimation, locale]);
 
   const t = useCallback((key: string) => messages[locale]?.[key] ?? key, [locale]);
 
@@ -96,6 +189,10 @@ export const LocaleProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   useEffect(() => {
     document.documentElement.setAttribute("lang", locale);
   }, [locale]);
+
+  useEffect(() => {
+    return clearLocaleAnimation;
+  }, [clearLocaleAnimation]);
 
   return <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>;
 };

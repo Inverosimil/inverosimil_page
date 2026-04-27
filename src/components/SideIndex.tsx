@@ -1,14 +1,24 @@
 "use client";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useLocale } from "../context/LocaleContext";
 
 const SECTION_IDS = ["sobre", "proyectos", "experiencia"] as const;
+const smoothScrollMaxDuration = 900;
+const smoothScrollMinDuration = 720;
 
 type SectionId = typeof SECTION_IDS[number];
 
+function easeInOutQuart(progress: number) {
+  return progress < 0.5
+    ? 8 * progress * progress * progress * progress
+    : 1 - Math.pow(-2 * progress + 2, 4) / 2;
+}
+
 export default function SideIndex() {
   const { t } = useLocale();
+  const scrollAnimationRef = useRef<number | null>(null);
+  const restoreScrollBehaviorRef = useRef<(() => void) | null>(null);
   const labels = useMemo(
     () => ({
       sobre: t("section.sobre"),
@@ -73,16 +83,72 @@ export default function SideIndex() {
     };
   }, []);
 
+  useEffect(() => {
+    return () => {
+      if (scrollAnimationRef.current != null) {
+        window.cancelAnimationFrame(scrollAnimationRef.current);
+      }
+
+      restoreScrollBehaviorRef.current?.();
+    };
+  }, []);
+
   const handleClick = (id: SectionId) => (e: React.MouseEvent) => {
     e.preventDefault(); // Evitar que cambie el hash en la URL
     
     const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
+    if (!element) return;
+
+    if (scrollAnimationRef.current != null) {
+      window.cancelAnimationFrame(scrollAnimationRef.current);
+      scrollAnimationRef.current = null;
     }
+
+    restoreScrollBehaviorRef.current?.();
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const scrollMarginTop = Number.parseFloat(window.getComputedStyle(element).scrollMarginTop) || 0;
+    const startY = window.scrollY;
+    const maxY = document.documentElement.scrollHeight - window.innerHeight;
+    const targetY = Math.max(
+      0,
+      Math.min(window.scrollY + element.getBoundingClientRect().top - scrollMarginTop, maxY)
+    );
+
+    if (prefersReducedMotion) {
+      window.scrollTo({ top: targetY, behavior: "auto" });
+      return;
+    }
+
+    const root = document.documentElement;
+    const previousScrollBehavior = root.style.scrollBehavior;
+    root.style.scrollBehavior = "auto";
+    restoreScrollBehaviorRef.current = () => {
+      root.style.scrollBehavior = previousScrollBehavior;
+      restoreScrollBehaviorRef.current = null;
+    };
+
+    const distance = targetY - startY;
+    const duration = Math.min(
+      smoothScrollMaxDuration,
+      Math.max(smoothScrollMinDuration, Math.abs(distance) * 0.48)
+    );
+    const startTime = performance.now();
+
+    const step = (currentTime: number) => {
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      window.scrollTo({ top: startY + distance * easeInOutQuart(progress), behavior: "auto" });
+
+      if (progress < 1) {
+        scrollAnimationRef.current = window.requestAnimationFrame(step);
+        return;
+      }
+
+      scrollAnimationRef.current = null;
+      restoreScrollBehaviorRef.current?.();
+    };
+
+    scrollAnimationRef.current = window.requestAnimationFrame(step);
   };
 
   return (
@@ -103,7 +169,7 @@ export default function SideIndex() {
                 }
               >
                 <span aria-hidden className={"sideindex-dash"} />
-                <span className={"sideindex-label"}>{labels[id]}</span>
+                <span className="locale-animated sideindex-label">{labels[id]}</span>
               </Link>
             </li>
           );

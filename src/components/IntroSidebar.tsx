@@ -4,6 +4,7 @@ import Image from "next/image";
 import React from "react";
 import { socialLinks } from "../content/portfolio";
 import { useLocale } from "../context/LocaleContext";
+import { localeMotion } from "../utils/localeMotion";
 import SideIndex from "./SideIndex";
 import InlineControls from "./InlineControls";
 import SocialLinks from "./SocialLinksNew";
@@ -21,9 +22,9 @@ export default function IntroSidebar() {
     <aside id="inicio" className="md:sticky md:top-16 md:bottom-16 self-start">
       <div className="md:h-[calc(100vh-4rem)] flex flex-col justify-between pb-16">
         {/* Top: info */}
-        <div>
+        <div {...localeMotion("sidebar-intro")}>
           <Reveal>
-            <p className="text-sm text-foreground/60 mb-1">
+            <p className="locale-animated text-sm text-foreground/60 mb-1">
               {t("hero.greeting")}
             </p>
           </Reveal>
@@ -33,12 +34,12 @@ export default function IntroSidebar() {
             </h1>
           </Reveal>
             <Reveal delay={140}>
-              <p className="mt-3 text-foreground text-base font-medium">
+              <p className="locale-animated locale-delay-2 mt-3 text-foreground text-base font-medium">
                 {t("hero.profession")}
               </p>
             </Reveal>
           <Reveal delay={200}>
-            <p className="mt-3 max-w-md text-foreground/80 text-sm sm:text-base">
+            <p className="locale-animated locale-delay-3 mt-3 max-w-md text-foreground/80 text-sm sm:text-base">
               {t("hero.description")}
             </p>
           </Reveal>
@@ -48,7 +49,7 @@ export default function IntroSidebar() {
               download="Sebastián_Carrasco_CV.pdf"
               className="inline-flex items-center gap-3 mt-6 text-base text-accent hover:text-accent/80 transition-colors font-medium group"
             >
-              <span className="cursor-pointer">{t("cta.cv")}</span>
+              <span className="locale-animated locale-delay-4 cursor-pointer">{t("cta.cv")}</span>
               <Image
                 src="/icons/download.svg"
                 alt=""
@@ -63,13 +64,13 @@ export default function IntroSidebar() {
 
         {/* Middle: index centered vertically */}
         <Reveal delay={280}>
-          <div className="hidden md:flex justify-start">
+          <div {...localeMotion("sidebar-index")} className="hidden md:flex justify-start">
             <SideIndex />
           </div>
         </Reveal>
 
         {/* Bottom: social links and controls */}
-        <div>
+        <div className="locale-static">
           <Reveal delay={320}>
             <SocialLinks
               {...socialLinks}

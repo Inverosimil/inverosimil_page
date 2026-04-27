@@ -21,7 +21,7 @@ export default function ParallaxBackground({ speed = 0.35 }: { speed?: number })
     const update = () => {
       const y = -window.scrollY * speed;
       if (y !== lastY.current) {
-        el.style.setProperty("--bg-offset", `${Math.round(y)}px`);
+        el.style.setProperty("--bg-offset", `${y.toFixed(2)}px`);
         lastY.current = y;
       }
       rafRef.current = null;

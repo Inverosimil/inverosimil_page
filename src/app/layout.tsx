@@ -3,6 +3,7 @@ import { Inter, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import Providers from "../components/Providers";
 import ParallaxBackground from "../components/ParallaxBackground";
+import SmoothPageScroll from "../components/SmoothPageScroll";
 import TopRightControls from "../components/TopRightControls";
 
 const inter = Inter({
@@ -94,6 +95,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} ${bebas.variable} antialiased bg-background text-foreground`}>
         <Providers>
+          <SmoothPageScroll />
           <ParallaxBackground speed={0.35} />
           <TopRightControls />
           {children}

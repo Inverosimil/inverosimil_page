@@ -15,9 +15,10 @@ import {
   type Project,
 } from "../content/portfolio";
 import { useLocale } from "../context/LocaleContext";
+import { localeMotion } from "../utils/localeMotion";
 
 const tagClass = "tag text-[11px] px-2.5 py-1 bg-accent/10 text-accent rounded-full hover:bg-accent/20 cursor-default";
-const titleClass = "font-semibold text-foreground group-hover:text-accent transition-colors flex items-center gap-2";
+const titleClass = "locale-animated locale-delay-1 font-semibold text-foreground group-hover:text-accent transition-colors flex items-center gap-2";
 const cardClass = "group block rounded-xl border border-transparent bg-transparent hover:bg-accent/5 transition-colors p-4 sm:p-5";
 const descriptionClass = "mt-1 text-foreground/75 text-sm sm:text-[0.95rem]";
 
@@ -51,7 +52,7 @@ function ProjectEntry({ project }: { project: Project }) {
 
   return (
     <Reveal delay={project.delay}>
-      <a href={project.href} target="_blank" rel="noreferrer" className={cardClass}>
+      <a href={project.href} target="_blank" rel="noreferrer" {...localeMotion(`project-${project.id}`)} className={cardClass}>
         <div className="grid grid-cols-1 sm:grid-cols-[1fr_24ch] gap-4 sm:gap-6 items-center">
           <div className="min-w-0">
             <p className={titleClass}>
@@ -59,7 +60,7 @@ function ProjectEntry({ project }: { project: Project }) {
               <ExternalIcon />
             </p>
             {project.descriptions.map((description, index) => (
-              <RichText key={index} segments={description[locale]} className={descriptionClass} />
+              <RichText key={index} segments={description[locale]} className={`${descriptionClass} locale-delay-${index + 2}`} />
             ))}
             <TagList items={project.stack} />
           </div>
@@ -81,20 +82,24 @@ function ProjectEntry({ project }: { project: Project }) {
 
 function ExperienceEntry({ experience }: { experience: Experience }) {
   const { locale } = useLocale();
+  const dateClass = [
+    experience.date.es === experience.date.en ? "" : "locale-animated locale-delay-1",
+    "text-foreground/60 text-xs whitespace-nowrap shrink-0 tabular-nums",
+  ].filter(Boolean).join(" ");
   const content = (
     <div className="grid grid-cols-1 sm:grid-cols-[1fr_17ch] gap-4 sm:gap-8 items-start">
-      <span className="sm:hidden text-foreground/60 text-xs whitespace-nowrap shrink-0 tabular-nums order-first">
+      <span className={`${dateClass} sm:hidden order-first`}>
         {experience.date[locale]}
       </span>
       <div className="min-w-0">
-        <p className={experience.href ? titleClass : "font-semibold text-foreground group-hover:text-accent transition-colors"}>
+        <p className={experience.href ? titleClass : "locale-animated locale-delay-1 font-semibold text-foreground group-hover:text-accent transition-colors"}>
           {experience.title[locale]}
           {experience.href ? <ExternalIcon /> : null}
         </p>
-        <RichText segments={experience.description[locale]} className={descriptionClass} />
+        <RichText segments={experience.description[locale]} className={`${descriptionClass} locale-delay-2`} />
         <TagList items={experience.stack} />
       </div>
-      <span className="hidden sm:block text-foreground/60 text-xs sm:text-sm whitespace-nowrap shrink-0 tabular-nums justify-self-end self-start">
+      <span className={`${dateClass} hidden sm:block sm:text-sm justify-self-end self-start`}>
         {experience.date[locale]}
       </span>
     </div>
@@ -103,11 +108,11 @@ function ExperienceEntry({ experience }: { experience: Experience }) {
   return (
     <Reveal delay={experience.delay}>
       {experience.href ? (
-        <a href={experience.href} target="_blank" rel="noreferrer" className={cardClass}>
+        <a href={experience.href} target="_blank" rel="noreferrer" {...localeMotion(`experience-${experience.id}`)} className={cardClass}>
           {content}
         </a>
       ) : (
-        <div className={cardClass}>{content}</div>
+        <div {...localeMotion(`experience-${experience.id}`)} className={cardClass}>{content}</div>
       )}
     </Reveal>
   );
@@ -135,13 +140,17 @@ export default function Home() {
 
             {aboutParagraphs.map((paragraph, index) => (
               <Reveal key={index} delay={paragraph.delay}>
-                <RichText segments={paragraph.content[locale]} />
+                <RichText
+                  segments={paragraph.content[locale]}
+                  className={`locale-delay-${Math.min(index + 1, 5)}`}
+                  motionName={`about-paragraph-${index}`}
+                />
               </Reveal>
             ))}
 
             <Reveal delay={240}>
-              <div className="mt-6">
-                <h3 className="text-lg font-semibold text-foreground mb-3">{t("about.tech_title")}</h3>
+              <div {...localeMotion("about-tech")} className="mt-6">
+                <h3 className="locale-animated locale-delay-5 text-lg font-semibold text-foreground mb-3">{t("about.tech_title")}</h3>
                 <div className="flex flex-wrap gap-2">
                   {favoriteTechnologies.map((tech) => (
                     <span key={tech} className="tag text-sm px-3 py-1.5 bg-accent/10 text-accent rounded-full font-medium hover:bg-accent/20 cursor-default">

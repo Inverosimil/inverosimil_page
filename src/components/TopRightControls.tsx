@@ -33,7 +33,7 @@ export default function TopRightControls() {
   return (
     <div
       ref={wrapperRef}
-      className="sm:hidden fixed z-50"
+      className="locale-static sm:hidden fixed z-50"
       style={{ top: "calc(env(safe-area-inset-top, 0px) + 0.75rem)", right: "calc(env(safe-area-inset-right, 0px) + 0.75rem)" }}
     >
       <div
