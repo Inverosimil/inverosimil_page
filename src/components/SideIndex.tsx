@@ -95,7 +95,7 @@ export default function SideIndex() {
               <Link
                 href={`#${id}`}
                 onClick={handleClick(id)}
-                aria-current={isActive ? "true" : undefined}
+                aria-current={isActive ? "location" : undefined}
                 data-active={isActive ? "true" : "false"}
                 className={
                   "sideindex-link group flex items-center gap-2 py-1.5 transition-colors " +

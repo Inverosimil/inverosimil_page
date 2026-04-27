@@ -1,4 +1,6 @@
 "use client";
+
+import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import { useTheme } from "../context/ThemeContext";
 import { useLocale } from "../context/LocaleContext";
@@ -7,7 +9,7 @@ export default function TopRightControls() {
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const { theme, toggleTheme } = useTheme();
-  const { locale, setLocale } = useLocale();
+  const { locale, setLocale, t } = useLocale();
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -51,8 +53,8 @@ export default function TopRightControls() {
             <div className="flex items-center gap-3 flex-grow justify-end">
               <button
                 type="button"
-                aria-label="Cambiar tema"
-                title="Cambiar tema"
+                aria-label={t("aria.theme")}
+                title={t("aria.theme")}
                 onClick={(e) => {
                   const root = document.documentElement;
                   root.style.setProperty("--switch-x", `${e.clientX}px`);
@@ -63,9 +65,12 @@ export default function TopRightControls() {
                 }}
                 className="inline-flex items-center justify-center w-9 h-9 rounded-full hover:bg-accent/10"
               >
-                <img
+                <Image
                   src={theme === "dark" ? "/icons/darkmode.svg" : "/icons/lightmode.svg"}
                   alt=""
+                  width={20}
+                  height={20}
+                  aria-hidden
                   className="w-5 h-5 brightness-0 contrast-200 dark:brightness-200 dark:contrast-0"
                 />
               </button>
@@ -74,6 +79,7 @@ export default function TopRightControls() {
                 <button
                   type="button"
                   onClick={() => setLocale("es")}
+                  aria-pressed={locale === "es"}
                   className={`px-2.5 py-1.5 text-[12px] font-medium rounded-sm transition-colors ${
                     locale === "es" ? "text-accent" : "text-foreground/60 hover:text-foreground"
                   }`}
@@ -86,6 +92,7 @@ export default function TopRightControls() {
                 <button
                   type="button"
                   onClick={() => setLocale("en")}
+                  aria-pressed={locale === "en"}
                   className={`px-2.5 py-1.5 text-[12px] font-medium rounded-sm transition-colors ${
                     locale === "en" ? "text-accent" : "text-foreground/60 hover:text-foreground"
                   }`}
@@ -99,23 +106,37 @@ export default function TopRightControls() {
 
             <button
               type="button"
-              aria-label="Cerrar ajustes"
-              title="Cerrar"
+              aria-label={t("aria.close_settings")}
+              title={t("aria.close_settings")}
               onClick={() => setOpen(false)}
               className="absolute right-0 top-1/2 -translate-y-1/2 inline-flex items-center justify-center w-10 h-10 rounded-full hover:bg-accent/10"
             >
-              <img src="/icons/close.svg" className="w-5 h-5 rotate-0 transition-transform duration-200 brightness-0 contrast-200 dark:brightness-200 dark:contrast-0" alt="" />
+              <Image
+                src="/icons/close.svg"
+                width={20}
+                height={20}
+                className="w-5 h-5 rotate-0 transition-transform duration-200 brightness-0 contrast-200 dark:brightness-200 dark:contrast-0"
+                alt=""
+                aria-hidden
+              />
             </button>
           </>
         ) : (
           <button
             type="button"
-            aria-label="Abrir ajustes"
-            title="Ajustes"
+            aria-label={t("aria.open_settings")}
+            title={t("aria.open_settings")}
             onClick={() => setOpen(true)}
             className="w-full h-full inline-flex items-center justify-center"
           >
-            <img src="/icons/menu.svg" className="w-5 h-5 transition-transform duration-200 brightness-0 contrast-200 dark:brightness-200 dark:contrast-0" alt="" />
+            <Image
+              src="/icons/menu.svg"
+              width={20}
+              height={20}
+              className="w-5 h-5 transition-transform duration-200 brightness-0 contrast-200 dark:brightness-200 dark:contrast-0"
+              alt=""
+              aria-hidden
+            />
           </button>
         )}
       </div>

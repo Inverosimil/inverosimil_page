@@ -45,8 +45,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/profile_image.webp",
-        width: 1200,
-        height: 630,
+        width: 900,
+        height: 975,
         alt: "Foto de perfil de Sebastián Carrasco",
       },
     ],

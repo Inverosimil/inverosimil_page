@@ -100,6 +100,14 @@ body {
   to { transform: translateY(100%); opacity: 0; }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .code-grid[data-ready="true"]::before {
+    animation: none;
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
 /* Overlay of slightly larger dots revealed near the pointer */
 .code-grid::after {
   content: "";
@@ -265,4 +273,3 @@ hr { border-color: color-mix(in oklab, var(--accent) 20%, transparent); }
     background-size: 100% 2px, 100% 2px; /* revela overlay acentuado */
   }
 }
-

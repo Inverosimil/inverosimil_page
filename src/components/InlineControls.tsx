@@ -1,11 +1,13 @@
 "use client";
+
+import Image from "next/image";
 import React from "react";
 import { useTheme } from "../context/ThemeContext";
 import { useLocale } from "../context/LocaleContext";
 
 export default function InlineControls() {
   const { theme, toggleTheme } = useTheme();
-  const { locale, setLocale } = useLocale();
+  const { locale, setLocale, t } = useLocale();
 
   return (
     <div className="flex items-center gap-4 text-xs sm:text-xs">
@@ -20,12 +22,15 @@ export default function InlineControls() {
           toggleTheme();
         }}
         className="inline-flex items-center justify-center w-9 h-9 sm:w-7 sm:h-7 rounded-full text-foreground/60 hover:text-accent transition-colors duration-200 hover:bg-accent/10"
-        aria-label="Cambiar tema"
-        title="Cambiar tema"
+        aria-label={t("aria.theme")}
+        title={t("aria.theme")}
       >
-        <img 
+        <Image
           src={theme === "dark" ? "/icons/darkmode.svg" : "/icons/lightmode.svg"} 
           alt="" 
+          width={20}
+          height={20}
+          aria-hidden
           className="w-5 h-5 sm:w-4 sm:h-4 brightness-0 contrast-200 dark:brightness-200 dark:contrast-0"
         />
       </button>
@@ -33,6 +38,7 @@ export default function InlineControls() {
         <button
           type="button"
           onClick={() => setLocale("es")}
+          aria-pressed={locale === "es"}
           className={`px-2.5 py-1.5 sm:px-2 sm:py-1 text-[12px] sm:text-[11px] font-medium transition-colors rounded-sm ${
             locale === "es" 
               ? "text-accent" 
@@ -47,6 +53,7 @@ export default function InlineControls() {
         <button
           type="button"
           onClick={() => setLocale("en")}
+          aria-pressed={locale === "en"}
           className={`px-2.5 py-1.5 sm:px-2 sm:py-1 text-[12px] sm:text-[11px] font-medium transition-colors rounded-sm ${
             locale === "en" 
               ? "text-accent" 

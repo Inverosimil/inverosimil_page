@@ -11,6 +11,12 @@ export default function Reveal({ children, className = "", delay = 0 }: { childr
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setVisible(true);
+      return;
+    }
+
     const io = new IntersectionObserver(
       (entries) => {
         const entry = entries[0];
@@ -50,4 +56,4 @@ export default function Reveal({ children, className = "", delay = 0 }: { childr
       {children}
     </div>
   );
-} 
+}

@@ -1,5 +1,8 @@
 "use client";
+
+import Image from "next/image";
 import React from "react";
+import { socialLinks } from "../content/portfolio";
 import { useLocale } from "../context/LocaleContext";
 import SideIndex from "./SideIndex";
 import InlineControls from "./InlineControls";
@@ -46,7 +49,14 @@ export default function IntroSidebar() {
               className="inline-flex items-center gap-3 mt-6 text-base text-accent hover:text-accent/80 transition-colors font-medium group"
             >
               <span className="cursor-pointer">{t("cta.cv")}</span>
-              <img src="/icons/download.svg" alt="" className="w-5 h-5 opacity-60 group-hover:opacity-100 transition-opacity brightness-0 contrast-200 dark:brightness-200 dark:contrast-0" />
+              <Image
+                src="/icons/download.svg"
+                alt=""
+                width={20}
+                height={20}
+                aria-hidden
+                className="w-5 h-5 opacity-60 group-hover:opacity-100 transition-opacity brightness-0 contrast-200 dark:brightness-200 dark:contrast-0"
+              />
             </a>
           </Reveal>
         </div>
@@ -62,11 +72,7 @@ export default function IntroSidebar() {
         <div>
           <Reveal delay={320}>
             <SocialLinks
-              github="https://github.com/inverosimil"
-              linkedin="https://www.linkedin.com/in/sebastian-carrasco-álvarez"
-              instagram="https://instagram.com/_.inverosimil._"
-              whatsapp="https://wa.me/56950146865?text=Hola%20Sebastián,%20quiero%20hacerte%20una%20consulta."
-              email="mailto:contacto@scarrasco.com?subject=Consulta&body=Hola%20Sebastián,%20quiero%20hacerte%20una%20consulta."
+              {...socialLinks}
               className="mt-8 sm:mt-6"
               size={30}
             />

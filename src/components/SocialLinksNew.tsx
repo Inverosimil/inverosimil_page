@@ -15,14 +15,14 @@ const iconClass = "w-[1.5rem] h-[1.5rem]";
 
 export default function SocialLinksNew({ github, linkedin, instagram, whatsapp, email, className = "", size = 24 }: Props) {
   const common = "inline-flex items-center justify-center text-foreground/70 hover:text-accent transition-colors duration-200";
-  const dim = { width: size, height: size };
 
-  const MaskIcon = ({ src }: { src: string }) => (
+  const MaskIcon = ({ src, scale = 1 }: { src: string; scale?: number }) => (
     <span
       aria-hidden
       className={iconClass}
       style={{
-        ...dim,
+        width: size * scale,
+        height: size * scale,
         display: "inline-block",
         backgroundColor: "currentColor",
         WebkitMaskImage: `url(${src})`,
@@ -60,12 +60,12 @@ export default function SocialLinksNew({ github, linkedin, instagram, whatsapp, 
 
       {/* Instagram */}
       <Wrap href={instagram} label="Instagram">
-        <MaskIcon src="/icons/instagram.svg" />
+        <MaskIcon src="/icons/instagram.svg" scale={1.3} />
       </Wrap>
 
       {/* WhatsApp */}
       <Wrap href={whatsapp} label="WhatsApp">
-        <MaskIcon src="/icons/whatsapp.svg" />
+        <MaskIcon src="/icons/whatsapp.svg" scale={1.08} />
       </Wrap>
 
       {/* Email */}

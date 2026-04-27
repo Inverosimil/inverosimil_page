@@ -12,6 +12,12 @@ export default function ParallaxBackground({ speed = 0.35 }: { speed?: number })
     const el = ref.current;
     if (!el) return;
 
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) {
+      el.setAttribute("data-ready", "true");
+      return;
+    }
+
     const update = () => {
       const y = -window.scrollY * speed;
       if (y !== lastY.current) {
