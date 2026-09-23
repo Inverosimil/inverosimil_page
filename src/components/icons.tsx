@@ -89,14 +89,16 @@ export function LinkedInIcon(props: IconProps) {
   );
 }
 
-/** Instagram: guiño. El lente se cierra en vertical hasta quedar una línea y
- *  se abre de nuevo, como un párpado. */
+/** Instagram: flash. El punto destella (crece de golpe y vuelve) y suelta un
+ *  anillo que se expande y se apaga. */
 export function InstagramIcon(props: IconProps) {
+  const flash = box("17.67px 5.02px");
   return (
     <FilledIcon {...props}>
       <path d={`${IG[0]} ${IG[1]}`} />
-      <path d={IG[2]} />
-      <path d={`${IG[3]} ${IG[4]}`} className="si-iglens" style={box("12px 12px")} />
+      <path d={`${IG[3]} ${IG[4]}`} />
+      <circle cx="17.67" cy="5.02" r="1.44" fill="none" stroke="currentColor" strokeWidth={0.45} className="si-igburst" style={flash} />
+      <path d={IG[2]} className="si-igflash" style={flash} />
     </FilledIcon>
   );
 }
