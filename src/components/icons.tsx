@@ -184,19 +184,17 @@ export function ExternalLinkIcon(props: IconProps) {
   );
 }
 
-export function SunIcon(props: IconProps) {
+/** Tema: la luna y el sol viven en el mismo SVG. Cuál se ve lo decide la clase
+ *  de <html>, no el estado de React, así que es correcto en el primer frame; y
+ *  como es un cambio de clase, al pulsar el interruptor la transición se
+ *  reproduce sola: la luna gira y se encoge, el sol brota y sus rayos salen un
+ *  instante después. Las reglas están en globals.css (.theme-icon). */
+export function ThemeIcon({ className = "", ...props }: IconProps) {
   return (
-    <Icon {...props}>
-      <circle cx="12" cy="12" r="4" />
-      <path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4" />
-    </Icon>
-  );
-}
-
-export function MoonIcon(props: IconProps) {
-  return (
-    <Icon {...props}>
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+    <Icon className={`theme-icon ${className}`.trim()} {...props}>
+      <path className="ti-moon" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+      <circle className="ti-sun" cx="12" cy="12" r="3.5" />
+      <path className="ti-rays" d="M18.3 12L20.7 12M16.45 16.45L18.15 18.15M12 18.3L12 20.7M7.55 16.45L5.85 18.15M5.7 12L3.3 12M7.55 7.55L5.85 5.85M12 5.7L12 3.3M16.45 7.55L18.15 5.85" />
     </Icon>
   );
 }

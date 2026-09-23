@@ -3,7 +3,7 @@
 import React from "react";
 import { flashSwitchAt, useTheme } from "../context/ThemeContext";
 import { useLocale } from "../context/LocaleContext";
-import { MoonIcon, PaletteIcon, SunIcon } from "./icons";
+import { PaletteIcon, ThemeIcon } from "./icons";
 
 const iconButtonClass =
   "inline-flex items-center justify-center w-9 h-9 sm:w-7 sm:h-7 rounded-full text-foreground/70 hover:text-accent transition-colors duration-200 hover:bg-accent/10";
@@ -31,8 +31,7 @@ export default function InlineControls() {
         aria-pressed={theme === "dark"}
         title={t("aria.theme")}
       >
-        <SunIcon className="icon-sun w-5 h-5 sm:w-4 sm:h-4" />
-        <MoonIcon className="icon-moon w-5 h-5 sm:w-4 sm:h-4" />
+        <ThemeIcon className="w-5 h-5 sm:w-4 sm:h-4" />
       </button>
       <div className="flex items-center gap-1 sm:gap-0.5">
         <button

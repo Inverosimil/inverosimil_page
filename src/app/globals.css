@@ -300,12 +300,35 @@ body {
   }
 }
 
-/* Iconos de tema: el visible depende de la clase del <html>, no del estado de React
-   (evita que el sol aparezca un frame en modo oscuro antes de hidratar) */
-.icon-sun { display: none; }
-.icon-moon { display: block; }
-.theme-dark .icon-sun { display: block; }
-.theme-dark .icon-moon { display: none; }
+/* Icono de tema: la luna y el sol están en el mismo SVG y el visible depende de
+   la clase del <html>, no del estado de React (evita que el sol aparezca un
+   frame en modo oscuro antes de hidratar). Como es un cambio de clase, la
+   transición se reproduce sola al pulsar: la luna gira y se encoge mientras el
+   sol brota, y los rayos salen un instante después. */
+.theme-icon .ti-moon,
+.theme-icon .ti-sun,
+.theme-icon .ti-rays { transform-box: view-box; transform-origin: 12px 12px; }
+.theme-icon .ti-moon { opacity: 1; transform: rotate(0) scale(1); }
+.theme-icon .ti-sun,
+.theme-icon .ti-rays { opacity: 0; transform: rotate(-140deg) scale(0); }
+.theme-dark .theme-icon .ti-moon { opacity: 0; transform: rotate(140deg) scale(0); }
+.theme-dark .theme-icon .ti-sun,
+.theme-dark .theme-icon .ti-rays { opacity: 1; transform: rotate(0) scale(1); }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* el !important repite la transición porque html.theme-switching * la pisaría
+     justo durante el cambio, que es cuando hace falta */
+  .theme-icon .ti-moon,
+  .theme-icon .ti-sun,
+  html.theme-switching .theme-icon .ti-moon,
+  html.theme-switching .theme-icon .ti-sun {
+    transition: transform .52s cubic-bezier(.22, 1, .36, 1), opacity .3s ease !important;
+  }
+  .theme-icon .ti-rays,
+  html.theme-switching .theme-icon .ti-rays {
+    transition: transform .52s cubic-bezier(.34, 1.56, .64, 1) .07s, opacity .26s ease .07s !important;
+  }
+}
 
 @media (prefers-reduced-motion: no-preference) {
   [data-locale-motion] {

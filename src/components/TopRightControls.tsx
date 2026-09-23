@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { flashSwitchAt, useTheme } from "../context/ThemeContext";
 import { useLocale } from "../context/LocaleContext";
-import { CloseIcon, MoonIcon, PaletteIcon, SettingsIcon, SunIcon } from "./icons";
+import { CloseIcon, PaletteIcon, SettingsIcon, ThemeIcon } from "./icons";
 
 const iconButtonClass = "inline-flex items-center justify-center w-9 h-9 rounded-full hover:bg-accent/10 hover:text-accent transition-colors";
 
@@ -66,8 +66,7 @@ export default function TopRightControls() {
                 }}
                 className={iconButtonClass}
               >
-                <SunIcon className="icon-sun w-5 h-5" />
-                <MoonIcon className="icon-moon w-5 h-5" />
+                <ThemeIcon className="w-5 h-5" />
               </button>
 
               <div className="flex items-center gap-1">
