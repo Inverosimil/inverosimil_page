@@ -362,7 +362,7 @@ body {
   @keyframes si-bar   { 0%,100% { transform: scaleY(1) } 40% { transform: scaleY(1.1) } }
   @keyframes si-flash { 0%,40%,100% { transform: scale(1) } 48% { transform: scale(1.8) } 66% { transform: scale(1) } }
   @keyframes si-burst { 0%,40% { transform: scale(1); opacity: 0 } 46% { opacity: .9 } 82%,100% { transform: scale(2.4); opacity: 0 } }
-  @keyframes si-iris  { 0%,100% { stroke-width: 0 } 42%,58% { stroke-width: 3.2 } }
+  @keyframes si-iris  { 0%,100% { transform: scale(1) } 42%,58% { transform: scale(0) } }
   @keyframes si-phone { 0%,100% { transform: rotate(0) } 18% { transform: rotate(-16deg) } 40% { transform: rotate(13deg) } 62% { transform: rotate(-9deg) } 82% { transform: rotate(4deg) } }
   @keyframes si-paper { 0%,100% { transform: translateY(7.2px) } 42%,62% { transform: translateY(-1.6px) } }
 }

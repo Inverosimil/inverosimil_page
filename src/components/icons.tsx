@@ -91,29 +91,25 @@ export function LinkedInIcon(props: IconProps) {
 
 /** Instagram (variante sólida): el cuadro es macizo y el aro del lente y el punto
  *  del flash son huecos, así que todo se anima dentro de la máscara.
- *  - diafragma: un trazo blanco sobre el borde exterior del aro engorda hacia
- *    dentro y va tapando el hueco desde fuera hacia el centro;
+ *  - diafragma: el disco interior (lo único macizo dentro del aro) se encoge,
+ *    así que el vacío del aro avanza hacia dentro hasta cubrirlo del todo;
  *  - flash: el punto crece de golpe y suelta un anillo que se expande y se apaga. */
 export function InstagramIcon(props: IconProps) {
   const id = useId();
-  const mask = `ig-m${id}`, clip = `ig-c${id}`;
+  const mask = `ig-m${id}`;
   const { outer, inner } = IG_LENS;
   const { cx, cy, r } = IG_DOT;
   const dot = box(`${cx}px ${cy}px`);
   return (
     <FilledIcon {...props}>
       <defs>
-        {/* el trazo del diafragma no debe rebosar hasta el punto del flash */}
-        <clipPath id={clip}><circle cx="12" cy="12" r={outer + 0.12} /></clipPath>
         <mask id={mask} maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
           <rect x="0" y="0" width="24" height="24" fill="#fff" />
           <circle cx="12" cy="12" r={outer} fill="#000" />
-          <circle cx="12" cy="12" r={inner} fill="#fff" />
+          {/* al encogerse este disco, el hueco del aro se lo va comiendo */}
+          <circle cx="12" cy="12" r={inner} fill="#fff" className="si-igiris" style={box("12px 12px")} />
           <circle cx={cx} cy={cy} r={r} fill="#000" className="si-igflash" style={dot} />
           <circle cx={cx} cy={cy} r={r} fill="none" stroke="#000" strokeWidth={0.45} opacity={0} className="si-igburst" style={dot} />
-          <g clipPath={`url(#${clip})`}>
-            <circle cx="12" cy="12" r={outer - 0.06} fill="none" stroke="#fff" strokeWidth={0} className="si-igiris" />
-          </g>
         </mask>
       </defs>
       <path d={IG_SQUARE} mask={`url(#${mask})`} />
