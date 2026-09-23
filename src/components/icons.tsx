@@ -97,7 +97,7 @@ export function InstagramIcon(props: IconProps) {
     <FilledIcon {...props}>
       <path d={`${IG[0]} ${IG[1]}`} />
       <path d={`${IG[3]} ${IG[4]}`} />
-      <circle cx="17.67" cy="5.02" r="1.44" fill="none" stroke="currentColor" strokeWidth={0.45} className="si-igburst" style={flash} />
+      <circle cx="17.67" cy="5.02" r="1.44" fill="none" stroke="currentColor" strokeWidth={0.45} opacity={0} className="si-igburst" style={flash} />
       <path d={IG[2]} className="si-igflash" style={flash} />
     </FilledIcon>
   );
