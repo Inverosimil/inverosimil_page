@@ -339,23 +339,27 @@ body {
   }
 }
 
-/* ── Iconos sociales: una animación dentro de cada icono, al hover del enlace.
-   Arrancan en 0 al entrar y, al salir, vuelven al reposo con una transición
-   corta (la animación se corta, no termina). Ver icons.tsx. */
+/* ── Iconos sociales: una animación dentro de cada icono, al entrar el puntero
+   o el foco en el enlace. No se disparan con :hover sino con la clase
+   `is-playing`, que SocialLinksNew pone al entrar y quita cuando la animación
+   ha terminado: así se completa aunque el puntero se retire a la mitad.
+   Todas duran lo mismo, y ese tiempo vive aquí en --si-dur (el componente lo
+   lee de aquí, no lo repite). Ver icons.tsx. */
+.social-link { --si-dur: 800ms; }
 .si-gmpaper { transform: translateY(7.2px); } /* reposo: la hoja escondida bajo la V */
 .si-igburst { opacity: 0; }                   /* reposo: el anillo del flash no existe */
 .si-igiris { stroke-width: 0; }               /* reposo: el lente abierto, el diafragma sin grosor */
 @media (prefers-reduced-motion: no-preference) {
   .si-ghhead, .si-ghtail, .si-lidot, .si-libar, .si-waph, .si-igflash { transition: transform .2s ease; }
-  .social-link:hover .si-ghhead  { animation: si-head  .8s cubic-bezier(.22,1,.36,1); }
-  .social-link:hover .si-ghtail  { animation: si-tail  .8s cubic-bezier(.22,1,.36,1); }
-  .social-link:hover .si-lidot   { animation: si-dot   .8s cubic-bezier(.34,1.56,.64,1); }
-  .social-link:hover .si-libar   { animation: si-bar   .8s cubic-bezier(.22,1,.36,1); }
-  .social-link:hover .si-igflash { animation: si-flash .8s cubic-bezier(.22,1,.36,1); }
-  .social-link:hover .si-igburst { animation: si-burst .8s cubic-bezier(.22,1,.36,1); }
-  .social-link:hover .si-igiris  { animation: si-iris  .8s cubic-bezier(.45,0,.55,1); }
-  .social-link:hover .si-waph    { animation: si-phone .8s  cubic-bezier(.45,0,.55,1); }
-  .social-link:hover .si-gmpaper { animation: si-paper .8s cubic-bezier(.45,0,.55,1); }
+  .social-link.is-playing .si-ghhead  { animation: si-head var(--si-dur) cubic-bezier(.22,1,.36,1); }
+  .social-link.is-playing .si-ghtail  { animation: si-tail var(--si-dur) cubic-bezier(.22,1,.36,1); }
+  .social-link.is-playing .si-lidot   { animation: si-dot var(--si-dur) cubic-bezier(.34,1.56,.64,1); }
+  .social-link.is-playing .si-libar   { animation: si-bar var(--si-dur) cubic-bezier(.22,1,.36,1); }
+  .social-link.is-playing .si-igflash { animation: si-flash var(--si-dur) cubic-bezier(.22,1,.36,1); }
+  .social-link.is-playing .si-igburst { animation: si-burst var(--si-dur) cubic-bezier(.22,1,.36,1); }
+  .social-link.is-playing .si-igiris  { animation: si-iris var(--si-dur) cubic-bezier(.45,0,.55,1); }
+  .social-link.is-playing .si-waph    { animation: si-phone var(--si-dur)  cubic-bezier(.45,0,.55,1); }
+  .social-link.is-playing .si-gmpaper { animation: si-paper var(--si-dur) cubic-bezier(.45,0,.55,1); }
   @keyframes si-head  { 0%,100% { transform: skewX(0) }  28% { transform: skewX(10deg) }  62% { transform: skewX(-10deg) } }
   @keyframes si-tail  { 0%,100% { transform: rotate(0) } 30% { transform: rotate(-13deg) } 66% { transform: rotate(8deg) } }
   @keyframes si-dot   { 0% { transform: translateY(0) } 38% { transform: translateY(-70px) } 100% { transform: translateY(0) } }
