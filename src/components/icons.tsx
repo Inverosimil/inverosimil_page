@@ -1,5 +1,5 @@
 import { useId, type SVGProps } from "react";
-import { GH, GH_FACE, GH_FACE_CARVE, GH_META, GH_TAIL, GH_TAIL_CARVE, GM, GM_CLIP, GM_PAPER, IG, LI, WA } from "./socialIconPaths";
+import { GH, GH_FACE, GH_FACE_CARVE, GH_META, GH_TAIL, GH_TAIL_CARVE, GM, GM_CLIP, GM_PAPER, IG_DOT, IG_LENS, IG_SQUARE, LI, WA_BUBBLE, WA_HANDSET, WA_PIVOT } from "./socialIconPaths";
 
 // Iconos de interfaz: trazo sin relleno. Todos heredan `currentColor`, así
 // siguen el tema y la paleta activa sin filtros CSS.
@@ -89,37 +89,58 @@ export function LinkedInIcon(props: IconProps) {
   );
 }
 
-/** Instagram: disparo. El lente se cierra desde el borde hacia el centro, como
- *  un diafragma (un trazo que engorda hacia dentro, recortado al hueco),
- *  mientras el punto destella y suelta un anillo que se expande y se apaga.
- *  El punto está centrado en (18.393, 5.584), medido sobre la propia ruta. */
+/** Instagram (variante sólida): el cuadro es macizo y el aro del lente y el punto
+ *  del flash son huecos, así que todo se anima dentro de la máscara.
+ *  - diafragma: un trazo blanco sobre el borde exterior del aro engorda hacia
+ *    dentro y va tapando el hueco desde fuera hacia el centro;
+ *  - flash: el punto crece de golpe y suelta un anillo que se expande y se apaga. */
 export function InstagramIcon(props: IconProps) {
   const id = useId();
-  const hole = `ig-h${id}`;
-  const flash = box("18.393px 5.584px");
+  const mask = `ig-m${id}`, clip = `ig-c${id}`;
+  const { outer, inner } = IG_LENS;
+  const { cx, cy, r } = IG_DOT;
+  const dot = box(`${cx}px ${cy}px`);
   return (
     <FilledIcon {...props}>
       <defs>
-        {/* 0.12u más que el hueco: el trazo se mete bajo el anillo y no comparten borde */}
-        <clipPath id={hole}><circle cx="12" cy="12" r="4.12" /></clipPath>
+        {/* el trazo del diafragma no debe rebosar hasta el punto del flash */}
+        <clipPath id={clip}><circle cx="12" cy="12" r={outer + 0.12} /></clipPath>
+        <mask id={mask} maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+          <rect x="0" y="0" width="24" height="24" fill="#fff" />
+          <circle cx="12" cy="12" r={outer} fill="#000" />
+          <circle cx="12" cy="12" r={inner} fill="#fff" />
+          <circle cx={cx} cy={cy} r={r} fill="#000" className="si-igflash" style={dot} />
+          <circle cx={cx} cy={cy} r={r} fill="none" stroke="#000" strokeWidth={0.45} opacity={0} className="si-igburst" style={dot} />
+          <g clipPath={`url(#${clip})`}>
+            <circle cx="12" cy="12" r={outer - 0.06} fill="none" stroke="#fff" strokeWidth={0} className="si-igiris" />
+          </g>
+        </mask>
       </defs>
-      <path d={`${IG[0]} ${IG[1]}`} />
-      <path d={`${IG[3]} ${IG[4]}`} />
-      <g clipPath={`url(#${hole})`}>
-        <circle cx="12" cy="12" r="4.06" fill="none" stroke="currentColor" strokeWidth={0} className="si-igiris" />
-      </g>
-      <circle cx="18.393" cy="5.584" r="1.44" fill="none" stroke="currentColor" strokeWidth={0.45} opacity={0} className="si-igburst" style={flash} />
-      <path d={IG[2]} className="si-igflash" style={flash} />
+      <path d={IG_SQUARE} mask={`url(#${mask})`} />
     </FilledIcon>
   );
 }
 
-/** WhatsApp: el auricular se inclina como si sonara. */
+/** WhatsApp (variante sólida): el auricular es el hueco de la burbuja, como la
+ *  cara del gato de GitHub. Un parche con trazo rellena el hueco y la máscara lo
+ *  vuelve a tallar girado, así que lo que se agita es la ausencia. */
 export function WhatsAppIcon(props: IconProps) {
+  const id = useId();
+  const mask = `wa-m${id}`;
+  const [px, py] = WA_PIVOT;
   return (
     <FilledIcon {...props}>
-      <path d={`${WA[1]} ${WA[2]}`} />
-      <path d={WA[0]} className="si-waph" style={box("11.7px 12.2px")} />
+      <defs>
+        <mask id={mask} maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+          <rect x="0" y="0" width="24" height="24" fill="#fff" />
+          <path d={WA_HANDSET} fill="#000" className="si-waph" style={box(`${px}px ${py}px`)} />
+        </mask>
+      </defs>
+      <g mask={`url(#${mask})`}>
+        <path d={WA_BUBBLE} />
+        {/* el parche va con trazo: su borde no coincide con el del recorte */}
+        <path d={WA_HANDSET} stroke="currentColor" strokeWidth={0.34} strokeLinejoin="round" />
+      </g>
     </FilledIcon>
   );
 }
