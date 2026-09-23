@@ -345,13 +345,13 @@ body {
 .si-gmpaper { transform: translateY(7.2px); } /* reposo: la hoja escondida bajo la V */
 @media (prefers-reduced-motion: no-preference) {
   .si-ghhead, .si-ghtail, .si-lidot, .si-libar, .si-waph, .si-iglens { transition: transform .2s ease; }
-  .social-link:hover .si-ghhead  { animation: si-head  .62s cubic-bezier(.22,1,.36,1); }
-  .social-link:hover .si-ghtail  { animation: si-tail  .66s cubic-bezier(.22,1,.36,1); }
-  .social-link:hover .si-lidot   { animation: si-dot   .62s cubic-bezier(.34,1.56,.64,1); }
-  .social-link:hover .si-libar   { animation: si-bar   .62s cubic-bezier(.22,1,.36,1); }
-  .social-link:hover .si-iglens  { animation: si-lens  .9s  cubic-bezier(.45,0,.55,1); }
+  .social-link:hover .si-ghhead  { animation: si-head  .8s cubic-bezier(.22,1,.36,1); }
+  .social-link:hover .si-ghtail  { animation: si-tail  .8s cubic-bezier(.22,1,.36,1); }
+  .social-link:hover .si-lidot   { animation: si-dot   .8s cubic-bezier(.34,1.56,.64,1); }
+  .social-link:hover .si-libar   { animation: si-bar   .8s cubic-bezier(.22,1,.36,1); }
+  .social-link:hover .si-iglens  { animation: si-lens  .8s  cubic-bezier(.45,0,.55,1); }
   .social-link:hover .si-waph    { animation: si-phone .8s  cubic-bezier(.45,0,.55,1); }
-  .social-link:hover .si-gmpaper { animation: si-paper .85s cubic-bezier(.22,1,.36,1); }
+  .social-link:hover .si-gmpaper { animation: si-paper .8s cubic-bezier(.22,1,.36,1); }
   @keyframes si-head  { 0%,100% { transform: skewX(0) }  28% { transform: skewX(10deg) }  62% { transform: skewX(-10deg) } }
   @keyframes si-tail  { 0%,100% { transform: rotate(0) } 30% { transform: rotate(-13deg) } 66% { transform: rotate(8deg) } }
   @keyframes si-dot   { 0% { transform: translateY(0) } 38% { transform: translateY(-70px) } 100% { transform: translateY(0) } }
