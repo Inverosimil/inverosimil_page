@@ -89,15 +89,17 @@ export function LinkedInIcon(props: IconProps) {
   );
 }
 
-/** Instagram: flash. El punto destella (crece de golpe y vuelve) y suelta un
- *  anillo que se expande y se apaga. */
+/** Instagram: disparo. El lente se cierra rellenando su hueco mientras el punto
+ *  destella y suelta un anillo que se expande y se apaga. El punto está
+ *  centrado en (18.393, 5.584), medido sobre la propia ruta. */
 export function InstagramIcon(props: IconProps) {
-  const flash = box("17.67px 5.02px");
+  const flash = box("18.393px 5.584px");
   return (
     <FilledIcon {...props}>
       <path d={`${IG[0]} ${IG[1]}`} />
       <path d={`${IG[3]} ${IG[4]}`} />
-      <circle cx="17.67" cy="5.02" r="1.44" fill="none" stroke="currentColor" strokeWidth={0.45} opacity={0} className="si-igburst" style={flash} />
+      <circle cx="12" cy="12" r="4" className="si-igiris" style={{ ...box("12px 12px"), transform: "scale(0)" }} />
+      <circle cx="18.393" cy="5.584" r="1.44" fill="none" stroke="currentColor" strokeWidth={0.45} opacity={0} className="si-igburst" style={flash} />
       <path d={IG[2]} className="si-igflash" style={flash} />
     </FilledIcon>
   );
