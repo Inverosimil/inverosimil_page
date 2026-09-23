@@ -348,14 +348,14 @@ body {
   .social-link:hover .si-ghhead  { animation: si-head  .62s cubic-bezier(.22,1,.36,1); }
   .social-link:hover .si-ghtail  { animation: si-tail  .66s cubic-bezier(.22,1,.36,1); }
   .social-link:hover .si-lidot   { animation: si-dot   .62s cubic-bezier(.34,1.56,.64,1); }
-  .social-link:hover .si-libar   { animation: si-bar   .62s cubic-bezier(.34,1.3,.64,1); }
+  .social-link:hover .si-libar   { animation: si-bar   .62s cubic-bezier(.22,1,.36,1); }
   .social-link:hover .si-iglens  { animation: si-lens  .9s  cubic-bezier(.45,0,.55,1); }
   .social-link:hover .si-waph    { animation: si-phone .8s  cubic-bezier(.45,0,.55,1); }
   .social-link:hover .si-gmpaper { animation: si-paper .85s cubic-bezier(.22,1,.36,1); }
   @keyframes si-head  { 0%,100% { transform: skewX(0) }  28% { transform: skewX(10deg) }  62% { transform: skewX(-10deg) } }
   @keyframes si-tail  { 0%,100% { transform: rotate(0) } 30% { transform: rotate(-13deg) } 66% { transform: rotate(8deg) } }
-  @keyframes si-dot   { 0% { transform: translateY(0) } 38% { transform: translateY(-50px) } 100% { transform: translateY(0) } }
-  @keyframes si-bar   { 0%,100% { transform: scaleY(1) } 18% { transform: scaleY(.95) } 46% { transform: scaleY(1.09) } }
+  @keyframes si-dot   { 0% { transform: translateY(0) } 38% { transform: translateY(-70px) } 100% { transform: translateY(0) } }
+  @keyframes si-bar   { 0%,100% { transform: scaleY(1) } 40% { transform: scaleY(1.1) } }
   @keyframes si-lens  { 0%,100% { transform: translate(0,0) } 30% { transform: translate(-1.5px,.3px) } 68% { transform: translate(1.5px,-.2px) } }
   @keyframes si-phone { 0%,100% { transform: rotate(0) } 30% { transform: rotate(-12deg) } 64% { transform: rotate(7deg) } 86% { transform: rotate(-2deg) } }
   @keyframes si-paper { 0%,100% { transform: translateY(7.2px) } 40%,70% { transform: translateY(-1.6px) } }
