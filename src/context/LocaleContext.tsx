@@ -15,19 +15,13 @@ const LocaleContext = createContext<LocaleContextValue | undefined>(undefined);
 const localeLayoutDuration = 520;
 const localeSwitchDuration = 650;
 const localeLayoutDeltaThreshold = 2;
+type LocaleLayoutSnapshot = Map<string, DOMRect>;
 
 const messages: Record<Locale, Record<string, string>> = {
   es: {
-    "nav.brand": "Sebastián Carrasco",
-    "nav.sobre": "sobre",
-    "nav.proyectos": "proyectos",
-    "nav.experiencia": "experiencia",
-    "nav.contacto": "contacto",
-    "section.inicio": "inicio",
-    "section.sobre": "Sobre mi",
+    "section.sobre": "Sobre mí",
     "section.proyectos": "Proyectos",
     "section.experiencia": "Experiencia",
-    "section.contacto": "contacto",
     "hero.greeting": "Hola, soy",
     "hero.name": "Sebastián Carrasco",
     "hero.profession": "Ingeniero Civil Informático",
@@ -38,20 +32,14 @@ const messages: Record<Locale, Record<string, string>> = {
     "alt.asesor": "Captura de AsesorDeSalud",
     "alt.terrainvicta": "Captura de TerraINVicta",
     "aria.theme": "Cambiar tema",
+    "aria.palette": "Cambiar paleta de color",
     "aria.open_settings": "Abrir ajustes",
     "aria.close_settings": "Cerrar ajustes",
   },
   en: {
-    "nav.brand": "Sebastián Carrasco",
-    "nav.sobre": "about",
-    "nav.proyectos": "Projects",
-    "nav.experiencia": "Experience",
-    "nav.contacto": "contact",
-    "section.inicio": "home",
     "section.sobre": "About me",
     "section.proyectos": "Projects",
     "section.experiencia": "Experience",
-    "section.contacto": "contact",
     "hero.greeting": "Hi, I’m",
     "hero.name": "Sebastián Carrasco",
     "hero.profession": "Computer Civil Engineer",
@@ -62,11 +50,13 @@ const messages: Record<Locale, Record<string, string>> = {
     "alt.asesor": "AsesorDeSalud screenshot",
     "alt.terrainvicta": "TerraINVicta screenshot",
     "aria.theme": "Change theme",
+    "aria.palette": "Change color palette",
     "aria.open_settings": "Open settings",
     "aria.close_settings": "Close settings",
   },
 };
 
+// Predeterminado en español; solo se respeta lo que el visitante eligió antes.
 function getInitialLocale(): Locale {
   if (typeof window === "undefined") return "es";
 
@@ -75,19 +65,33 @@ function getInitialLocale(): Locale {
     if (stored === "es" || stored === "en") return stored;
   } catch {}
 
-  const lang = navigator.language?.toLowerCase() || "es";
-  return lang.startsWith("en") ? "en" : "es";
+  return "es";
 }
 
-function captureLocaleLayout() {
+function captureLocaleLayout(): LocaleLayoutSnapshot {
   const elements = Array.from(document.querySelectorAll<HTMLElement>("[data-locale-motion]"));
-  return new Map(elements.map((element) => [element, element.getBoundingClientRect()]));
+  const snapshot: LocaleLayoutSnapshot = new Map();
+
+  elements.forEach((element) => {
+    const motionKey = element.dataset.localeMotion;
+    if (!motionKey) return;
+    snapshot.set(motionKey, element.getBoundingClientRect());
+  });
+
+  return snapshot;
 }
 
-function animateLocaleLayout(previousRects: Map<HTMLElement, DOMRect>) {
+function animateLocaleLayout(previousRects: LocaleLayoutSnapshot) {
   const animations: Animation[] = [];
+  const elements = Array.from(document.querySelectorAll<HTMLElement>("[data-locale-motion]"));
 
-  previousRects.forEach((previousRect, element) => {
+  elements.forEach((element) => {
+    const motionKey = element.dataset.localeMotion;
+    if (!motionKey) return;
+
+    const previousRect = previousRects.get(motionKey);
+    if (!previousRect) return;
+
     const currentRect = element.getBoundingClientRect();
     const deltaX = previousRect.left - currentRect.left;
     const deltaY = previousRect.top - currentRect.top;
@@ -116,13 +120,21 @@ function animateLocaleLayout(previousRects: Map<HTMLElement, DOMRect>) {
   return animations;
 }
 
+function restartLocaleTextAnimation(root: HTMLElement) {
+  root.classList.remove("locale-switching");
+  root.getBoundingClientRect(); // Force style flush so rapid toggles replay keyframes.
+  root.classList.add("locale-switching");
+}
+
 export const LocaleProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [locale, setLocaleState] = useState<Locale>("es");
+  const currentLocaleRef = useRef<Locale>("es");
+  const localeAnimationRunRef = useRef(0);
   const localeAnimationTimeoutsRef = useRef<number[]>([]);
   const localeAnimationFramesRef = useRef<number[]>([]);
   const localeLayoutAnimationsRef = useRef<Animation[]>([]);
 
-  const clearLocaleAnimation = useCallback(() => {
+  const stopLocaleAnimation = useCallback(() => {
     localeAnimationTimeoutsRef.current.forEach((timeoutId) => window.clearTimeout(timeoutId));
     localeAnimationFramesRef.current.forEach((frameId) => window.cancelAnimationFrame(frameId));
     localeLayoutAnimationsRef.current.forEach((animation) => animation.cancel());
@@ -133,16 +145,23 @@ export const LocaleProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   }, []);
 
   useEffect(() => {
-    setLocaleState(getInitialLocale());
+    const initialLocale = getInitialLocale();
+    currentLocaleRef.current = initialLocale;
+    setLocaleState(initialLocale);
+    document.documentElement.setAttribute("lang", initialLocale);
   }, []);
 
   const setLocale = useCallback((nextLocale: Locale) => {
-    clearLocaleAnimation();
+    if (currentLocaleRef.current === nextLocale) return;
 
-    if (locale === nextLocale) return;
+    const animationRun = localeAnimationRunRef.current + 1;
+    localeAnimationRunRef.current = animationRun;
+    stopLocaleAnimation();
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      currentLocaleRef.current = nextLocale;
       setLocaleState(nextLocale);
+      document.documentElement.setAttribute("lang", nextLocale);
       try {
         window.localStorage.setItem("locale", nextLocale);
       } catch {}
@@ -151,9 +170,9 @@ export const LocaleProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     }
 
     const root = document.documentElement;
-    root.classList.add("locale-switching");
 
     const applyLocale = () => {
+      currentLocaleRef.current = nextLocale;
       flushSync(() => setLocaleState(nextLocale));
       document.documentElement.setAttribute("lang", nextLocale);
       try {
@@ -163,36 +182,42 @@ export const LocaleProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
     const previousRects = captureLocaleLayout();
     applyLocale();
+    restartLocaleTextAnimation(root);
 
     const firstFrame = window.requestAnimationFrame(() => {
+      localeAnimationFramesRef.current = localeAnimationFramesRef.current.filter((id) => id !== firstFrame);
+      if (localeAnimationRunRef.current !== animationRun) return;
+
       const secondFrame = window.requestAnimationFrame(() => {
-        localeLayoutAnimationsRef.current = animateLocaleLayout(previousRects);
         localeAnimationFramesRef.current = localeAnimationFramesRef.current.filter((id) => id !== secondFrame);
+        if (localeAnimationRunRef.current !== animationRun) return;
+
+        localeLayoutAnimationsRef.current = animateLocaleLayout(previousRects);
       });
 
       localeAnimationFramesRef.current.push(secondFrame);
-      localeAnimationFramesRef.current = localeAnimationFramesRef.current.filter((id) => id !== firstFrame);
     });
 
     localeAnimationFramesRef.current.push(firstFrame);
 
     const cleanupTimeout = window.setTimeout(() => {
-      clearLocaleAnimation();
+      if (localeAnimationRunRef.current === animationRun) {
+        stopLocaleAnimation();
+      }
     }, localeSwitchDuration);
     localeAnimationTimeoutsRef.current.push(cleanupTimeout);
-  }, [clearLocaleAnimation, locale]);
+  }, [stopLocaleAnimation]);
 
   const t = useCallback((key: string) => messages[locale]?.[key] ?? key, [locale]);
 
   const value = useMemo<LocaleContextValue>(() => ({ locale, setLocale, t }), [locale, setLocale, t]);
 
   useEffect(() => {
-    document.documentElement.setAttribute("lang", locale);
-  }, [locale]);
-
-  useEffect(() => {
-    return clearLocaleAnimation;
-  }, [clearLocaleAnimation]);
+    return () => {
+      localeAnimationRunRef.current += 1;
+      stopLocaleAnimation();
+    };
+  }, [stopLocaleAnimation]);
 
   return <LocaleContext.Provider value={value}>{children}</LocaleContext.Provider>;
 };

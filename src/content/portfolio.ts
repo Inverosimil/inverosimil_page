@@ -40,6 +40,11 @@ export const profileImage = {
   height: 975,
 };
 
+export const cvFile = {
+  href: "/documents/Sebastián_Carrasco_CV.pdf",
+  downloadName: "Sebastián_Carrasco_CV.pdf",
+};
+
 export const favoriteTechnologies = [
   "Cursor",
   "Next.js",

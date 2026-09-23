@@ -1,33 +1,39 @@
 "use client";
 
-import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
-import { useTheme } from "../context/ThemeContext";
+import { flashSwitchAt, useTheme } from "../context/ThemeContext";
 import { useLocale } from "../context/LocaleContext";
+import { CloseIcon, MoonIcon, PaletteIcon, SettingsIcon, SunIcon } from "./icons";
+
+const iconButtonClass = "inline-flex items-center justify-center w-9 h-9 rounded-full hover:bg-accent/10 hover:text-accent transition-colors";
+
+function localeButtonClass(active: boolean) {
+  return `px-2.5 py-1.5 text-[12px] font-medium rounded-sm transition-colors ${
+    active ? "text-accent" : "text-foreground/70 hover:text-foreground"
+  }`;
+}
 
 export default function TopRightControls() {
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
-  const { theme, toggleTheme } = useTheme();
+  const { theme, accent, toggleTheme, toggleAccent } = useTheme();
   const { locale, setLocale, t } = useLocale();
 
   useEffect(() => {
+    if (!open) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
     };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
-
-  useEffect(() => {
-    if (!open) return;
-    const onDown = (e: MouseEvent) => {
+    const onDown = (e: PointerEvent) => {
       const el = wrapperRef.current;
-      if (!el) return;
-      if (!el.contains(e.target as Node)) setOpen(false);
+      if (el && !el.contains(e.target as Node)) setOpen(false);
     };
-    document.addEventListener("mousedown", onDown);
-    return () => document.removeEventListener("mousedown", onDown);
+    window.addEventListener("keydown", onKey);
+    document.addEventListener("pointerdown", onDown);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.removeEventListener("pointerdown", onDown);
+    };
   }, [open]);
 
   return (
@@ -37,71 +43,70 @@ export default function TopRightControls() {
       style={{ top: "calc(env(safe-area-inset-top, 0px) + 0.75rem)", right: "calc(env(safe-area-inset-right, 0px) + 0.75rem)" }}
     >
       <div
-        aria-expanded={open}
-        className={`border border-accent/20 backdrop-blur bg-background/90 shadow-md flex items-center gap-2 overflow-hidden relative ${
-          open ? "w-48 h-10 rounded-full pr-11" : "w-10 h-10 rounded-full"
+        className={`border border-accent/20 backdrop-blur bg-background/90 shadow-md flex items-center gap-2 overflow-hidden relative rounded-full h-10 ${
+          open ? "w-64 pr-11" : "w-10"
         }`}
         style={{
           transformOrigin: "top right",
-          transition: "width 340ms cubic-bezier(.22,1,.36,1), height 340ms cubic-bezier(.22,1,.36,1), box-shadow 280ms ease, background-color 280ms ease, transform 280ms ease",
-          transform: open ? "scale(1.02)" : "scale(1)"
+          transition: "width 340ms cubic-bezier(.22,1,.36,1), box-shadow 280ms ease, background-color 280ms ease, transform 280ms ease",
+          transform: open ? "scale(1.02)" : "scale(1)",
         }}
       >
         {open ? (
           <>
-            {/* Equal spacing: theme | languages | close */}
-            <div className="flex items-center gap-3 flex-grow justify-end">
+            <div className="flex items-center gap-2 flex-grow justify-end">
               <button
                 type="button"
                 aria-label={t("aria.theme")}
+                aria-pressed={theme === "dark"}
                 title={t("aria.theme")}
                 onClick={(e) => {
-                  const root = document.documentElement;
-                  root.style.setProperty("--switch-x", `${e.clientX}px`);
-                  root.style.setProperty("--switch-y", `${e.clientY}px`);
-                  root.classList.add("theme-switching");
-                  window.setTimeout(() => root.classList.remove("theme-switching"), 550);
+                  flashSwitchAt(e.clientX, e.clientY);
                   toggleTheme();
                 }}
-                className="inline-flex items-center justify-center w-9 h-9 rounded-full hover:bg-accent/10"
+                className={iconButtonClass}
               >
-                <Image
-                  src={theme === "dark" ? "/icons/darkmode.svg" : "/icons/lightmode.svg"}
-                  alt=""
-                  width={20}
-                  height={20}
-                  aria-hidden
-                  className="w-5 h-5 brightness-0 contrast-200 dark:brightness-200 dark:contrast-0"
-                />
+                <SunIcon className="icon-sun w-5 h-5" />
+                <MoonIcon className="icon-moon w-5 h-5" />
               </button>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1">
                 <button
                   type="button"
                   onClick={() => setLocale("es")}
                   aria-pressed={locale === "es"}
-                  className={`px-2.5 py-1.5 text-[12px] font-medium rounded-sm transition-colors ${
-                    locale === "es" ? "text-accent" : "text-foreground/60 hover:text-foreground"
-                  }`}
+                  className={localeButtonClass(locale === "es")}
                   aria-label="Español"
                   title="Español"
                 >
                   ES
                 </button>
-                <span className="text-foreground/30 text-[10px]">|</span>
+                <span aria-hidden className="text-foreground/40 text-[10px]">|</span>
                 <button
                   type="button"
                   onClick={() => setLocale("en")}
                   aria-pressed={locale === "en"}
-                  className={`px-2.5 py-1.5 text-[12px] font-medium rounded-sm transition-colors ${
-                    locale === "en" ? "text-accent" : "text-foreground/60 hover:text-foreground"
-                  }`}
+                  className={localeButtonClass(locale === "en")}
                   aria-label="English"
                   title="English"
                 >
                   EN
                 </button>
               </div>
+
+              <button
+                type="button"
+                aria-label={t("aria.palette")}
+                aria-pressed={accent === "amber"}
+                title={t("aria.palette")}
+                onClick={(e) => {
+                  flashSwitchAt(e.clientX, e.clientY);
+                  toggleAccent();
+                }}
+                className={iconButtonClass}
+              >
+                <PaletteIcon className="w-5 h-5" />
+              </button>
             </div>
 
             <button
@@ -109,34 +114,21 @@ export default function TopRightControls() {
               aria-label={t("aria.close_settings")}
               title={t("aria.close_settings")}
               onClick={() => setOpen(false)}
-              className="absolute right-0 top-1/2 -translate-y-1/2 inline-flex items-center justify-center w-10 h-10 rounded-full hover:bg-accent/10"
+              className="absolute right-0 top-1/2 -translate-y-1/2 inline-flex items-center justify-center w-10 h-10 rounded-full hover:bg-accent/10 hover:text-accent transition-colors"
             >
-              <Image
-                src="/icons/close.svg"
-                width={20}
-                height={20}
-                className="w-5 h-5 rotate-0 transition-transform duration-200 brightness-0 contrast-200 dark:brightness-200 dark:contrast-0"
-                alt=""
-                aria-hidden
-              />
+              <CloseIcon className="w-5 h-5" />
             </button>
           </>
         ) : (
           <button
             type="button"
             aria-label={t("aria.open_settings")}
+            aria-expanded={open}
             title={t("aria.open_settings")}
             onClick={() => setOpen(true)}
-            className="w-full h-full inline-flex items-center justify-center"
+            className="w-full h-full inline-flex items-center justify-center hover:text-accent transition-colors"
           >
-            <Image
-              src="/icons/menu.svg"
-              width={20}
-              height={20}
-              className="w-5 h-5 transition-transform duration-200 brightness-0 contrast-200 dark:brightness-200 dark:contrast-0"
-              alt=""
-              aria-hidden
-            />
+            <SettingsIcon className="w-5 h-5" />
           </button>
         )}
       </div>

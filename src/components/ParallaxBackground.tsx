@@ -41,19 +41,16 @@ export default function ParallaxBackground({ speed = 0.35 }: { speed?: number })
     window.addEventListener("scroll", onScroll, { passive: true });
 
     const applyPointer = () => {
-      if (!el || !lastPointer.current) {
-        pointerRafRef.current = null;
-        return;
-      }
+      pointerRafRef.current = null;
+      if (!lastPointer.current) return;
       const { x, y } = lastPointer.current;
-      // Set CSS variables used by the masked overlay
+      // Lente de puntos alrededor del puntero
       el.style.setProperty("--mx", `${Math.round(x)}px`);
       el.style.setProperty("--my", `${Math.round(y)}px`);
-      pointerRafRef.current = null;
     };
 
-    const onPointerMove = (e: PointerEvent | MouseEvent) => {
-      lastPointer.current = { x: (e as PointerEvent).clientX, y: (e as PointerEvent).clientY };
+    const onPointerMove = (e: PointerEvent) => {
+      lastPointer.current = { x: e.clientX, y: e.clientY };
       if (pointerRafRef.current == null) {
         pointerRafRef.current = window.requestAnimationFrame(applyPointer);
       }
@@ -65,17 +62,19 @@ export default function ParallaxBackground({ speed = 0.35 }: { speed?: number })
       el.style.setProperty("--my", `-10000px`);
     };
 
-    window.addEventListener("pointermove", onPointerMove as (e: Event) => void, { passive: true });
-    window.addEventListener("pointerleave", onPointerLeave as (e: Event) => void, { passive: true });
+    // `pointerleave` no dispara en window; el <html> sí recibe mouseleave al salir de la ventana.
+    const root = document.documentElement;
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    root.addEventListener("mouseleave", onPointerLeave);
 
     return () => {
       window.removeEventListener("scroll", onScroll);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      window.removeEventListener("pointermove", onPointerMove as (e: Event) => void);
-      window.removeEventListener("pointerleave", onPointerLeave as (e: Event) => void);
+      window.removeEventListener("pointermove", onPointerMove);
+      root.removeEventListener("mouseleave", onPointerLeave);
       if (pointerRafRef.current) cancelAnimationFrame(pointerRafRef.current);
     };
   }, [speed]);
 
   return <div ref={ref} className="code-grid" aria-hidden />;
-} 
+}

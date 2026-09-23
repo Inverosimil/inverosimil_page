@@ -75,19 +75,15 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
+                var root = document.documentElement;
+                var theme = null, accent = null;
                 try {
-                  const stored = localStorage.getItem('theme');
-                  if (stored === 'light' || stored === 'dark') {
-                    document.documentElement.classList.add(stored === 'dark' ? 'theme-dark' : 'theme-light');
-                    return;
-                  }
-                } catch {}
-                
-                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                  document.documentElement.classList.add('theme-dark');
-                } else {
-                  document.documentElement.classList.add('theme-light');
-                }
+                  theme = localStorage.getItem('theme');
+                  accent = localStorage.getItem('accent');
+                } catch (e) {}
+                // Predeterminado: oscuro + ámbar (mismo criterio que ThemeContext)
+                root.classList.add(theme === 'light' ? 'theme-light' : 'theme-dark');
+                if (accent !== 'purple') root.classList.add('accent-amber');
               })();
             `,
           }}

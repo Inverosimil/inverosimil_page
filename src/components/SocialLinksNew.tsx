@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { GitHubIcon, InstagramIcon, LinkedInIcon, MailIcon, WhatsAppIcon } from "./icons";
 
 type Props = {
   github?: string;
@@ -11,67 +12,25 @@ type Props = {
   size?: number;
 };
 
-const iconClass = "w-[1.5rem] h-[1.5rem]";
+const linkClass =
+  "social-link inline-flex items-center justify-center w-9 h-9 -m-1 rounded-full text-foreground/70 hover:text-accent transition-colors duration-200";
 
-export default function SocialLinksNew({ github, linkedin, instagram, whatsapp, email, className = "", size = 24 }: Props) {
-  const common = "inline-flex items-center justify-center text-foreground/70 hover:text-accent transition-colors duration-200";
-
-  const MaskIcon = ({ src, scale = 1 }: { src: string; scale?: number }) => (
-    <span
-      aria-hidden
-      className={iconClass}
-      style={{
-        width: size * scale,
-        height: size * scale,
-        display: "inline-block",
-        backgroundColor: "currentColor",
-        WebkitMaskImage: `url(${src})`,
-        WebkitMaskRepeat: "no-repeat",
-        WebkitMaskPosition: "center",
-        WebkitMaskSize: "contain",
-        maskImage: `url(${src})`,
-        maskRepeat: "no-repeat",
-        maskPosition: "center",
-        maskSize: "contain",
-      }}
-    />
-  );
-
-  const Wrap = ({ href, label, children }: { href?: string; label: string; children: React.ReactNode }) =>
-    href ? (
-      <a href={href} target="_blank" rel="noreferrer" aria-label={label} title={label} className={common}>
-        {children}
-      </a>
-    ) : (
-      <span aria-hidden className={`${common} opacity-60 cursor-default`}>{children}</span>
-    );
+export default function SocialLinksNew({ github, linkedin, instagram, whatsapp, email, className = "", size = 22 }: Props) {
+  const items = [
+    { href: github, label: "GitHub", Icon: GitHubIcon },
+    { href: linkedin, label: "LinkedIn", Icon: LinkedInIcon },
+    { href: instagram, label: "Instagram", Icon: InstagramIcon },
+    { href: whatsapp, label: "WhatsApp", Icon: WhatsAppIcon },
+    { href: email, label: "Email", Icon: MailIcon },
+  ].filter((item) => item.href);
 
   return (
-    <div className={`flex items-center gap-3 sm:gap-3 gap-2 ${className}`}>
-      {/* GitHub */}
-      <Wrap href={github} label="GitHub">
-        <MaskIcon src="/icons/github.svg" />
-      </Wrap>
-
-      {/* LinkedIn */}
-      <Wrap href={linkedin} label="LinkedIn">
-        <MaskIcon src="/icons/linkedin.svg" />
-      </Wrap>
-
-      {/* Instagram */}
-      <Wrap href={instagram} label="Instagram">
-        <MaskIcon src="/icons/instagram.svg" scale={1.3} />
-      </Wrap>
-
-      {/* WhatsApp */}
-      <Wrap href={whatsapp} label="WhatsApp">
-        <MaskIcon src="/icons/whatsapp.svg" scale={1.08} />
-      </Wrap>
-
-      {/* Email */}
-      <Wrap href={email} label="Email">
-        <MaskIcon src="/icons/email.svg" />
-      </Wrap>
+    <div className={`flex items-center gap-3 ${className}`}>
+      {items.map(({ href, label, Icon }) => (
+        <a key={label} href={href} target="_blank" rel="noreferrer" aria-label={label} title={label} className={linkClass}>
+          <Icon size={size} />
+        </a>
+      ))}
     </div>
   );
 }

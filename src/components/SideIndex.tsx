@@ -1,11 +1,10 @@
 "use client";
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import Link from "next/link";
 import { useLocale } from "../context/LocaleContext";
 
 const SECTION_IDS = ["sobre", "proyectos", "experiencia"] as const;
-const smoothScrollMaxDuration = 900;
-const smoothScrollMinDuration = 720;
+const smoothScrollMaxDuration = 620;
+const smoothScrollMinDuration = 400;
 
 type SectionId = typeof SECTION_IDS[number];
 
@@ -131,7 +130,7 @@ export default function SideIndex() {
     const distance = targetY - startY;
     const duration = Math.min(
       smoothScrollMaxDuration,
-      Math.max(smoothScrollMinDuration, Math.abs(distance) * 0.48)
+      Math.max(smoothScrollMinDuration, Math.abs(distance) * 0.32)
     );
     const startTime = performance.now();
 
@@ -158,19 +157,19 @@ export default function SideIndex() {
           const isActive = active === id;
           return (
             <li key={id}>
-              <Link
+              <a
                 href={`#${id}`}
                 onClick={handleClick(id)}
                 aria-current={isActive ? "location" : undefined}
                 data-active={isActive ? "true" : "false"}
                 className={
                   "sideindex-link group flex items-center gap-2 py-1.5 transition-colors " +
-                  (isActive ? "text-foreground font-medium" : "text-foreground/60 hover:text-foreground/80")
+                  (isActive ? "text-foreground font-medium" : "text-foreground/70 hover:text-foreground")
                 }
               >
                 <span aria-hidden className={"sideindex-dash"} />
                 <span className="locale-animated sideindex-label">{labels[id]}</span>
-              </Link>
+              </a>
             </li>
           );
         })}

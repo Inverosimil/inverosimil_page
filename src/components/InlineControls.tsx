@@ -1,12 +1,21 @@
 "use client";
 
-import Image from "next/image";
 import React from "react";
-import { useTheme } from "../context/ThemeContext";
+import { flashSwitchAt, useTheme } from "../context/ThemeContext";
 import { useLocale } from "../context/LocaleContext";
+import { MoonIcon, PaletteIcon, SunIcon } from "./icons";
+
+const iconButtonClass =
+  "inline-flex items-center justify-center w-9 h-9 sm:w-7 sm:h-7 rounded-full text-foreground/70 hover:text-accent transition-colors duration-200 hover:bg-accent/10";
+
+function localeButtonClass(active: boolean) {
+  return `px-2.5 py-1.5 sm:px-2 sm:py-1 text-[12px] sm:text-[11px] font-medium transition-colors rounded-sm ${
+    active ? "text-accent" : "text-foreground/70 hover:text-foreground"
+  }`;
+}
 
 export default function InlineControls() {
-  const { theme, toggleTheme } = useTheme();
+  const { theme, accent, toggleTheme, toggleAccent } = useTheme();
   const { locale, setLocale, t } = useLocale();
 
   return (
@@ -14,57 +23,53 @@ export default function InlineControls() {
       <button
         type="button"
         onClick={(e) => {
-          const root = document.documentElement;
-          root.style.setProperty("--switch-x", `${e.clientX}px`);
-          root.style.setProperty("--switch-y", `${e.clientY}px`);
-          root.classList.add("theme-switching");
-          window.setTimeout(() => root.classList.remove("theme-switching"), 550);
+          flashSwitchAt(e.clientX, e.clientY);
           toggleTheme();
         }}
-        className="inline-flex items-center justify-center w-9 h-9 sm:w-7 sm:h-7 rounded-full text-foreground/60 hover:text-accent transition-colors duration-200 hover:bg-accent/10"
+        className={iconButtonClass}
         aria-label={t("aria.theme")}
+        aria-pressed={theme === "dark"}
         title={t("aria.theme")}
       >
-        <Image
-          src={theme === "dark" ? "/icons/darkmode.svg" : "/icons/lightmode.svg"} 
-          alt="" 
-          width={20}
-          height={20}
-          aria-hidden
-          className="w-5 h-5 sm:w-4 sm:h-4 brightness-0 contrast-200 dark:brightness-200 dark:contrast-0"
-        />
+        <SunIcon className="icon-sun w-5 h-5 sm:w-4 sm:h-4" />
+        <MoonIcon className="icon-moon w-5 h-5 sm:w-4 sm:h-4" />
       </button>
       <div className="flex items-center gap-1 sm:gap-0.5">
         <button
           type="button"
           onClick={() => setLocale("es")}
           aria-pressed={locale === "es"}
-          className={`px-2.5 py-1.5 sm:px-2 sm:py-1 text-[12px] sm:text-[11px] font-medium transition-colors rounded-sm ${
-            locale === "es" 
-              ? "text-accent" 
-              : "text-foreground/50 hover:text-foreground/80"
-          }`}
+          className={localeButtonClass(locale === "es")}
           aria-label="Español"
           title="Español"
         >
           ES
         </button>
-        <span className="text-foreground/30 text-[10px]">|</span>
+        <span aria-hidden className="text-foreground/40 text-[10px]">|</span>
         <button
           type="button"
           onClick={() => setLocale("en")}
           aria-pressed={locale === "en"}
-          className={`px-2.5 py-1.5 sm:px-2 sm:py-1 text-[12px] sm:text-[11px] font-medium transition-colors rounded-sm ${
-            locale === "en" 
-              ? "text-accent" 
-              : "text-foreground/50 hover:text-foreground/80"
-          }`}
+          className={localeButtonClass(locale === "en")}
           aria-label="English"
           title="English"
         >
           EN
         </button>
       </div>
+      <button
+        type="button"
+        onClick={(e) => {
+          flashSwitchAt(e.clientX, e.clientY);
+          toggleAccent();
+        }}
+        className={iconButtonClass}
+        aria-label={t("aria.palette")}
+        aria-pressed={accent === "amber"}
+        title={t("aria.palette")}
+      >
+        <PaletteIcon className="w-5 h-5 sm:w-4 sm:h-4" />
+      </button>
     </div>
   );
 }

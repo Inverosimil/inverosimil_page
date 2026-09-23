@@ -1,10 +1,14 @@
 @import "tailwindcss";
 
+/* `dark:` sigue la clase .theme-dark del <html>, no la preferencia del SO */
+@custom-variant dark (&:where(.theme-dark, .theme-dark *));
+
+/* Valores base = predeterminado del sitio (oscuro + ámbar); las clases de abajo los redefinen */
 :root {
-  --background: #ffffff;
-  --foreground: #1a1033; /* morado muy oscuro para texto principal en light */
-  --accent: #6d28d9; /* morado principal */
-  --muted: #f3e8ff; /* lila muy suave para fondos */
+  --background: #121212;
+  --foreground: #ededed;
+  --accent: #fbbf24;
+  --muted: #1d1d1d;
 }
 
 @theme inline {
@@ -16,7 +20,7 @@
   --font-display: var(--font-display);
 }
 
-/* Modo oscuro/claro controlado por clases en <html> */
+/* Tema (light/dark) y paleta (morado/ámbar) controlados por clases en <html> */
 .theme-light {
   --background: #ffffff;
   --foreground: #1a1033;
@@ -29,15 +33,20 @@
   --accent: #a78bfa;
   --muted: #140b2d;
 }
-
-/* Fallback a preferencia del SO si no se aplica clase explícita */
-@media (prefers-color-scheme: dark) {
-  :root:not(.theme-light):not(.theme-dark) {
-    --background: #0b061a; /* casi negro con tinte morado */
-    --foreground: #ffffff; /* texto blanco en dark */
-    --accent: #a78bfa; /* morado claro para acentos en dark */
-    --muted: #140b2d; /* morado profundo para tarjetas */
-  }
+/* Paleta ámbar «grafito neutro»: gris verdadero, sin tinte cálido, para que el
+   amarillo sea el único color de la página. El acento claro es mucho más oscuro
+   que el oscuro porque el amarillo brillante no alcanza 4.5:1 sobre fondo claro. */
+.theme-light.accent-amber {
+  --background: #fafafa;
+  --foreground: #171717;
+  --accent: #7a4d02;
+  --muted: #efefef;
+}
+.theme-dark.accent-amber {
+  --background: #121212;
+  --foreground: #ededed;
+  --accent: #fbbf24;
+  --muted: #1d1d1d;
 }
 
 * { box-sizing: border-box; }
@@ -62,8 +71,15 @@ body {
   overflow-x: hidden; /* Evitar scroll horizontal */
 }
 
-/******** Utilities ********/
-/* Overlay global con puntos y parallax controlado por --bg-offset */
+/* Foco visible y consistente para teclado */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/******** Fondo: puntos con parallax ********/
+
 .code-grid {
   position: fixed;
   inset: 0;
@@ -133,55 +149,26 @@ body {
   );
 }
 
-.neon { text-shadow: none; }
-
-.link { color: var(--accent); }
-.link:hover { text-decoration: underline; }
-
-.card { border: 1px solid transparent; background: transparent; }
-.card:hover {
-  border-color: color-mix(in oklab, var(--accent) 30%, transparent);
-  background: linear-gradient(180deg, color-mix(in oklab, var(--accent) 8%, transparent), color-mix(in oklab, #000 40%, transparent));
-}
-
-hr { border-color: color-mix(in oklab, var(--accent) 20%, transparent); }
-
-/* Tipografía display para títulos al estilo jackbailey.dev */
+/* Tipografía display para títulos */
 .font-display { font-family: var(--font-display), var(--font-inter), ui-sans-serif, system-ui; letter-spacing: 0.5px; }
 
-/* Animación de carga del header inspirada en m7mad.dev */
-.site-header { --progress: 0%; }
-.site-header .header-progress {
-  position: absolute; inset: auto 0 0 0; height: 2px; background: color-mix(in oklab, var(--accent) 80%, transparent);
-  transform-origin: left center; transform: scaleX(0);
-}
-.site-header[data-loaded="true"] .header-progress {
-  animation: header-progress 1.2s cubic-bezier(.22,1,.36,1) forwards;
-}
-@keyframes header-progress { to { transform: scaleX(1); } }
-
-/* Aparición escalonada de elementos del nav */
-.nav-stagger .nav-i { opacity: 0; transform: translateY(-6px); }
-.site-header[data-loaded="true"] .nav-stagger .nav-i {
-  animation: nav-in .5s cubic-bezier(.22,1,.36,1) forwards;
-  animation-delay: calc(120ms + var(--i) * 70ms);
-}
-@keyframes nav-in { to { opacity: 1; transform: translateY(0); } }
-
-/* Transiciones suaves al cambiar tema (colores, bordes, fills) */
+/* Transición de color solo MIENTRAS se cambia tema o paleta.
+   Antes se aplicaba a todo elemento de forma permanente, lo que encarecía
+   cada hover y repintado del sitio; los hovers traen su propia transición. */
 @media (prefers-reduced-motion: no-preference) {
-  .theme-light *, .theme-dark * {
-    transition: color .35s ease, background-color .35s ease, border-color .35s ease, fill .35s ease, stroke .35s ease;
+  html.theme-switching * {
+    transition: color .35s ease, background-color .35s ease, border-color .35s ease, fill .35s ease, stroke .35s ease, box-shadow .35s ease !important;
   }
 }
 
-/* Micro-animación de destello radial en toggle de tema */
+/* Micro-animación de destello radial en toggle de tema/paleta */
 @media (prefers-reduced-motion: no-preference) {
   html.theme-switching::before {
     content: "";
     position: fixed;
     inset: 0;
     pointer-events: none;
+    z-index: 60;
     background: radial-gradient(600px circle at var(--switch-x, 50%) var(--switch-y, 50%), color-mix(in oklab, var(--accent) 28%, transparent) 0%, transparent 60%);
     opacity: 0;
     animation: theme-flash 550ms cubic-bezier(.22,1,.36,1);
@@ -192,15 +179,27 @@ hr { border-color: color-mix(in oklab, var(--accent) 20%, transparent); }
   }
 }
 
-/* Fuerza transición de transform para medios de proyecto (evita que la regla global la sobrescriba) */
+/* Captura de proyecto: leve elevación en hover (evita que la regla global la sobrescriba) */
 .project-media {
-  transition: transform 450ms cubic-bezier(.22,1,.36,1), scale 450ms cubic-bezier(.22,1,.36,1);
+  transition: transform 450ms cubic-bezier(.22,1,.36,1), border-color .35s ease, box-shadow 450ms cubic-bezier(.22,1,.36,1);
   transform-origin: center;
-  will-change: transform, scale;
+  will-change: transform;
+}
+@media (hover: hover) {
+  .group:hover .project-media {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 14px 34px color-mix(in oklab, var(--accent) 18%, transparent);
+  }
 }
 
-/* Desactiva transiciones para elementos marcados explícitamente */
-.no-transition, .no-transition * { transition: none !important; }
+/* Ícono de enlace externo: aparece del todo en hover */
+.ext-icon {
+  opacity: .55;
+  transition: opacity .25s ease, transform .35s cubic-bezier(.22,1,.36,1);
+}
+@media (hover: hover) {
+  .group:hover .ext-icon { opacity: 1; transform: translate(1px, -1px); }
+}
 
 /* SideIndex: animación elegante para dash y etiqueta */
 .sideindex-link { isolation: isolate; --dash-shift: 0.6rem; }
@@ -236,16 +235,43 @@ hr { border-color: color-mix(in oklab, var(--accent) 20%, transparent); }
   .sideindex-link[data-active="false"]:hover .sideindex-label { transform: translateX(calc(var(--dash-shift) * .6)) scale(1.02); letter-spacing: .1px; }
 }
 
-/* Efecto de zoom para tags de tecnologías */
+/* Efecto de zoom para tags de tecnologías.
+   Sin will-change: son ~25 elementos y no compensa promoverlos de forma
+   permanente por un scale de 1.05 en hover. */
 .tag {
-  transition: transform 300ms cubic-bezier(.22,1,.36,1), background-color 200ms ease, border-color 200ms ease;
+  transition: transform 300ms cubic-bezier(.22,1,.36,1), background-color 200ms ease, border-color 200ms ease, color .35s ease;
   transform-origin: center;
-  will-change: transform;
 }
 
 @media (hover: hover) {
   .tag:hover {
     transform: scale(1.05);
+  }
+}
+
+/* Línea de tiempo de experiencia */
+.timeline-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow:
+    0 0 0 3px color-mix(in oklab, var(--accent) 22%, transparent),
+    0 0 12px color-mix(in oklab, var(--accent) 70%, transparent);
+}
+.timeline-line {
+  width: 1px;
+  background: color-mix(in oklab, var(--accent) 22%, transparent);
+}
+@media (prefers-reduced-motion: no-preference) {
+  /* Pulso único cuando la entrada aparece en pantalla */
+  [data-revealed="true"] .timeline-dot {
+    animation: dot-pulse 900ms cubic-bezier(.22,1,.36,1) 1;
+  }
+  @keyframes dot-pulse {
+    0% { box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 22%, transparent), 0 0 0 color-mix(in oklab, var(--accent) 70%, transparent); }
+    40% { box-shadow: 0 0 0 7px color-mix(in oklab, var(--accent) 14%, transparent), 0 0 22px color-mix(in oklab, var(--accent) 90%, transparent); }
+    100% { box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 22%, transparent), 0 0 12px color-mix(in oklab, var(--accent) 70%, transparent); }
   }
 }
 
@@ -273,6 +299,13 @@ hr { border-color: color-mix(in oklab, var(--accent) 20%, transparent); }
     background-size: 100% 2px, 100% 2px; /* revela overlay acentuado */
   }
 }
+
+/* Iconos de tema: el visible depende de la clase del <html>, no del estado de React
+   (evita que el sol aparezca un frame en modo oscuro antes de hidratar) */
+.icon-sun { display: none; }
+.icon-moon { display: block; }
+.theme-dark .icon-sun { display: block; }
+.theme-dark .icon-moon { display: none; }
 
 @media (prefers-reduced-motion: no-preference) {
   [data-locale-motion] {
@@ -303,5 +336,39 @@ hr { border-color: color-mix(in oklab, var(--accent) 20%, transparent); }
   @keyframes locale-text-in {
     from { opacity: 0; translate: 0 10px; filter: blur(4px); clip-path: inset(18% 0 0 0); }
     to { opacity: 1; translate: 0 0; filter: blur(0); }
+  }
+}
+
+/* ── Iconos sociales: una animación dentro de cada icono, al hover del enlace.
+   Arrancan en 0 al entrar y, al salir, vuelven al reposo con una transición
+   corta (la animación se corta, no termina). Ver icons.tsx. */
+.si-gmpaper { transform: translateY(7.2px); } /* reposo: la hoja escondida bajo la V */
+@media (prefers-reduced-motion: no-preference) {
+  .si-ghhead, .si-ghtail, .si-lidot, .si-libar, .si-waph, .si-iglens { transition: transform .2s ease; }
+  .social-link:hover .si-ghhead  { animation: si-head  .62s cubic-bezier(.22,1,.36,1); }
+  .social-link:hover .si-ghtail  { animation: si-tail  .66s cubic-bezier(.22,1,.36,1); }
+  .social-link:hover .si-lidot   { animation: si-dot   .62s cubic-bezier(.34,1.56,.64,1); }
+  .social-link:hover .si-libar   { animation: si-bar   .62s cubic-bezier(.34,1.3,.64,1); }
+  .social-link:hover .si-iglens  { animation: si-lens  .9s  cubic-bezier(.45,0,.55,1); }
+  .social-link:hover .si-waph    { animation: si-phone .8s  cubic-bezier(.45,0,.55,1); }
+  .social-link:hover .si-gmpaper { animation: si-paper .85s cubic-bezier(.22,1,.36,1); }
+  @keyframes si-head  { 0%,100% { transform: skewX(0) }  28% { transform: skewX(10deg) }  62% { transform: skewX(-10deg) } }
+  @keyframes si-tail  { 0%,100% { transform: rotate(0) } 30% { transform: rotate(-13deg) } 66% { transform: rotate(8deg) } }
+  @keyframes si-dot   { 0% { transform: translateY(0) } 38% { transform: translateY(-50px) } 100% { transform: translateY(0) } }
+  @keyframes si-bar   { 0%,100% { transform: scaleY(1) } 18% { transform: scaleY(.95) } 46% { transform: scaleY(1.09) } }
+  @keyframes si-lens  { 0%,100% { transform: translate(0,0) } 30% { transform: translate(-1.5px,.3px) } 68% { transform: translate(1.5px,-.2px) } }
+  @keyframes si-phone { 0%,100% { transform: rotate(0) } 30% { transform: rotate(-12deg) } 64% { transform: rotate(7deg) } 86% { transform: rotate(-2deg) } }
+  @keyframes si-paper { 0%,100% { transform: translateY(7.2px) } 40%,70% { transform: translateY(-1.6px) } }
+}
+
+/* Interruptor global: con reduced-motion ningún movimiento sobrevive, ni el de reglas
+   futuras que olviden su propio guard. Los componentes además evitan iniciar
+   animaciones por JS (Reveal, LocaleContext, SideIndex, SmoothPageScroll). */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

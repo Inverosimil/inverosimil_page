@@ -27,7 +27,7 @@ export default function Reveal({ children, className = "", delay = 0 }: { childr
             });
           };
           if (delay > 0) {
-            timeoutRef.current = window.setTimeout(trigger, delay) as unknown as number;
+            timeoutRef.current = window.setTimeout(trigger, delay);
           } else {
             trigger();
           }
@@ -48,6 +48,7 @@ export default function Reveal({ children, className = "", delay = 0 }: { childr
   return (
     <div
       ref={ref}
+      data-revealed={visible ? "true" : "false"}
       className={`${className} transform-gpu will-change-transform ${visible ? "opacity-100 translate-y-0 scale-100 blur-0" : "opacity-0 translate-y-4 scale-95 blur-[2px]"}`}
       style={{
         transition: "opacity 700ms cubic-bezier(.22,1,.36,1), transform 700ms cubic-bezier(.22,1,.36,1), filter 700ms cubic-bezier(.22,1,.36,1)",

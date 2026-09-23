@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-const scrollEase = 0.14;
+const scrollEase = 0.18;
 const wheelMultiplier = 0.92;
 const maxWheelStep = 260;
 const stopThreshold = 0.45;
