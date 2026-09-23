@@ -89,16 +89,24 @@ export function LinkedInIcon(props: IconProps) {
   );
 }
 
-/** Instagram: disparo. El lente se cierra rellenando su hueco mientras el punto
- *  destella y suelta un anillo que se expande y se apaga. El punto está
- *  centrado en (18.393, 5.584), medido sobre la propia ruta. */
+/** Instagram: disparo. El lente se cierra desde el borde hacia el centro, como
+ *  un diafragma (un trazo que engorda hacia dentro, recortado al hueco),
+ *  mientras el punto destella y suelta un anillo que se expande y se apaga.
+ *  El punto está centrado en (18.393, 5.584), medido sobre la propia ruta. */
 export function InstagramIcon(props: IconProps) {
+  const id = useId();
+  const hole = `ig-h${id}`;
   const flash = box("18.393px 5.584px");
   return (
     <FilledIcon {...props}>
+      <defs>
+        <clipPath id={hole}><circle cx="12" cy="12" r="4" /></clipPath>
+      </defs>
       <path d={`${IG[0]} ${IG[1]}`} />
       <path d={`${IG[3]} ${IG[4]}`} />
-      <circle cx="12" cy="12" r="4" className="si-igiris" style={{ ...box("12px 12px"), transform: "scale(0)" }} />
+      <g clipPath={`url(#${hole})`}>
+        <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" strokeWidth={0} className="si-igiris" />
+      </g>
       <circle cx="18.393" cy="5.584" r="1.44" fill="none" stroke="currentColor" strokeWidth={0.45} opacity={0} className="si-igburst" style={flash} />
       <path d={IG[2]} className="si-igflash" style={flash} />
     </FilledIcon>

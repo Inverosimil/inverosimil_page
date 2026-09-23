@@ -344,7 +344,7 @@ body {
    corta (la animación se corta, no termina). Ver icons.tsx. */
 .si-gmpaper { transform: translateY(7.2px); } /* reposo: la hoja escondida bajo la V */
 .si-igburst { opacity: 0; }                   /* reposo: el anillo del flash no existe */
-.si-igiris { transform: scale(0); }           /* reposo: el lente abierto, el disco no ocupa nada */
+.si-igiris { stroke-width: 0; }               /* reposo: el lente abierto, el diafragma sin grosor */
 @media (prefers-reduced-motion: no-preference) {
   .si-ghhead, .si-ghtail, .si-lidot, .si-libar, .si-waph, .si-igflash { transition: transform .2s ease; }
   .social-link:hover .si-ghhead  { animation: si-head  .8s cubic-bezier(.22,1,.36,1); }
@@ -362,7 +362,7 @@ body {
   @keyframes si-bar   { 0%,100% { transform: scaleY(1) } 40% { transform: scaleY(1.1) } }
   @keyframes si-flash { 0%,100% { transform: scale(1) } 14% { transform: scale(1.8) } 45% { transform: scale(1) } }
   @keyframes si-burst { 0% { transform: scale(1); opacity: 0 } 10% { opacity: .9 } 55%,100% { transform: scale(2.4); opacity: 0 } }
-  @keyframes si-iris  { 0%,100% { transform: scale(0) } 16%,38% { transform: scale(1) } 62% { transform: scale(0) } }
+  @keyframes si-iris  { 0%,100% { stroke-width: 0 } 16%,38% { stroke-width: 8 } 62% { stroke-width: 0 } }
   @keyframes si-phone { 0%,100% { transform: rotate(0) } 18% { transform: rotate(-16deg) } 40% { transform: rotate(13deg) } 62% { transform: rotate(-9deg) } 82% { transform: rotate(4deg) } }
   @keyframes si-paper { 0%,100% { transform: translateY(7.2px) } 42%,62% { transform: translateY(-1.6px) } }
 }
