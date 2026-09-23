@@ -5,6 +5,8 @@
 
 /* Valores base = predeterminado del sitio (oscuro + ámbar); las clases de abajo los redefinen */
 :root {
+  --swatch-a: #fbbf24;
+  --swatch-b: #a78bfa;
   --background: #121212;
   --foreground: #ededed;
   --accent: #fbbf24;
@@ -22,12 +24,16 @@
 
 /* Tema (light/dark) y paleta (morado/ámbar) controlados por clases en <html> */
 .theme-light {
+  --swatch-a: #7a4d02;
+  --swatch-b: #6d28d9;
   --background: #ffffff;
   --foreground: #1a1033;
   --accent: #6d28d9;
   --muted: #f3e8ff;
 }
 .theme-dark {
+  --swatch-a: #fbbf24;
+  --swatch-b: #a78bfa;
   --background: #0b061a;
   --foreground: #ffffff;
   --accent: #a78bfa;
@@ -297,6 +303,27 @@ body {
 @media (hover: hover) {
   .soft-underline:hover {
     background-size: 100% 2px, 100% 2px; /* revela overlay acentuado */
+  }
+}
+
+/* Icono de paleta: los tres huecos se encienden en cadena, cada uno con el
+   acento de una de las dos paletas del sitio y el tercero a pleno color de
+   texto, y se apagan en el mismo orden.
+   Se dispara igual que los iconos sociales, con la clase `is-playing` que pone
+   usePlayOnce, así que se completa aunque el puntero salga a la mitad. */
+.palette-btn { --si-dur: 940ms; }
+.palette-icon .pi-dot { transform-box: view-box; fill: currentColor; }
+.palette-icon .pi-1 { transform-origin: 7.5px 11.5px; --swatch: var(--swatch-a); }
+.palette-icon .pi-2 { transform-origin: 10.5px 7.5px; --swatch: var(--swatch-b); }
+.palette-icon .pi-3 { transform-origin: 15.5px 7.5px; --swatch: var(--foreground); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .palette-btn.is-playing .pi-1 { animation: pi-pop .72s ease both; }
+  .palette-btn.is-playing .pi-2 { animation: pi-pop .72s ease .11s both; }
+  .palette-btn.is-playing .pi-3 { animation: pi-pop .72s ease .22s both; }
+  @keyframes pi-pop {
+    0%, 100% { fill: currentColor; transform: scale(1); }
+    26%, 62% { fill: var(--swatch); transform: scale(1.5); }
   }
 }
 

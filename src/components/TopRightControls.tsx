@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { flashSwitchAt, useTheme } from "../context/ThemeContext";
 import { useLocale } from "../context/LocaleContext";
 import { CloseIcon, PaletteIcon, SettingsIcon, ThemeIcon } from "./icons";
+import { usePlayOnce } from "../utils/playOnce";
 
 const iconButtonClass = "inline-flex items-center justify-center w-9 h-9 rounded-full hover:bg-accent/10 hover:text-accent transition-colors";
 
@@ -18,6 +19,7 @@ export default function TopRightControls() {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const { theme, accent, toggleTheme, toggleAccent } = useTheme();
   const { locale, setLocale, t } = useLocale();
+  const playPalette = usePlayOnce(940);
 
   useEffect(() => {
     if (!open) return;
@@ -98,11 +100,14 @@ export default function TopRightControls() {
                 aria-label={t("aria.palette")}
                 aria-pressed={accent === "amber"}
                 title={t("aria.palette")}
+                onPointerEnter={playPalette}
+                onFocus={playPalette}
                 onClick={(e) => {
+                  playPalette(e);
                   flashSwitchAt(e.clientX, e.clientY);
                   toggleAccent();
                 }}
-                className={iconButtonClass}
+                className={`palette-btn ${iconButtonClass}`}
               >
                 <PaletteIcon className="w-5 h-5" />
               </button>

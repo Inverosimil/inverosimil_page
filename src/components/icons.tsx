@@ -199,13 +199,15 @@ export function ThemeIcon({ className = "", ...props }: IconProps) {
   );
 }
 
-export function PaletteIcon(props: IconProps) {
+/** Paleta: los tres huecos se encienden en cadena, cada uno con el color de una
+ *  paleta, y se apagan en el mismo orden. Reglas en globals.css (.palette-icon). */
+export function PaletteIcon({ className = "", ...props }: IconProps) {
   return (
-    <Icon {...props}>
+    <Icon className={`palette-icon ${className}`.trim()} {...props}>
       <path d="M12 3a9 9 0 0 0 0 18c1.1 0 2-.9 2-2v-.5a1.5 1.5 0 0 1 1.5-1.5H17a4 4 0 0 0 4-4 10 10 0 0 0-9-10z" />
-      <circle cx="7.5" cy="11.5" r="1" />
-      <circle cx="10.5" cy="7.5" r="1" />
-      <circle cx="15.5" cy="7.5" r="1" />
+      <circle className="pi-dot pi-1" cx="7.5" cy="11.5" r="1" />
+      <circle className="pi-dot pi-2" cx="10.5" cy="7.5" r="1" />
+      <circle className="pi-dot pi-3" cx="15.5" cy="7.5" r="1" />
     </Icon>
   );
 }

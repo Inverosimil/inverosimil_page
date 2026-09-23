@@ -4,6 +4,7 @@ import React from "react";
 import { flashSwitchAt, useTheme } from "../context/ThemeContext";
 import { useLocale } from "../context/LocaleContext";
 import { PaletteIcon, ThemeIcon } from "./icons";
+import { usePlayOnce } from "../utils/playOnce";
 
 const iconButtonClass =
   "inline-flex items-center justify-center w-9 h-9 sm:w-7 sm:h-7 rounded-full text-foreground/70 hover:text-accent transition-colors duration-200 hover:bg-accent/10";
@@ -17,6 +18,7 @@ function localeButtonClass(active: boolean) {
 export default function InlineControls() {
   const { theme, accent, toggleTheme, toggleAccent } = useTheme();
   const { locale, setLocale, t } = useLocale();
+  const playPalette = usePlayOnce(940);
 
   return (
     <div className="flex items-center gap-4 text-xs sm:text-xs">
@@ -58,11 +60,14 @@ export default function InlineControls() {
       </div>
       <button
         type="button"
+        onPointerEnter={playPalette}
+        onFocus={playPalette}
         onClick={(e) => {
+          playPalette(e);
           flashSwitchAt(e.clientX, e.clientY);
           toggleAccent();
         }}
-        className={iconButtonClass}
+        className={`palette-btn ${iconButtonClass}`}
         aria-label={t("aria.palette")}
         aria-pressed={accent === "amber"}
         title={t("aria.palette")}

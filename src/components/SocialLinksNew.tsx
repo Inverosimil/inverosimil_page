@@ -1,5 +1,6 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React from "react";
+import { usePlayOnce } from "../utils/playOnce";
 import { GitHubIcon, InstagramIcon, LinkedInIcon, MailIcon, WhatsAppIcon } from "./icons";
 
 type Props = {
@@ -16,39 +17,8 @@ const linkClass =
   "social-link inline-flex items-center justify-center w-9 h-9 -m-1 rounded-full text-foreground/70 hover:text-accent transition-colors duration-200";
 
 export default function SocialLinksNew({ github, linkedin, instagram, whatsapp, email, className = "", size = 22 }: Props) {
-  // La animación no se ata a :hover: al entrar se marca el enlace y la marca se
-  // retira cuando ya ha terminado, así que se completa aunque el puntero salga
-  // a la mitad. Volver a entrar mientras corre no la reinicia.
-  const timers = useRef(new Set<number>());
-  useEffect(() => {
-    const pending = timers.current;
-    return () => {
-      pending.forEach((id) => window.clearTimeout(id));
-      pending.clear();
-    };
-  }, []);
+  const play = usePlayOnce();
 
-  const play = (event: React.SyntheticEvent<HTMLAnchorElement>) => {
-    const link = event.currentTarget;
-    if (link.classList.contains("is-playing")) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    link.classList.add("is-playing");
-    const declared = window.getComputedStyle(link).getPropertyValue("--si-dur").trim();
-    const value = Number.parseFloat(declared) || 0;
-    const ms = declared.endsWith("ms") || !declared.endsWith("s") ? value : value * 1000;
-    const id = window.setTimeout(() => {
-      link.classList.remove("is-playing");
-      timers.current.delete(id);
-    }, (ms || 800) + 40);
-    timers.current.add(id);
-  };
-
-  // Ajuste óptico: las cinco marcas no miden lo mismo para verse iguales. Un
-  // cuadro se ve más grande que un círculo del mismo lado, y un logotipo de
-  // letras se ve más grande todavía, así que el cuadrado de Instagram crece y
-  // las letras de LinkedIn y Gmail se recogen. Medido sobre la tinta real de
-  // cada marca y comparado a 22, 44 y 84 px.
   const items = [
     { href: github, label: "GitHub", Icon: GitHubIcon, scale: 1 },
     { href: linkedin, label: "LinkedIn", Icon: LinkedInIcon, scale: 0.94 },
