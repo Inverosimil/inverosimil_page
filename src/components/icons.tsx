@@ -89,13 +89,23 @@ export function LinkedInIcon(props: IconProps) {
   );
 }
 
-/** Instagram: el lente mira a un lado y a otro, como un ojo. */
+/** Instagram: enfoque. El hueco del lente se cierra y se abre, y el anillo
+ *  respira a la contra, como un objetivo buscando foco. */
 export function InstagramIcon(props: IconProps) {
+  const id = useId();
+  const mask = `ig-m${id}`;
   return (
     <FilledIcon {...props}>
+      <defs>
+        {/* el hueco del lente es ausencia: se anima con una máscara, como en GitHub */}
+        <mask id={mask} maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+          <rect width="24" height="24" fill="#fff" />
+          <path d={IG[4]} fill="#000" className="si-iglens" style={box("12px 12px")} />
+        </mask>
+      </defs>
       <path d={`${IG[0]} ${IG[1]}`} />
       <path d={IG[2]} />
-      <path d={`${IG[3]} ${IG[4]}`} className="si-iglens" style={box("12px 12px")} />
+      <path d={IG[3]} mask={`url(#${mask})`} className="si-igring" style={box("12px 12px")} />
     </FilledIcon>
   );
 }

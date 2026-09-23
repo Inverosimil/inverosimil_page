@@ -344,20 +344,22 @@ body {
    corta (la animación se corta, no termina). Ver icons.tsx. */
 .si-gmpaper { transform: translateY(7.2px); } /* reposo: la hoja escondida bajo la V */
 @media (prefers-reduced-motion: no-preference) {
-  .si-ghhead, .si-ghtail, .si-lidot, .si-libar, .si-waph, .si-iglens { transition: transform .2s ease; }
+  .si-ghhead, .si-ghtail, .si-lidot, .si-libar, .si-waph, .si-iglens, .si-igring { transition: transform .2s ease; }
   .social-link:hover .si-ghhead  { animation: si-head  .8s cubic-bezier(.22,1,.36,1); }
   .social-link:hover .si-ghtail  { animation: si-tail  .8s cubic-bezier(.22,1,.36,1); }
   .social-link:hover .si-lidot   { animation: si-dot   .8s cubic-bezier(.34,1.56,.64,1); }
   .social-link:hover .si-libar   { animation: si-bar   .8s cubic-bezier(.22,1,.36,1); }
-  .social-link:hover .si-iglens  { animation: si-lens  .8s  cubic-bezier(.45,0,.55,1); }
+  .social-link:hover .si-iglens  { animation: si-lens  .8s cubic-bezier(.45,0,.55,1); }
+  .social-link:hover .si-igring  { animation: si-ring  .8s cubic-bezier(.45,0,.55,1); }
   .social-link:hover .si-waph    { animation: si-phone .8s  cubic-bezier(.45,0,.55,1); }
   .social-link:hover .si-gmpaper { animation: si-paper .8s cubic-bezier(.22,1,.36,1); }
   @keyframes si-head  { 0%,100% { transform: skewX(0) }  28% { transform: skewX(10deg) }  62% { transform: skewX(-10deg) } }
   @keyframes si-tail  { 0%,100% { transform: rotate(0) } 30% { transform: rotate(-13deg) } 66% { transform: rotate(8deg) } }
   @keyframes si-dot   { 0% { transform: translateY(0) } 38% { transform: translateY(-70px) } 100% { transform: translateY(0) } }
   @keyframes si-bar   { 0%,100% { transform: scaleY(1) } 40% { transform: scaleY(1.1) } }
-  @keyframes si-lens  { 0%,100% { transform: translate(0,0) } 30% { transform: translate(-1.5px,.3px) } 68% { transform: translate(1.5px,-.2px) } }
-  @keyframes si-phone { 0%,100% { transform: rotate(0) } 30% { transform: rotate(-12deg) } 64% { transform: rotate(7deg) } 86% { transform: rotate(-2deg) } }
+  @keyframes si-lens  { 0%,100% { transform: scale(1) } 32% { transform: scale(.7) } 68% { transform: scale(1.12) } }
+  @keyframes si-ring  { 0%,100% { transform: scale(1) } 32% { transform: scale(1.08) } 68% { transform: scale(.97) } }
+  @keyframes si-phone { 0%,100% { transform: rotate(0) } 18% { transform: rotate(-16deg) } 40% { transform: rotate(13deg) } 62% { transform: rotate(-9deg) } 82% { transform: rotate(4deg) } }
   @keyframes si-paper { 0%,100% { transform: translateY(7.2px) } 40%,70% { transform: translateY(-1.6px) } }
 }
 
