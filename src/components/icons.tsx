@@ -100,12 +100,13 @@ export function InstagramIcon(props: IconProps) {
   return (
     <FilledIcon {...props}>
       <defs>
-        <clipPath id={hole}><circle cx="12" cy="12" r="4" /></clipPath>
+        {/* 0.12u más que el hueco: el trazo se mete bajo el anillo y no comparten borde */}
+        <clipPath id={hole}><circle cx="12" cy="12" r="4.12" /></clipPath>
       </defs>
       <path d={`${IG[0]} ${IG[1]}`} />
       <path d={`${IG[3]} ${IG[4]}`} />
       <g clipPath={`url(#${hole})`}>
-        <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" strokeWidth={0} className="si-igiris" />
+        <circle cx="12" cy="12" r="4.06" fill="none" stroke="currentColor" strokeWidth={0} className="si-igiris" />
       </g>
       <circle cx="18.393" cy="5.584" r="1.44" fill="none" stroke="currentColor" strokeWidth={0.45} opacity={0} className="si-igburst" style={flash} />
       <path d={IG[2]} className="si-igflash" style={flash} />
