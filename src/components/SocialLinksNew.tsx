@@ -24,9 +24,9 @@ export default function SocialLinksNew({ github, linkedin, instagram, whatsapp, 
   const items = [
     { href: github, label: "GitHub", Icon: GitHubIcon, scale: 1 },
     { href: linkedin, label: "LinkedIn", Icon: LinkedInIcon, scale: 0.94 },
-    { href: instagram, label: "Instagram", Icon: InstagramIcon, scale: 1.13 },
+    { href: instagram, label: "Instagram", Icon: InstagramIcon, scale: 1.18 },
     { href: whatsapp, label: "WhatsApp", Icon: WhatsAppIcon, scale: 0.97 },
-    { href: email, label: "Email", Icon: MailIcon, scale: 0.95 },
+    { href: email, label: "Email", Icon: MailIcon, scale: 0.99 },
   ].filter((item) => item.href);
 
   return (
