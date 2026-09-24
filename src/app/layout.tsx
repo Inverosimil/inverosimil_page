@@ -92,7 +92,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${bebas.variable} antialiased bg-background text-foreground`}>
         <Providers>
           <SmoothPageScroll />
-          <ParallaxBackground speed={0.35} />
+          <ParallaxBackground speed={0.25} />
           <TopRightControls />
           {children}
         </Providers>

@@ -1,7 +1,9 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 
-export default function ParallaxBackground({ speed = 0.35 }: { speed?: number }) {
+// `speed` es la fracción del scroll que recorre la rejilla de puntos: 0.25 hace
+// que avance a un cuarto de la velocidad del contenido.
+export default function ParallaxBackground({ speed = 0.25 }: { speed?: number }) {
   const ref = useRef<HTMLDivElement | null>(null);
   const rafRef = useRef<number | null>(null);
   const lastY = useRef<number>(0);
